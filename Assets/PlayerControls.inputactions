@@ -1,0 +1,34 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "MyActionMap",
+            "id": "471fd7f0-1502-4bd1-8e40-b0320d9e015c",
+            "actions": [
+                {
+                    "name": "Cast",
+                    "type": "Button",
+                    "id": "9073d7e8-e9c5-42ce-981c-dda8795dff24",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9a8c1ee4-639c-4c9a-bc1e-60e8af4d3edf",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

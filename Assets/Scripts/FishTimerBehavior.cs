@@ -1,49 +1,73 @@
-/******************************************************************
+/******************************************************************************
 *    Author: Marissa Moser
 *    Contributors: 
 *    Date Created: November 19, 2023
-*    Description: 
+*    Description: This script manages the base time system that will be used
+*    for the entire game.
 *    
-*******************************************************************/
+******************************************************************************/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FishTimerBehavior : MonoBehaviour
 {
-    public List<GameObject> FishList = new List<GameObject>();
-    public static GameObject enabledFish;
-    private int randomInt;
+    [SerializeField] private List<GameObject> fishList = new List<GameObject>();
+    public static GameObject EnabledFish;
+    private int _randomInt;
+    public static int TotalFishCaught;
+
+    private PlayerInput _myPlayerInput;
+    private InputAction cast;
+
+    [SerializeField] private GameObject _castMessage;
 
     private void Start()
     {
         SwitchFish();
+
+        _myPlayerInput = GetComponent<PlayerInput>();
+        _myPlayerInput.currentActionMap.Enable();
+        cast = _myPlayerInput.currentActionMap.FindAction("Cast");
+        cast.started += OnCast;
     }
 
     /// <summary>
-    /// Function that is called when a fish animation finishes to switch to a 
-    /// new animation.
+    // TODO
+    /// </summary>
+    /// <param name="obj"></param>
+    private void OnCast(InputAction.CallbackContext obj)
+    {
+        print(Time.time);
+    }
+
+    /// <summary>
+    /// Disables current fish object, selects a new one, enables it, and starts
+    /// a timer.
     /// </summary>
     public void SwitchFish()
     {
         //disable current fish
-        if(enabledFish != null)
+        if(EnabledFish != null)
         {
-            print("not  null");
-            enabledFish.SetActive(false);
+            EnabledFish.SetActive(false);
         }
 
         //pick new fish that is different from the previous
         RandomFish();
-        print(randomInt);
-        while (enabledFish == FishList[randomInt])
+        while (EnabledFish == fishList[_randomInt])
         {
             RandomFish();
         }
 
         //enable new fish
-        enabledFish = FishList[randomInt];
-        enabledFish.SetActive(true);
+        EnabledFish = fishList[_randomInt];
+        EnabledFish.SetActive(true);
+
+        //start timer
+        //TODO: start timer
     }
 
     /// <summary>
@@ -51,6 +75,24 @@ public class FishTimerBehavior : MonoBehaviour
     /// </summary>
     private void RandomFish()
     {
-        randomInt = Random.Range(0, FishList.Count);
+        _randomInt = UnityEngine.Random.Range(0, fishList.Count + 1);
+        //print(_randomInt);
+    }
+
+    /// <summary>
+    /// Increments TotalFishCaught and cexks if the game should end, if not
+    /// starts the next round.
+    /// </summary>
+    private void FishCaught()
+    {
+        TotalFishCaught++;
+        if(TotalFishCaught == 3)
+        {
+            //TODO: end game
+        }
+        else
+        {
+            SwitchFish();
+        }
     }
 }

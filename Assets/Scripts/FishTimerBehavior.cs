@@ -18,12 +18,18 @@ public class FishTimerBehavior : MonoBehaviour
     public static GameObject EnabledFish;
     private int _randomInt;
     public static int TotalFishCaught;
+    private Coroutine _currentTimer;
 
     private PlayerInput _myPlayerInput;
     private InputAction cast;
+    public static Action Cast;
 
     [SerializeField] private GameObject _castMessage;
+    [SerializeField] private GameObject _victoryMessage;
 
+    /// <summary>
+    /// Begins the game and sets up inputs.
+    /// </summary>
     private void Start()
     {
         SwitchFish();
@@ -35,12 +41,12 @@ public class FishTimerBehavior : MonoBehaviour
     }
 
     /// <summary>
-    // TODO
+    /// Invokes the Cast action on the cast input.
     /// </summary>
     /// <param name="obj"></param>
     private void OnCast(InputAction.CallbackContext obj)
     {
-        print(Time.time);
+        Cast?.Invoke();
     }
 
     /// <summary>
@@ -67,7 +73,7 @@ public class FishTimerBehavior : MonoBehaviour
         EnabledFish.SetActive(true);
 
         //start timer
-        //TODO: start timer
+        StartCoroutine(DisplayFish());
     }
 
     /// <summary>
@@ -76,23 +82,68 @@ public class FishTimerBehavior : MonoBehaviour
     private void RandomFish()
     {
         _randomInt = UnityEngine.Random.Range(0, fishList.Count + 1);
-        //print(_randomInt);
     }
 
     /// <summary>
-    /// Increments TotalFishCaught and cexks if the game should end, if not
-    /// starts the next round.
+    /// Waits 2.5 seconds to display the fish, then begins the catching fish
+    /// functionality.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator DisplayFish()
+    {
+        yield return new WaitForSeconds(2.5f);
+        Cast += FishCaught;
+        _castMessage.SetActive(true);
+        _currentTimer = StartCoroutine(CatchingFish(2.5f));
+    }
+
+    /// <summary>
+    /// Waits a given amout of seconds before the fish is "caught". Will be 
+    /// interrupted by the catch input functionality.
+    /// </summary>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    IEnumerator CatchingFish(float time)
+    {
+        yield return new WaitForSeconds(time);
+        FishCaught();
+    }
+
+    /// <summary>
+    /// Stops the catching fish timer and resets the cast message. Increments
+    /// TotalFishCaught and cexks if the game should end, if not starts the
+    /// next round.
     /// </summary>
     private void FishCaught()
     {
+        if(_currentTimer != null)
+        {
+            StopCoroutine(_currentTimer);
+        }
+        _castMessage.SetActive(false);
+        Cast -= FishCaught;
+
         TotalFishCaught++;
         if(TotalFishCaught == 3)
         {
-            //TODO: end game
+            EndGame();
         }
         else
         {
             SwitchFish();
         }
+    }
+
+    /// <summary>
+    /// Disables the current fish and enables the victory mesage.
+    /// </summary>
+    private void EndGame()
+    {
+        if (EnabledFish != null)
+        {
+            EnabledFish.SetActive(false);
+        }
+
+        _victoryMessage.SetActive(true);
     }
 }

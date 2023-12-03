@@ -19,9 +19,10 @@ public class FishTimerBehavior : MonoBehaviour
     private int _randomInt;
     public static int TotalFishCaught;
     private Coroutine _currentTimer;
+    private bool _canCast;
 
     private PlayerInput _myPlayerInput;
-    private InputAction cast;
+    private InputAction _cast;
     public static Action Cast;
 
     [SerializeField] private GameObject _castMessage;
@@ -36,8 +37,16 @@ public class FishTimerBehavior : MonoBehaviour
 
         _myPlayerInput = GetComponent<PlayerInput>();
         _myPlayerInput.currentActionMap.Enable();
-        cast = _myPlayerInput.currentActionMap.FindAction("Cast");
-        cast.started += OnCast;
+        _cast = _myPlayerInput.currentActionMap.FindAction("Cast");
+        _cast.started += OnCast;
+    }
+
+    /// <summary>
+    /// Assigns the Cast action
+    /// </summary>
+    private void OnEnable()
+    {
+        Cast += FishCaught;
     }
 
     /// <summary>
@@ -46,7 +55,10 @@ public class FishTimerBehavior : MonoBehaviour
     /// <param name="obj"></param>
     private void OnCast(InputAction.CallbackContext obj)
     {
-        Cast?.Invoke();
+        if(_canCast)
+        {
+            Cast?.Invoke();
+        }
     }
 
     /// <summary>
@@ -81,7 +93,7 @@ public class FishTimerBehavior : MonoBehaviour
     /// </summary>
     private void RandomFish()
     {
-        _randomInt = UnityEngine.Random.Range(0, fishList.Count + 1);
+        _randomInt = UnityEngine.Random.Range(0, fishList.Count - 1);
     }
 
     /// <summary>
@@ -92,7 +104,8 @@ public class FishTimerBehavior : MonoBehaviour
     IEnumerator DisplayFish()
     {
         yield return new WaitForSeconds(2.5f);
-        Cast += FishCaught;
+        //listen for cast
+        _canCast = true;
         _castMessage.SetActive(true);
         _currentTimer = StartCoroutine(CatchingFish(2.5f));
     }
@@ -121,7 +134,8 @@ public class FishTimerBehavior : MonoBehaviour
             StopCoroutine(_currentTimer);
         }
         _castMessage.SetActive(false);
-        Cast -= FishCaught;
+        //stop listening
+        _canCast = false;
 
         TotalFishCaught++;
         if(TotalFishCaught == 3)
@@ -145,5 +159,13 @@ public class FishTimerBehavior : MonoBehaviour
         }
 
         _victoryMessage.SetActive(true);
+    }
+
+    /// <summary>
+    /// Unassigns Cast action.
+    /// </summary>
+    private void OnDisable()
+    {
+        Cast -= FishCaught;
     }
 }

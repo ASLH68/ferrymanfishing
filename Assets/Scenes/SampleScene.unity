@@ -216,8 +216,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 933804917}
-  - component: {fileID: 933804916}
   - component: {fileID: 933804918}
+  - component: {fileID: 933804919}
   m_Layer: 0
   m_Name: FishingRod
   m_TagString: Untagged
@@ -225,23 +225,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &933804916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933804915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2cfb8f2fd31ab142bad9f03f426b8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _reelIncrementValue: 0.1
-  _reelMaxTime: 20
-  _milestone1: 1.5
-  _milestone2: 2
-  _milestone3: 2.5
 --- !u!4 &933804917
 Transform:
   m_ObjectHideFlags: 0
@@ -270,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: b1f5430b08b51684cbdca0876f500caf, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 1
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -287,3 +270,22 @@ MonoBehaviour:
   m_DefaultActionMap: MyActionMap
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &933804919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933804915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2613d2f9c9d9a134aab4cf41f9f02f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castWaitTime: 0
+  _canCast: 0
+  _reelIncrementValue: 0.5
+  _reelMaxTime: 20
+  _milestone1: 1.5
+  _milestone2: 2
+  _milestone3: 2.5

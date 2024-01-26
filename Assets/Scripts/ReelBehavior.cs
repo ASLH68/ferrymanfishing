@@ -15,13 +15,22 @@ using UnityEngine.InputSystem;
 public class ReelBehavior : MonoBehaviour
 {
     public static float ReelValue;
-    private float _reelMilestone;
+    [SerializeField] private float _reelIncrementValue;
+    private float _currentReelMilestone;
     private int _milestonesReached;
     private bool _canReel;
+    [SerializeField] private float _reelMaxTime;
 
     private PlayerInput _myPlayerInput;
     private InputAction _reel;
     private Coroutine _reelTimer;
+
+    [Header("Fish Milestones")]
+    [SerializeField] private float _milestone1;
+    [SerializeField] private float _milestone2;
+    [SerializeField] private float _milestone3;
+
+
 
     void Start()
     {
@@ -50,11 +59,11 @@ public class ReelBehavior : MonoBehaviour
                 _reelTimer = StartCoroutine(ReelTimer());
             }
 
-            ReelValue += 0.1f;
+            ReelValue += _reelIncrementValue;
             print(ReelValue);
 
             //chack if milestone was reached
-            if (ReelValue >= _reelMilestone)
+            if (ReelValue >= _currentReelMilestone)
             {
                 print("milestone reached");
                 ReelValue = 0;
@@ -70,7 +79,7 @@ public class ReelBehavior : MonoBehaviour
     private IEnumerator ReelTimer()
     {
         print("timer started");
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(_reelMaxTime);
         print("YOU CAUGHT THE FISH!! (timer)");
         _canReel = false;
     }
@@ -84,13 +93,13 @@ public class ReelBehavior : MonoBehaviour
         switch (_milestonesReached)
         {
             case 0:
-                _reelMilestone = 1.5f;
+                _currentReelMilestone = _milestone1; //1.5f;
                 break;
             case 1:
-                _reelMilestone = 2.0f;
+                _currentReelMilestone = _milestone2; // 2.0f;
                 break;
             case 2:
-                _reelMilestone = 2.5f;
+                _currentReelMilestone = _milestone3; // 2.5f;
                 break;
             case 3:     //the fish is caught
                 print("YOU CAUGHT THE FISH!! (reeling)");

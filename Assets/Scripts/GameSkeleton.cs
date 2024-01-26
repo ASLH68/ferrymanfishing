@@ -1,9 +1,8 @@
 /******************************************************************************
 *    Author: Marissa Moser
 *    Contributors: 
-*    Date Created: January 19, 2024
-*    Description: This script manages the reel phase. It reads the reel input,
-*    updates the milestones, and times the phase so it does not take too long.
+*    Date Created: January 26, 2024
+*    Description: This script manages all the phases in the game.
 *    
 ******************************************************************************/
 using System;
@@ -17,9 +16,9 @@ public class GameSkeleton : MonoBehaviour
     private InputAction _reel, _cast;
     public static int TotalFishCaught;
 
-    [Header("Reel Phase")]
+    [Header("Cast Phase")]
     [SerializeField] private float _castWaitTime;
-    [SerializeField] private bool _canCast;
+    private bool _canCast;
 
     [Header("Reel Phase")]
     public static float ReelValue;

@@ -11,15 +11,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class ReelBehavior : MonoBehaviour
 {
     public static float ReelValue;
     [SerializeField] private float _reelIncrementValue;
-    private float _currentReelMilestone;
+    private float _reelMilestone;
     private int _milestonesReached;
     private bool _canReel;
-    [SerializeField] private float _reelMaxTime;
 
     private PlayerInput _myPlayerInput;
     private InputAction _reel;
@@ -63,7 +63,7 @@ public class ReelBehavior : MonoBehaviour
             print(ReelValue);
 
             //chack if milestone was reached
-            if (ReelValue >= _currentReelMilestone)
+            if (ReelValue >= _reelMilestone)
             {
                 print("milestone reached");
                 ReelValue = 0;
@@ -79,7 +79,7 @@ public class ReelBehavior : MonoBehaviour
     private IEnumerator ReelTimer()
     {
         print("timer started");
-        yield return new WaitForSeconds(_reelMaxTime);
+        yield return new WaitForSeconds(20);
         print("YOU CAUGHT THE FISH!! (timer)");
         _canReel = false;
     }
@@ -93,13 +93,13 @@ public class ReelBehavior : MonoBehaviour
         switch (_milestonesReached)
         {
             case 0:
-                _currentReelMilestone = _milestone1; //1.5f;
+                _reelMilestone = _milestone1; //1.5f;
                 break;
             case 1:
-                _currentReelMilestone = _milestone2; // 2.0f;
+                _reelMilestone = _milestone2; // 2.0f;
                 break;
             case 2:
-                _currentReelMilestone = _milestone3; // 2.5f;
+                _reelMilestone = _milestone3; // 2.5f;
                 break;
             case 3:     //the fish is caught
                 print("YOU CAUGHT THE FISH!! (reeling)");

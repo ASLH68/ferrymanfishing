@@ -17,17 +17,24 @@ public class GameSkeleton : MonoBehaviour
     public static int TotalFishCaught;
 
     [Header("Cast Phase")]
-    [SerializeField] private float _castWaitTime;
+    [SerializeField] private float _castWaitTimeMax;
+    [SerializeField] private float _castWaitTimeMin;
+    private float _castWaitTime;
     private bool _canCast;
 
     [Header("Reel Phase")]
-    public static float ReelValue;
     [SerializeField] private float _reelIncrementValue;
+    public static float ReelValue;
     private float _currentReelMilestone;
     private int _milestonesReached;
     private bool _canReel = false;
     [SerializeField] private float _reelMaxTime;
     private Coroutine _reelTimer;
+
+    [Header("Display Fish Phase")]
+    [SerializeField] private float _displayFishTime;
+    [SerializeField] private float _fishToCerberusTime;
+
 
     [Header("Fish Milestones")]
     [SerializeField] private float _milestone1;
@@ -58,7 +65,7 @@ public class GameSkeleton : MonoBehaviour
     {
         if (_canCast)
         {
-            _castWaitTime = UnityEngine.Random.Range(3, 6);
+            _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax+1);
             //print(_castWaitTime);
             StartCoroutine(CastTimer());
         }
@@ -162,11 +169,11 @@ public class GameSkeleton : MonoBehaviour
 
         //Display fish
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(_displayFishTime);
 
         //Fish to Cerberus
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(_fishToCerberusTime);
 
         TotalFishCaught++;
         if (TotalFishCaught == 3)

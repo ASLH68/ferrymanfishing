@@ -6,14 +6,15 @@ int buttonState = 0;  // 0 or 1
 int buttonState2 = 0;
 int buttonState3 = 0;
 
-const int buttonPin = 2;
-const int buttonPin2 = 3;
+//const int buttonPin = 2;
+//const int buttonPin2 = 3;
 const int buttonPin3 = 4;
 const int ledPin = 13;
 const int pingPin = 7;
 const int motorPin = 2;
-const int servoPin = 10;
-#define sensor A0
+const int servoPin = 2;
+const int rumblePin = 3;
+#define sensor A1
 #include <Servo.h>
 #include <SerialCommand.h>
 #include <SoftwareSerial.h>
@@ -26,11 +27,12 @@ bool stringComplete = false;
 void setup() {
   // put your setup code here, to run once:
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(buttonPin, INPUT);
-  pinMode(buttonPin2, INPUT);
+  // pinMode(buttonPin, INPUT);
+  // pinMode(buttonPin2, INPUT);
   pinMode(buttonPin3, INPUT);
-  digitalWrite(buttonPin, HIGH);
-  digitalWrite(buttonPin2, HIGH);
+  pinMode(rumblePin, OUTPUT);
+  // digitalWrite(buttonPin, HIGH);
+  // digitalWrite(buttonPin2, HIGH);
   digitalWrite(buttonPin3, HIGH);
   servo.attach(servoPin);
   Serial.begin(9600);  //open serial port
@@ -81,9 +83,11 @@ void offHapticHandle()
 void loop() {
 
 
-  buttonState = digitalRead(buttonPin);  //reading data in
+ // buttonState = digitalRead(buttonPin);  //reading data in
+    float volts = analogRead(sensor);  // value from sensor * (5/1024)
+    String distance = String(volts);               // worked out from datasheet graph   
 
-  if (Serial.available()) {
+   if (Serial.available()) {
     // get the new byte:
     char inChar = (char)Serial.read();
     // add it to the inputString:
@@ -95,10 +99,14 @@ void loop() {
     }
   }  
   
+  int start = 0;
+  int stop = 0;
   // print the string when a newline arrives:
   if (stringComplete) {
-      Serial.write(inputString.c_str());
-      Serial.write(buttonState == 1 ? "BRUH" : "MOMENT");
+      start = inputString.substring(0, 2).toInt();
+      stop = inputString.substring(3).toInt();
+     Serial.write(inputString.c_str());
+      Serial.write(distance.c_str());
       //Serial.write(buttonState);
       //Serial.flush();
     
@@ -107,22 +115,30 @@ void loop() {
     stringComplete = false;
   }
 
+  servo.write(start);
+  delay(100);
+  servo.write(stop);
+  delay(100);
+// digitalWrite(rumblePin, HIGH);
+  // delay(start);
+  // digitalWrite(rumblePin, LOW);
+  // delay(stop);
   // put your main code here, to run repeatedly:
   // digitalWrite(LED_BUILTIN, HIGH); //flash it to a high voltage
   // delay(200);
   // digitalWrite(LED_BUILTIN, LOW);
   // delay(200);
-  buttonState2 = digitalRead(buttonPin2);
+  // buttonState2 = digitalRead(buttonPin2);
   buttonState3 = digitalRead(buttonPin3);
 
-  if (buttonState2 == LOW) {
-    float volts = analogRead(sensor) * 0.0068828125;  // value from sensor * (5/1024)
-    int distance = 13 * pow(volts, -1);               // worked out from datasheet graph                                     // slow down serial port
+  // if (buttonState2 == LOW) {
+  //   float volts = analogRead(sensor) * 0.0068828125;  // value from sensor * (5/1024)
+  //   int distance = 13 * pow(volts, -1);               // worked out from datasheet graph                                     // slow down serial port
 
-    if (distance <= 30) {
-      Serial.println(distance);  // print the distance
-    }
-  }
+  //   if (distance <= 30) {
+  //     Serial.println(distance);  // print the distance
+  //   }
+  // }
 
 
   // if(buttonState == LOW)

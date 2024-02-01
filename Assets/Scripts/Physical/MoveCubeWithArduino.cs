@@ -9,13 +9,13 @@ public class MoveCubeWithArduino : MonoBehaviour
 
     private void Update()
     {
-        if (Arduino.Instance.GetBoard().IsOpen)
+        if (Arduino.Instance.GetSerialPort().IsOpen)
         {
             ReadFromArduino();
         }
         else
         {
-            Debug.LogWarning("The SerialPort " + Arduino.Instance.GetBoard().PortName + " is not open.");
+            Debug.LogWarning("The SerialPort " + Arduino.Instance.GetSerialPort().PortName + " is not open.");
         }
     }
 
@@ -24,16 +24,16 @@ public class MoveCubeWithArduino : MonoBehaviour
         try
         {
             //yellow button is pushed
-            if (Arduino.Instance.GetBoard().ReadByte() == 1)
+            if (Arduino.Instance.GetSerialPort().ReadByte() == 1)
             {
-                Debug.Log("Recieving " + Arduino.Instance.GetBoard().ReadByte() + " from Arduino.");
+                Debug.Log("Recieving " + Arduino.Instance.GetSerialPort().ReadByte() + " from Arduino.");
                 transform.Translate(Vector3.left * Time.deltaTime * _moveSpeed);
             }
 
             //green button is pushed
-            if (Arduino.Instance.GetBoard().ReadByte() == 2)
+            if (Arduino.Instance.GetSerialPort().ReadByte() == 2)
             {
-                Debug.Log("Recieving " + Arduino.Instance.GetBoard().ReadByte() + " from Arduino.");
+                Debug.Log("Recieving " + Arduino.Instance.GetSerialPort().ReadByte() + " from Arduino.");
                 transform.Translate(Vector3.right * Time.deltaTime * _moveSpeed);
             }
         }

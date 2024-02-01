@@ -9,11 +9,11 @@ public class BlinkLightArduino : MonoBehaviour
 
     private void Update()
     {
-        if (Arduino.Instance.GetBoard().IsOpen)
+        if (Arduino.Instance.GetSerialPort().IsOpen)
         {
             try
             {
-                BlinkLight(Arduino.Instance.GetBoard().ReadByte());
+                BlinkLight(Arduino.Instance.GetSerialPort().ReadByte());
             }
             catch (System.Exception)
             {

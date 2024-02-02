@@ -89,6 +89,8 @@ public class ArduinoThread
             return;
         }
 
+        Debug.Log("Writing: " + message);
+
         _outputQueue.Enqueue(message);
     }
 

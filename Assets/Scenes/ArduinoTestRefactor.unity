@@ -254,7 +254,7 @@ MonoBehaviour:
   _manualPortName: 
   _readTimeout: 50
   _writeTimeout: 50
-  _baudRate: 115200
+  _baudRate: 9600
 --- !u!1 &2044632544
 GameObject:
   m_ObjectHideFlags: 0

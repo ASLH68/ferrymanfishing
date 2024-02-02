@@ -40,7 +40,7 @@ public class RecieveTest1 : MonoBehaviour
         string msg = _a.GetThread().ReadMessageThreaded();
         if (msg != null)
         {
-            Debug.Log(msg);
+            Debug.Log("Recieving: " + msg);
         }
     }
 }

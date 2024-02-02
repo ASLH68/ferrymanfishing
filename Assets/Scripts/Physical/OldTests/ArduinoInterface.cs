@@ -10,6 +10,14 @@ using Microsoft.Win32;
 
 public class ArduinoInterface : MonoBehaviour
 {
+    [Header("Setup")]
+    [SerializeField] private string _serialPortName = "COM5";
+    [SerializeField] private int _baudRate = 9600;
+
+    [Header("Servo Motor")]
+    [SerializeField] private int _forwardRotationIncrement = 25;
+    [SerializeField] private int _backwardRotationIncrement = 5;
+
     // Start is called before the first frame update
     private SerialPort mogPort;
     private int frameCount;
@@ -78,7 +86,7 @@ public class ArduinoInterface : MonoBehaviour
     
     private void ThreadLoop()
     {
-        mogPort = new SerialPort("COM10", 9600);
+        mogPort = new SerialPort(_serialPortName, _baudRate);
         mogPort.ReadTimeout = 50;
         mogPort.DtrEnable = true;
         mogPort.RtsEnable = true;
@@ -99,12 +107,6 @@ public class ArduinoInterface : MonoBehaviour
             }
         }
 
-        mogPort.Close();
-    }
-
-    void OnDisable()
-    {
-        StopThread();
         mogPort.Close();
     }
 
@@ -231,8 +233,14 @@ public class ArduinoInterface : MonoBehaviour
         // }
         //WriteToArduino(" ");
         // ReadFromArduino();
-        SendToArduinoThreaded("05|5");
+        SendToArduinoThreaded($"{_forwardRotationIncrement}|{_backwardRotationIncrement}");
         print(ReadFromArduinoThreaded());
         frameCount++;
+    }
+
+    void OnDisable()
+    {
+        StopThread();
+        mogPort.Close();
     }
 }

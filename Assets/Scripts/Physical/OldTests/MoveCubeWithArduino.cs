@@ -5,7 +5,7 @@ using System.IO.Ports;
 
 public class MoveCubeWithArduino : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
+    /*[SerializeField] private float _moveSpeed;
 
     private void Update()
     {
@@ -41,5 +41,5 @@ public class MoveCubeWithArduino : MonoBehaviour
         {
             //Issue with serial port?
         }
-    }
+    }*/
 }

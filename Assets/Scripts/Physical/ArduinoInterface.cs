@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using System.IO.Ports;
 using System.Management;
@@ -12,19 +13,98 @@ public class ArduinoInterface : MonoBehaviour
     // Start is called before the first frame update
     private SerialPort mogPort;
     private int frameCount;
+    private Thread thread;
+    private Queue outputQueue;
+    private Queue inputQueue;
+    private string port;
+    private bool looping = true;
 
     void Start()
     {
-        string port = AutodetectArduinoPort();
-        mogPort = new SerialPort(port, 9600);
+        
+        print(port);
+        // mogPort = new SerialPort(port, 9600);
+        // mogPort.ReadTimeout = 50;
+        // mogPort.WriteTimeout = 50;
+        // mogPort.Open();
+        //StartCoroutine(ReadFromArduinoAsync(null, null));
+        StartThread();
+    }
+
+    private void StartThread()
+    {
+        outputQueue = Queue.Synchronized(new Queue());
+        inputQueue = Queue.Synchronized(new Queue());
+        thread = new Thread(ThreadLoop);
+        thread.Start();
+    }
+
+    public void SendToArduinoThreaded(string command)
+    {
+        if (command == null) return;
+        outputQueue.Enqueue(command);
+    }
+
+    public string ReadFromArduinoThreaded()
+    {
+        if (inputQueue.Count == 0)
+        {
+            return null;
+        }
+
+        return (string) inputQueue.Dequeue();
+    }
+
+    public void StopThread()
+    {
+        lock (this)
+        {
+            looping = false;
+        }
+    }
+
+    public bool IsLooping()
+    {
+        lock (this)
+        {
+            return looping;
+        }
+    }
+
+    void OnMessageArrived(string msg)
+    {
+        
+    }
+    
+    private void ThreadLoop()
+    {
+        mogPort = new SerialPort("COM10", 9600);
         mogPort.ReadTimeout = 50;
-        mogPort.WriteTimeout = 50;
+        mogPort.DtrEnable = true;
+        mogPort.RtsEnable = true;
         mogPort.Open();
-        //mogPort = new(, 9600);
+
+        while (IsLooping())
+        {
+            if (outputQueue.Count != 0)
+            {
+                string command = (string) outputQueue.Dequeue();
+                WriteToArduino(command);
+            }
+
+            string result = ReadFromArduino(50);
+            if (result != null)
+            {
+                inputQueue.Enqueue(result);
+            }
+        }
+
+        mogPort.Close();
     }
 
     void OnDisable()
     {
+        StopThread();
         mogPort.Close();
     }
 
@@ -76,7 +156,6 @@ public class ArduinoInterface : MonoBehaviour
         try
         {
             mogPort.WriteLine(msg);
-            mogPort.BaseStream.Flush();
         }
         catch (Exception e)
         {
@@ -85,11 +164,21 @@ public class ArduinoInterface : MonoBehaviour
         }
     }
 
-    [ContextMenu("READ")]
-    private void ReadFromArduino()
+    public string ReadFromArduino(int timeout = 0)
     {
-        string dataIN = mogPort.ReadLine();
-        print(dataIN);
+        mogPort.ReadTimeout = timeout;
+        try
+        {
+            return mogPort.ReadLine();
+        }
+        catch (TimeoutException e)
+        {
+            return null;
+        }
+        catch (IOException e)
+        {
+            return null;
+        }
     }
 
     public IEnumerator ReadFromArduinoAsync(Action<string> callback, Action fail = null,
@@ -103,6 +192,7 @@ public class ArduinoInterface : MonoBehaviour
             try
             {
                 dataIn = mogPort.ReadLine();
+                print(dataIn);
             }
             catch (TimeoutException e)
             {
@@ -139,8 +229,10 @@ public class ArduinoInterface : MonoBehaviour
         // {
         //     WriteToArduino("SET_SERVO_90");
         // }
-        WriteToArduino("GET_BUTTON_STATE");
-        ReadFromArduino();
+        //WriteToArduino(" ");
+        // ReadFromArduino();
+        SendToArduinoThreaded("05|5");
+        print(ReadFromArduinoThreaded());
         frameCount++;
     }
 }

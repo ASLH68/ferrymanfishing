@@ -52,7 +52,7 @@ public class Arduino : MonoBehaviour
         _sp.Close();
     }
 
-    public SerialPort GetBoard()
+    public SerialPort GetSerialPort()
     {
         return _sp;
     }

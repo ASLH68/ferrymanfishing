@@ -253,7 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _manualPortName: 
   _readTimeout: 50
-  _baudRate: 9600
+  _writeTimeout: 50
+  _baudRate: 115200
 --- !u!1 &2044632544
 GameObject:
   m_ObjectHideFlags: 0

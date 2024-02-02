@@ -298,5 +298,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80b06077bb9a1a74abe2695851822e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forwardsRot: 5
+  _forwardsRot: 25
   _backwardsRot: 5

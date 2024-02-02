@@ -54,9 +54,6 @@ public class ArduinoThread
                 _inputQueue.Enqueue(readMessage);
             }
         }
-
-        //Might be bad?
-        Stop();
     }
 
     private void WriteMessage(string message)
@@ -64,6 +61,7 @@ public class ArduinoThread
         try
         {
             _sp.WriteLine(message);
+            _sp.BaseStream.Flush();
         }
         catch (Exception e)
         {
@@ -86,7 +84,9 @@ public class ArduinoThread
         _sp.ReadTimeout = timeout;
         try
         {
-            return _sp.ReadLine();
+            string message = _sp.ReadLine();
+            _sp.BaseStream.Flush();
+            return message;
         }
         catch (TimeoutException e)
         {

@@ -12,6 +12,7 @@ public class Arduino : MonoBehaviour
 
     [Header("Read/Write Speeds")]
     [SerializeField] private int _readTimeout = 5000;
+    [SerializeField] private int _writeTimeout = 5000;
     [SerializeField] private int _baudRate = 9600;
 
     private ArduinoThread _arduinoThread;
@@ -40,12 +41,17 @@ public class Arduino : MonoBehaviour
             port = GetArduinoPortWindows();
         }
 
-        _arduinoThread = new ArduinoThread(port, _baudRate, _readTimeout);
+        _arduinoThread = new ArduinoThread(port, _baudRate, _readTimeout, _writeTimeout);
     }
 
     private void OnDisable()
     {
         _arduinoThread.Stop();
+    }
+
+    public void Flush()
+    {
+        _arduinoThread.FlushSerialPort();
     }
 
     private string GetArduinoPortWindows()

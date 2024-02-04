@@ -18,12 +18,14 @@ public class ArduinoThread
     private string _portName;
     private int _baudRate;
     private int _readTimeout;
+    private int _writeTimeout;
 
-    public ArduinoThread(string portName, int baudRate, int readTimeout)
+    public ArduinoThread(string portName, int baudRate, int readTimeout, int writeTimeout)
     {
         _portName = portName;
         _baudRate = baudRate;
         _readTimeout = readTimeout;
+        _writeTimeout = writeTimeout;
 
         _outputQueue = Queue.Synchronized(new Queue());
         _inputQueue = Queue.Synchronized(new Queue());
@@ -36,6 +38,7 @@ public class ArduinoThread
     {
         _sp = new SerialPort(_portName, _baudRate);
         _sp.ReadTimeout = _readTimeout;
+        _sp.WriteTimeout = _writeTimeout;
         _sp.DtrEnable = true;
         _sp.RtsEnable = true;
         _sp.Open();
@@ -54,6 +57,17 @@ public class ArduinoThread
                 _inputQueue.Enqueue(readMessage);
             }
         }
+
+        Debug.Log("Thread ended.");
+    }
+
+    public void Stop()
+    {
+        lock (this)
+        {
+            _looping = false;
+            _sp.Close();
+        }
     }
 
     private void WriteMessage(string message)
@@ -61,7 +75,6 @@ public class ArduinoThread
         try
         {
             _sp.WriteLine(message);
-            _sp.BaseStream.Flush();
         }
         catch (Exception e)
         {
@@ -76,6 +89,8 @@ public class ArduinoThread
             return;
         }
 
+        Debug.Log("Writing: " + message);
+
         _outputQueue.Enqueue(message);
     }
 
@@ -85,7 +100,6 @@ public class ArduinoThread
         try
         {
             string message = _sp.ReadLine();
-            _sp.BaseStream.Flush();
             return message;
         }
         catch (TimeoutException e)
@@ -112,20 +126,16 @@ public class ArduinoThread
         return (string)_inputQueue.Dequeue();
     }
 
+    public void FlushSerialPort()
+    {
+        _sp.BaseStream.Flush();
+    }
+
     private bool IsLooping()
     {
         lock (this)
         {
             return _looping;
-        }
-    }
-
-    public void Stop()
-    {
-        lock (this)
-        {
-            _looping = false;
-            _sp.Close();
         }
     }
 }

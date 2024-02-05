@@ -14,17 +14,40 @@ void setup() {
 }
 
 void loop() {
+  SendSerialData();
+  RecieveSerialData();
+}
+
+void SendSerialData()
+{
   int pressedL = digitalRead(BUTTON_L);
   int pressedR = digitalRead(BUTTON_R);
 
   Serial.print(pressedL);
   Serial.print(",");
-  Serial.print(pressedR);
+  Serial.println(pressedR);
+}
 
-  ActivateLight(LED_GREEN, pressedL);
-  ActivateLight(LED_RED, pressedR);
+void RecieveSerialData()
+{
+  if(Serial.available())
+  {
+    char message = (char)Serial.read();
 
-  delay(50);
+    int greenLightState = 0;
+    int redLightState = 0;
+    if(message == '0')
+    {
+      greenLightState = 1;
+    }
+    if(message == '1')
+    {
+      redLightState = 1;
+    }
+    
+    ActivateLight(LED_GREEN, greenLightState);
+    ActivateLight(LED_RED, redLightState);
+  }
 }
 
 void ActivateLight(int pin, int digitalState)

@@ -9,6 +9,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameSkeleton : MonoBehaviour
 {
@@ -126,6 +127,8 @@ public class GameSkeleton : MonoBehaviour
         yield return new WaitForSeconds(_reelMaxTime);
         print("YOU CAUGHT THE FISH!! (timer)");
         _canReel = false;
+        _milestonesReached = 3;
+        UpdateNextMilestone();
     }
 
     /// <summary>
@@ -183,6 +186,7 @@ public class GameSkeleton : MonoBehaviour
         {
             //end game
             print("GameOver");
+            SceneManager.LoadScene("EndScreenScene");
         }
         else
         {
@@ -190,5 +194,12 @@ public class GameSkeleton : MonoBehaviour
             print("cast");
             _canCast = true;
         }
+    }
+
+    private void OnDisable()
+    {
+
+        _reel.started -= ReelCount;
+        _cast.started -= WhenCast;
     }
 }

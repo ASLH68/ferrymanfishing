@@ -168,10 +168,13 @@ public class GameSkeleton : MonoBehaviour
         _canReel = false;
 
         //Display fish
+        SpawnFish.Instance.FishApperance(true);
+        SpawnFish.Instance.UIFish(_displayFishTime);
 
         yield return new WaitForSeconds(_displayFishTime);
 
         //Fish to Cerberus
+        SpawnFish.Instance.FishApperance(false);
 
         yield return new WaitForSeconds(_fishToCerberusTime);
 

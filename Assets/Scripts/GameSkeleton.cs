@@ -7,6 +7,7 @@
 ******************************************************************************/
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -41,6 +42,10 @@ public class GameSkeleton : MonoBehaviour
     [SerializeField] private float _milestone2;
     [SerializeField] private float _milestone3;
 
+    public TMP_Text CastingText;
+    public TMP_Text ReelingText;
+    public TMP_Text CaughtFishText;
+
     void Start()
     {
         _myPlayerInput = GetComponent<PlayerInput>();
@@ -53,6 +58,10 @@ public class GameSkeleton : MonoBehaviour
 
         _canCast = true;
         print("cast");
+
+        CastingText.gameObject.SetActive(true);
+        ReelingText.gameObject.SetActive(false);
+        CaughtFishText.gameObject.SetActive(false);
     }
 
 
@@ -65,6 +74,7 @@ public class GameSkeleton : MonoBehaviour
     {
         if (_canCast)
         {
+            CastingText.gameObject.SetActive(false);
             _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax+1);
             //print(_castWaitTime);
             StartCoroutine(CastTimer());
@@ -82,6 +92,7 @@ public class GameSkeleton : MonoBehaviour
         yield return new WaitForSeconds(_castWaitTime);
 
         //to start reel phase
+        ReelingText.gameObject.SetActive(true );
         print("start reeling now");
         _canReel = true;
         UpdateNextMilestone();
@@ -124,6 +135,8 @@ public class GameSkeleton : MonoBehaviour
     private IEnumerator ReelTimer()
     {
         yield return new WaitForSeconds(_reelMaxTime);
+        ReelingText.gameObject.SetActive(false );
+        CaughtFishText.gameObject.SetActive(true );
         print("YOU CAUGHT THE FISH!! (timer)");
         _canReel = false;
     }
@@ -146,6 +159,8 @@ public class GameSkeleton : MonoBehaviour
                 _currentReelMilestone = _milestone3; // 2.5f;
                 break;
             case 3:     //the fish is caught
+                ReelingText.gameObject.SetActive(false);
+                CaughtFishText.gameObject.SetActive(true);
                 print("YOU CAUGHT THE FISH!! (reeling)");
                 _milestonesReached = -1;
                 StopCoroutine(_reelTimer);

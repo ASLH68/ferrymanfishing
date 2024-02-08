@@ -22,14 +22,19 @@ void SendSerialData()
 {
   int pressedL = digitalRead(BUTTON_L);
   int pressedR = digitalRead(BUTTON_R);
+  int sendData = 0;
 
-  Serial.print(pressedL);
-  Serial.print(",");
-  Serial.println(pressedR);
-  //Serial.write(pressedL);
-  //Serial.write(",");
-  //Serial.write(pressedR + /n);
-  delay(50);
+  if(pressedL)
+  {
+    sendData = 1;
+  }
+  else if(pressedR)
+  {
+    sendData = 2;
+  }
+
+  Serial.println(sendData);
+  delay(10);
 }
 
 void RecieveSerialData()

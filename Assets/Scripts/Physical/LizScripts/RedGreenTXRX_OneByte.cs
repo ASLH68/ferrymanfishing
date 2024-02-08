@@ -6,7 +6,7 @@ using System.Threading;
 using System;
 using System.IO;
 
-public class RedGreenTXRX : MonoBehaviour
+public class RedGreenTXRX_OneByte : MonoBehaviour
 {
     [SerializeField] private bool _debugExceptions;
 
@@ -32,6 +32,7 @@ public class RedGreenTXRX : MonoBehaviour
         StartThread();
 
         InvokeRepeating("SendLightStatus", 0f, _readWriteInterval);
+        InvokeRepeating("RecieveButtonStatus", 0f, _readWriteInterval);
         //InvokeRepeating("RecieveButtonStatus", 0f, _readWriteInterval);
     }
 
@@ -166,11 +167,11 @@ public class RedGreenTXRX : MonoBehaviour
     {
         RecieveButtonStatus();
 
-        if (_recievedData == "1,0")
+        if (_recievedData == "1")
         {
             MoveCube(-1);
         }
-        else if (_recievedData == "0,1")
+        else if (_recievedData == "2")
         {
             MoveCube(1);
         }
@@ -178,7 +179,13 @@ public class RedGreenTXRX : MonoBehaviour
 
     private void RecieveButtonStatus()
     {
-        _recievedData = ReadRXQueue();
+        string data = ReadRXQueue();
+        if (data == null)
+        {
+            return;
+        }
+
+        _recievedData = data;
         Debug.Log(_recievedData);
     }
 

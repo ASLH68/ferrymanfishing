@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 1872760161}
   - component: {fileID: 1872760163}
   - component: {fileID: 1872760162}
-  - component: {fileID: 1872760160}
+  - component: {fileID: 1872760164}
   m_Layer: 0
   m_Name: TXRXSquare
   m_TagString: Untagged
@@ -532,23 +532,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1872760160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872760159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f31f411b21bfc4289c8d7da8dae012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _debugExceptions: 0
-  _baudRate: 19200
-  _readTimeout: 500
-  _portName: COM3
-  _moveSpeed: 20
 --- !u!4 &1872760161
 Transform:
   m_ObjectHideFlags: 0
@@ -612,3 +595,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1872760164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872760159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d328d5151f1d4de42b84736ebadc1444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debugExceptions: 0
+  _baudRate: 19200
+  _readTimeout: 500
+  _readWriteInterval: 0.2
+  _portName: COM5
+  _moveSpeed: 10

@@ -3,6 +3,12 @@ const int BUTTON_R = 3; //Right button
 const int LED_GREEN = 4; //Green LED
 const int LED_RED = 5; //Red LED
 
+unsigned long time = 0;
+const unsigned long delayTime = 10;
+
+int greenLightState;
+int redLightState;
+
 void setup() {
   Serial.begin(19200);
 
@@ -14,8 +20,13 @@ void setup() {
 }
 
 void loop() {
-  SendSerialData();
   RecieveSerialData();
+
+  if(millis() > time)
+  {
+    SendSerialData();
+    time = millis() + delayTime;
+  }
 }
 
 void SendSerialData()
@@ -34,7 +45,6 @@ void SendSerialData()
   }
 
   Serial.println(sendData);
-  delay(10);
 }
 
 void RecieveSerialData()
@@ -43,15 +53,22 @@ void RecieveSerialData()
   {
     char message = (char)Serial.read();
 
-    int greenLightState = 0;
-    int redLightState = 0;
-    if(message == '0')
+    if(message == '1')
     {
       greenLightState = 1;
     }
-    if(message == '1')
+    else if(message == '2')
+    {
+      greenLightState = 0;
+    }
+
+    if(message == '3')
     {
       redLightState = 1;
+    }
+    else if(message == '4')
+    {
+      redLightState = 0;
     }
     
     ActivateLight(LED_GREEN, greenLightState);

@@ -60,8 +60,8 @@ public class RedGreenTXRX_OneByte : MonoBehaviour
         {
             if (_txQueue.Count != 0)
             {
-                string command = (string)_txQueue.Dequeue();
-                SendToSerialPort(command);
+                string message = (string)_txQueue.Dequeue();
+                SendToSerialPort(message);
             }
 
             string result = ReadFromSerialPort();
@@ -74,11 +74,11 @@ public class RedGreenTXRX_OneByte : MonoBehaviour
         Debug.Log("Thread ended.");
     }
 
-    private void SendToSerialPort(string msg)
+    private void SendToSerialPort(string message)
     {
         try
         {
-            _dataStream.WriteLine(msg);
+            _dataStream.Write(message);
         }
         catch(Exception e)
         {
@@ -193,11 +193,20 @@ public class RedGreenTXRX_OneByte : MonoBehaviour
     {
         if (_onGreen)
         {
-            SendToTXQueue("0");
+            SendToTXQueue("1");
         }
+        else
+        {
+            SendToTXQueue("2");
+        }
+
         if (_onRed)
         {
-            SendToTXQueue("1");
+            SendToTXQueue("3");
+        }
+        else
+        {
+            SendToTXQueue("4");
         }
     }
 

@@ -397,12 +397,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 828c6299647cb1047bc2d00d43047ada, type: 3}
   - {fileID: 21300000, guid: e08f6e731aa2e594f812656fc6e3f26d, type: 3}
   - {fileID: 21300000, guid: 6189667fc19f997409dc4b69922d138f, type: 3}
-  CaughtFish1: 0
-  CaughtFish2: 0
-  CaughtFish3: 0
-  Fish1Spot: {fileID: 1927369687}
-  Fish2Spot: {fileID: 1694788736}
-  Fish3Spot: {fileID: 1926108275}
+  _caughtFish1: 0
+  _caughtFish2: 0
+  _caughtFish3: 0
+  _fish1Spot: {fileID: 1927369687}
+  _fish2Spot: {fileID: 1694788736}
+  _fish3Spot: {fileID: 1926108275}
 --- !u!114 &1493474370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

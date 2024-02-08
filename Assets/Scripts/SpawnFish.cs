@@ -18,12 +18,12 @@ public class SpawnFish : MonoBehaviour
     [SerializeField] private GameObject _fishImageObject;
     public List<Sprite> _fishSprites;
 
-    [SerializeField] private bool CaughtFish1;
-    [SerializeField] private bool CaughtFish2;
-    [SerializeField] private bool CaughtFish3;
-    [SerializeField] private GameObject Fish1Spot;
-    [SerializeField] private GameObject Fish2Spot;
-    [SerializeField] private GameObject Fish3Spot;
+    [SerializeField] private bool _caughtFish1;
+    [SerializeField] private bool _caughtFish2;
+    [SerializeField] private bool _caughtFish3;
+    [SerializeField] private GameObject _fish1Spot;
+    [SerializeField] private GameObject _fish2Spot;
+    [SerializeField] private GameObject _fish3Spot;
 
     /// <summary>
     /// It checks if the Fish is on screen or not
@@ -60,46 +60,60 @@ public class SpawnFish : MonoBehaviour
         _fishImageObject.GetComponentInChildren<UnityEngine.UI.Image>().sprite = _fishSprites[numberFish];
     }
 
+    /// <summary>
+    /// It iddentifies when a fish has been caught and put it on the right side of the screen
+    /// </summary>
+    /// <param name="animateTime"></param>
     public void UIFish(float animateTime)
     {
 
-        if (CaughtFish1 == false && CaughtFish2 == false && CaughtFish3 == false)
+        if (_caughtFish1 == false && _caughtFish2 == false && _caughtFish3 == false)
         {
-            StartCoroutine(MoveFish(Fish1Spot, animateTime));
-            CaughtFish1 = true;
+            StartCoroutine(MoveFish(_fish1Spot, animateTime));
+            _caughtFish1 = true;
             return;
         }
-        if (CaughtFish1 == true && CaughtFish2 == false && CaughtFish3 == false)
+        if (_caughtFish1 == true && _caughtFish2 == false && _caughtFish3 == false)
         {
-            StartCoroutine(MoveFish(Fish2Spot, animateTime));
-            CaughtFish2 = true;
+            StartCoroutine(MoveFish(_fish2Spot, animateTime));
+            _caughtFish2 = true;
             return;
         }
-        if (CaughtFish1 == true && CaughtFish2 == true && CaughtFish3 == false)
+        if (_caughtFish1 == true && _caughtFish2 == true && _caughtFish3 == false)
         {
-            StartCoroutine(MoveFish(Fish3Spot, animateTime));
-            CaughtFish3 = true;
+            StartCoroutine(MoveFish(_fish3Spot, animateTime));
+            _caughtFish3 = true;
             return;
         }
-
-
     }
 
+    /// <summary>
+    /// Removes the images from the top tight of the screen, not currently being used
+    /// </summary>
     public void ResetFish()
     { 
-        CaughtFish1 = false;
-        CaughtFish2 = false;
-        CaughtFish3 = false;
-        Fish1Spot.SetActive(false);
-        Fish2Spot.SetActive(false); 
-        Fish3Spot.SetActive(false);
+        _caughtFish1 = false;
+        _caughtFish2 = false;
+        _caughtFish3 = false;
+        _fish1Spot.SetActive(false);
+        _fish2Spot.SetActive(false); 
+        _fish3Spot.SetActive(false);
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    /// <param name="animationTime"></param>
+    /// <returns></returns>
     private IEnumerator MoveFish(GameObject targetPosition, float animationTime)
     {
+        yield return new WaitForSeconds(2f);
         Vector3 Start = _fishImageObject.transform.position;
-        float time = 0;
+        float time =0;
         while (time < animationTime)
         {
+            
             time += Time.deltaTime;
             float t = time/ animationTime;
             Vector3 currentPosition = Vector3.Lerp(Start, targetPosition.transform.position, t);
@@ -111,6 +125,11 @@ public class SpawnFish : MonoBehaviour
 
         targetPosition.SetActive(true);
         targetPosition.GetComponent<UnityEngine.UI.Image>().sprite = _fishImageObject.GetComponent<UnityEngine.UI.Image>().sprite;
+
+        //GameSkeleton skeleton = GameObject.FindObjectOfType<GameSkeleton>();
+        //skeleton._canReel = true;
+
+        FishApperance(false);
     }
 
 }

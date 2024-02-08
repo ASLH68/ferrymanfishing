@@ -28,7 +28,7 @@ public class GameSkeleton : MonoBehaviour
     public static float ReelValue;
     private float _currentReelMilestone;
     private int _milestonesReached;
-    private bool _canReel = false;
+    [HideInInspector]public bool _canReel = false;
     [SerializeField] private float _reelMaxTime;
     private Coroutine _reelTimer;
 
@@ -170,14 +170,13 @@ public class GameSkeleton : MonoBehaviour
         _reelTimer = null;
         _canReel = false;
 
-        //Display fish
-        SpawnFish.Instance.FishApperance(true);
-        SpawnFish.Instance.UIFish(_displayFishTime);
+        //DisplayFish
+       DisplayFish();
 
         yield return new WaitForSeconds(_displayFishTime);
 
         //Fish to Cerberus
-        SpawnFish.Instance.FishApperance(false);
+        //SpawnFish.Instance.FishApperance(false);
 
         yield return new WaitForSeconds(_fishToCerberusTime);
 
@@ -194,6 +193,12 @@ public class GameSkeleton : MonoBehaviour
             print("cast");
             _canCast = true;
         }
+    }
+    //
+    private void DisplayFish()
+    {
+        SpawnFish.Instance.FishApperance(true);
+        SpawnFish.Instance.UIFish(_displayFishTime);
     }
 
     private void OnDisable()

@@ -5,7 +5,7 @@ using System.IO.Ports;
 using System.Threading;
 using UnityEngine;
 
-public class ArduinoThread
+public class ArduinoThread_Old
 {
     //Set true to output port exceptions
     private bool OUTPUT_EXCEPTIONS = false;
@@ -20,7 +20,7 @@ public class ArduinoThread
     private int _readTimeout;
     private int _writeTimeout;
 
-    public ArduinoThread(string portName, int baudRate, int readTimeout, int writeTimeout)
+    public ArduinoThread_Old(string portName, int baudRate, int readTimeout, int writeTimeout)
     {
         _portName = portName;
         _baudRate = baudRate;

@@ -33,7 +33,7 @@ void SendSerialData()
 {
   int pressedL = digitalRead(BUTTON_L);
   int pressedR = digitalRead(BUTTON_R);
-  int sendData = 0;
+  int sendData = 69;
 
   if(pressedL)
   {

@@ -186,7 +186,6 @@ public class RedGreenTXRX_OneByte : MonoBehaviour
         }
 
         _recievedData = data;
-        Debug.Log(_recievedData);
     }
 
     private void SendLightStatus()

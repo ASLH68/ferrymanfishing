@@ -3,58 +3,34 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using UnityEngine;
 
-public class Arduino : MonoBehaviour
+public class Arduino
 {
-    public static Arduino Instance;
+    private SerialPort _dataStream;
 
-    [Header("USB Port")]
-    [SerializeField] private string _manualPortName = "";
-
-    [Header("Read/Write Speeds")]
-    [SerializeField] private int _readTimeout = 5000;
-    [SerializeField] private int _writeTimeout = 5000;
-    [SerializeField] private int _baudRate = 9600;
-
-    private ArduinoThread _arduinoThread;
-
-    private void PrepareSingleton()
+    public SerialPort DataStream
     {
-        if (Instance == null && Instance != this)
+        get
         {
-            Instance = this;
+            return _dataStream;
         }
-        else
+    }
+
+    public Arduino(int baudRate, int readTimeout, string portName)
+    {
+        string port = portName;
+        if (portName == "")
         {
-            Destroy(gameObject);
+            port = GetConnectedSerialPort();
         }
 
-        DontDestroyOnLoad(gameObject);
+        _dataStream = new SerialPort(port, baudRate);
+        _dataStream.ReadTimeout = readTimeout;
+        _dataStream.DtrEnable = true;
+        _dataStream.RtsEnable = true;
+        _dataStream.Open();
     }
 
-    private void Awake()
-    {
-        PrepareSingleton();
-
-        string port = _manualPortName;
-        if (port == "")
-        {
-            port = GetArduinoPortWindows();
-        }
-
-        _arduinoThread = new ArduinoThread(port, _baudRate, _readTimeout, _writeTimeout);
-    }
-
-    private void OnDisable()
-    {
-        _arduinoThread.Stop();
-    }
-
-    public void Flush()
-    {
-        _arduinoThread.FlushSerialPort();
-    }
-
-    private string GetArduinoPortWindows()
+    private string GetConnectedSerialPort()
     {
         List<string> comports = new List<string>();
         RegistryKey rk1 = Registry.LocalMachine;
@@ -89,15 +65,14 @@ public class Arduino : MonoBehaviour
             foreach (string s in SerialPort.GetPortNames())
             {
                 if (comports.Contains(s))
+                {
+                    Debug.Log($"Arduino identified in port: {s}.");
                     return s;
+                }
             }
         }
 
-        return "COM6";
-    }
-
-    public ArduinoThread GetThread()
-    {
-        return _arduinoThread;
+        Debug.LogWarning("COM Port not detected! Is the Arduino plugged in? Are you using Windows?");
+        return null;
     }
 }

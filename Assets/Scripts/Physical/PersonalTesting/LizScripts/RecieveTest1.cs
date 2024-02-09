@@ -8,11 +8,11 @@ public class RecieveTest1 : MonoBehaviour
     [SerializeField] private int _forwardsRot;
     [SerializeField] private int _backwardsRot;
 
-    private Arduino _a;
+    private Arduino_Old _a;
 
     private void Start()
     {
-        _a = Arduino.Instance;
+        _a = Arduino_Old.Instance;
 
         StartCoroutine(MotorSpinCoroutine());
     }

@@ -212,7 +212,7 @@ public class GameSkeleton : MonoBehaviour
         {
             //end game
             print("GameOver");
-            SceneManager.LoadScene("EndScreenScene");
+            SceneManager.LoadScene(0);
         }
         else
         {

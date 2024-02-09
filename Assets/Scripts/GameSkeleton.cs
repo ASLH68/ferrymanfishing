@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
 
 public class GameSkeleton : MonoBehaviour
 {
+    public static GameSkeleton Instance;
     private PlayerInput _myPlayerInput;
     private InputAction _reel, _cast;
     public static int TotalFishCaught;
@@ -32,6 +33,7 @@ public class GameSkeleton : MonoBehaviour
     [SerializeField] private float _reelMaxTime;
     private Coroutine _reelTimer;
 
+ 
     [Header("Display Fish Phase")]
     [SerializeField] private float _displayFishTime;
     [SerializeField] private float _fishToCerberusTime;
@@ -42,6 +44,23 @@ public class GameSkeleton : MonoBehaviour
     [SerializeField] private float _milestone2;
     [SerializeField] private float _milestone3;
 
+    /// <summary>
+    /// Called before start
+    /// </summary>
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    /// <summary>
+    /// It sets values to the variables
+    /// </summary>
     void Start()
     {
         _myPlayerInput = GetComponent<PlayerInput>();
@@ -55,8 +74,16 @@ public class GameSkeleton : MonoBehaviour
         _canCast = true;
         print("cast");
     }
-
-
+    #region getters
+    /// <summary>
+    /// It returns _displayFishTime
+    /// </summary>
+    /// <returns></returns>
+    public float GetDisplayTime()
+    {
+        return _displayFishTime;
+    }
+    #endregion
     /// <summary>
     /// When Cast input is detected, this function determines how long the
     /// player will wait for the reeling to start, and starts the cast timer 
@@ -171,7 +198,7 @@ public class GameSkeleton : MonoBehaviour
         _canReel = false;
 
         //DisplayFish
-       DisplayFish();
+        SpawnFish.Instance.DisplayFish();
 
         yield return new WaitForSeconds(_displayFishTime);
 
@@ -193,12 +220,8 @@ public class GameSkeleton : MonoBehaviour
             print("cast");
             _canCast = true;
         }
-    }
-    //
-    private void DisplayFish()
-    {
-        SpawnFish.Instance.FishApperance(true);
-        SpawnFish.Instance.UIFish(_displayFishTime);
+    
+    
     }
 
     private void OnDisable()

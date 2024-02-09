@@ -18,12 +18,13 @@ public class SpawnFish : MonoBehaviour
     [SerializeField] private GameObject _fishImageObject;
     public List<Sprite> _fishSprites;
 
-    [SerializeField] private bool _caughtFish1;
-    [SerializeField] private bool _caughtFish2;
-    [SerializeField] private bool _caughtFish3;
+    private bool _caughtFish1;
+    private bool _caughtFish2;
+    private bool _caughtFish3;
     [SerializeField] private GameObject _fish1Spot;
     [SerializeField] private GameObject _fish2Spot;
     [SerializeField] private GameObject _fish3Spot;
+    [SerializeField] private float _animationTime;
 
     /// <summary>
     /// It checks if the Fish is on screen or not
@@ -108,7 +109,7 @@ public class SpawnFish : MonoBehaviour
     /// <returns></returns>
     private IEnumerator MoveFish(GameObject targetPosition, float animationTime)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(GameSkeleton.Instance.GetDisplayTime());
         Vector3 Start = _fishImageObject.transform.position;
         float time =0;
         while (time < animationTime)
@@ -130,6 +131,16 @@ public class SpawnFish : MonoBehaviour
         //skeleton._canReel = true;
 
         FishApperance(false);
+    }
+
+    /// <summary>
+    /// It calls both the FishApperance and UIFish function
+    /// </summary>
+    public void DisplayFish()
+    {
+        FishApperance(true);
+        UIFish(_animationTime);
+
     }
 
 }

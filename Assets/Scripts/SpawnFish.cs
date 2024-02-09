@@ -47,8 +47,12 @@ public class SpawnFish : MonoBehaviour
     /// <param name="value"></param>
     public void FishApperance(bool value)
     {
+        if (value == true)
+        {
+            ChangingFish();
+        }
         _fishImageObject.SetActive(value);
-        ChangingFish();
+        
     }
 
     /// <summary>
@@ -59,6 +63,7 @@ public class SpawnFish : MonoBehaviour
         int numberFish = Random.Range(0, _fishSprites.Count);
         _fishSprites.ElementAt(numberFish);
         _fishImageObject.GetComponentInChildren<UnityEngine.UI.Image>().sprite = _fishSprites[numberFish];
+        _fishSprites.Remove(_fishSprites[numberFish]);
     }
 
     /// <summary>

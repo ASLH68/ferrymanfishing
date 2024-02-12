@@ -7,6 +7,7 @@
 ******************************************************************************/
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -73,6 +74,8 @@ public class GameSkeleton : MonoBehaviour
 
         _canCast = true;
         print("cast");
+
+       
     }
     #region getters
     /// <summary>
@@ -96,6 +99,7 @@ public class GameSkeleton : MonoBehaviour
             _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax+1);
             //print(_castWaitTime);
             StartCoroutine(CastTimer());
+            UIController.Instance.CastText(false);
         }
     }
 
@@ -113,7 +117,7 @@ public class GameSkeleton : MonoBehaviour
         print("start reeling now");
         _canReel = true;
         UpdateNextMilestone();
-
+        UIController.Instance.ReelText(true);
     }
 
     /// <summary>
@@ -156,6 +160,8 @@ public class GameSkeleton : MonoBehaviour
         _canReel = false;
         _milestonesReached = 3;
         UpdateNextMilestone();
+        UIController.Instance.ReelText(false);
+        UIController.Instance.CatchingText(true);
     }
 
     /// <summary>
@@ -180,6 +186,8 @@ public class GameSkeleton : MonoBehaviour
                 _milestonesReached = -1;
                 StopCoroutine(_reelTimer);
                 StartCoroutine(FishDisplay());
+                UIController.Instance.ReelText(false);
+                UIController.Instance.CatchingText(true);
                 break;
         }
         _milestonesReached++;
@@ -219,6 +227,8 @@ public class GameSkeleton : MonoBehaviour
             //start at cast phase again
             print("cast");
             _canCast = true;
+            UIController.Instance.CastText(true);
+            UIController.Instance.CatchingText(false);
         }
     
     

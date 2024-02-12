@@ -35,9 +35,6 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
-
-
         CastingText.gameObject.SetActive(true);
         ReelingText.gameObject.SetActive(false);
         CaughtFishText.gameObject.SetActive(false);
@@ -57,11 +54,4 @@ public class UIController : MonoBehaviour
     {
         CaughtFishText.gameObject.SetActive(value);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
 }

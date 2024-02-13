@@ -17,6 +17,7 @@ public class SpawnFish : MonoBehaviour
     public static SpawnFish Instance;
     [SerializeField] private GameObject _fishImageObject;
     public List<Sprite> _fishSprites;
+    public List<Sprite> _legendaryFS;
 
     private bool _caughtFish1;
     private bool _caughtFish2;
@@ -60,10 +61,20 @@ public class SpawnFish : MonoBehaviour
     /// </summary>
     private void ChangingFish()
     {
-        int numberFish = Random.Range(0, _fishSprites.Count);
-        _fishSprites.ElementAt(numberFish);
-        _fishImageObject.GetComponentInChildren<UnityEngine.UI.Image>().sprite = _fishSprites[numberFish];
-        _fishSprites.Remove(_fishSprites[numberFish]);
+        if (_caughtFish1 == true && _caughtFish2 == true && _caughtFish3 == false)
+        {
+            int numberFish = Random.Range(0, _legendaryFS.Count);
+            _legendaryFS.ElementAt(numberFish);
+            _fishImageObject.GetComponentInChildren<UnityEngine.UI.Image>().sprite = _legendaryFS[numberFish];
+            _legendaryFS.Remove(_legendaryFS[numberFish]);
+        }
+        else
+        {
+            int numberFish = Random.Range(0, _fishSprites.Count);
+            _fishSprites.ElementAt(numberFish);
+            _fishImageObject.GetComponentInChildren<UnityEngine.UI.Image>().sprite = _fishSprites[numberFish];
+            _fishSprites.Remove(_fishSprites[numberFish]);
+        }
     }
 
     /// <summary>

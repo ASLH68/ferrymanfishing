@@ -256,20 +256,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4345840032491813664, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: _legendaryFS.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4345840032491813664, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: _legendaryFS.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
+      objectReference: {fileID: 21300000, guid: 6ef46f00a6a75764991c1aac2f802bc9, type: 3}
     - target: {fileID: 4345840032491813664, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: _legendaryFS.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
+      objectReference: {fileID: 21300000, guid: f7b220f0ae232044fa09db7a7d50265a, type: 3}
     - target: {fileID: 4345840032491813664, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: _legendaryFS.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
+      objectReference: {fileID: 21300000, guid: f5a6d423ac7e6264e8edd0dc4ddf968e, type: 3}
+    - target: {fileID: 4345840032491813664, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: _legendaryFS.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2577250bddcfe1a41995c692c836d149, type: 3}
     - target: {fileID: 4345840032491813665, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Name
       value: FishDisplay

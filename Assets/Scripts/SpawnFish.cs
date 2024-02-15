@@ -118,7 +118,7 @@ public class SpawnFish : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// After waiting for Seconds, it moves the fish to one of the empty gameObjects on the scene
     /// </summary>
     /// <param name="targetPosition"></param>
     /// <param name="animationTime"></param>

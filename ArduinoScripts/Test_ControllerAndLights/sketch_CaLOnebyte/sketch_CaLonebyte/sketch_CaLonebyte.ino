@@ -56,18 +56,16 @@ void RecieveSerialData()
     if(message == '1')
     {
       greenLightState = 1;
+      redLightState = 0;
     }
     else if(message == '2')
     {
       greenLightState = 0;
-    }
-
-    if(message == '3')
-    {
       redLightState = 1;
     }
-    else if(message == '4')
+    else if(message == '0')
     {
+      greenLightState = 0;
       redLightState = 0;
     }
     

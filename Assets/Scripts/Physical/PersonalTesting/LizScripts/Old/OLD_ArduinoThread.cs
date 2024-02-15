@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading;
 using UnityEngine;
 
-public class ArduinoThread
+public class OLD_ArduinoThread
 {
     private Thread _thread;
     private Queue _rxQueue;
@@ -18,7 +18,7 @@ public class ArduinoThread
 
     private bool _debugExceptions = false;
 
-    public ArduinoThread(int baudRate, int readTimeout, string portName)
+    public OLD_ArduinoThread(int baudRate, int readTimeout, string portName)
     {
         _baudRate = baudRate;
         _readTimeout = readTimeout;

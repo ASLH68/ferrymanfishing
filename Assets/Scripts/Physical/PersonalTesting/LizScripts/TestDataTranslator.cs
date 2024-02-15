@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestDataTranslator : MonoBehaviour
 {
-    [SerializeField] private TestThreadingScript _arduinoData;
+    [SerializeField] private bool _debugDataMessages = false;
 
     public enum ReceiveData
     { 
@@ -22,26 +22,47 @@ public class TestDataTranslator : MonoBehaviour
 
     public void TransmitDataToArduino(TransmittableData data)
     {
+        if (_debugDataMessages)
+        {
+            Debug.Log("Sending data: " + data);
+        }
+
         switch (data)
         {
             case TransmittableData.PlayerIsOnGreen:
-                _arduinoData.DataToTransmit = "1";
+                ArduinoManager.Instance.Thread.DataToTransmit = "1";
                 break;
             case TransmittableData.PlayerIsOnRed:
-                _arduinoData.DataToTransmit = "2";
+                ArduinoManager.Instance.Thread.DataToTransmit = "2";
                 break;
             case TransmittableData.PlayerIsOnNothing:
-                _arduinoData.DataToTransmit = "0";
+                ArduinoManager.Instance.Thread.DataToTransmit = "0";
                 break;
             default:
-                _arduinoData.DataToTransmit = "0";
+                ArduinoManager.Instance.Thread.DataToTransmit = "0";
                 break;
         }
     }
 
+    public void TransmitCustomData(string data)
+    {
+        if (_debugDataMessages && data != null)
+        {
+            Debug.Log("Sending data: " + data);
+        }
+
+        ArduinoManager.Instance.Thread.DataToTransmit = data;
+    }
+
     public ReceiveData GetReceivedData()
     {
-        switch (_arduinoData.ReceivedData)
+        string data = ArduinoManager.Instance.Thread.ReceivedData;
+        if (_debugDataMessages && data != null)
+        {
+            Debug.Log("Receiving: " + data);
+        }
+
+        switch (ArduinoManager.Instance.Thread.ReceivedData)
         {
             case "1":
                 return ReceiveData.LeftButtonIsPressed;

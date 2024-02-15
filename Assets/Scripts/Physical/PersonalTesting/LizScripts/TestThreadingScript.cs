@@ -137,8 +137,6 @@ public class TestThreadingScript : MonoBehaviour
             return;
         }
 
-        Debug.Log("Sending " + msg);
-
         _txQueue.Enqueue(msg);
     }
 

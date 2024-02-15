@@ -6,7 +6,7 @@ using System.Threading;
 using System;
 using System.IO;
 
-public class RedGreenTXRX_OneByte : MonoBehaviour
+public class TestArduinoFull : MonoBehaviour
 {
     [SerializeField] private bool _debugExceptions;
 

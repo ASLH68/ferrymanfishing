@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class ArduinoDataManager : MonoBehaviour
+public class OLD_ArduinoDataManager : MonoBehaviour
 {
-    public static ArduinoDataManager Instance;
+    public static OLD_ArduinoDataManager Instance;
 
     [SerializeField] private float _dataTransmitInterval;
 
@@ -11,11 +11,11 @@ public class ArduinoDataManager : MonoBehaviour
     [SerializeField] private int _readTimeout;
     [SerializeField] private string _portName;
 
-    private ArduinoThread _arduinoThread;
+    private OLD_ArduinoThread _arduinoThread;
     private string _buttonStatus;
     private string _lightStatus;
 
-    public ArduinoThread ArduinoThread
+    public OLD_ArduinoThread ArduinoThread
     {
         get
         {
@@ -60,7 +60,7 @@ public class ArduinoDataManager : MonoBehaviour
         PrepareSingleton();
 //Instance = this;
 
-        _arduinoThread = new ArduinoThread(_baudRate, _readTimeout, _portName);
+        _arduinoThread = new OLD_ArduinoThread(_baudRate, _readTimeout, _portName);
         _arduinoThread.StartThread();
     }
 

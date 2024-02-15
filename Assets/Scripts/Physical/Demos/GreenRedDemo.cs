@@ -12,7 +12,7 @@ public class GreenRedDemo : MonoBehaviour
     {
         SendLightStatus();
 
-        MoveCubeViaButton(ArduinoDataManager.Instance.ButtonStatus);
+        MoveCubeViaButton(OLD_ArduinoDataManager.Instance.ButtonStatus);
     }
 
     private void MoveCubeViaButton(string message)
@@ -36,20 +36,20 @@ public class GreenRedDemo : MonoBehaviour
     {
         if (_onGreen)
         {
-            ArduinoDataManager.Instance.LightStatus = "1";
+            OLD_ArduinoDataManager.Instance.LightStatus = "1";
         }
         else
         {
-            ArduinoDataManager.Instance.LightStatus = "2";
+            OLD_ArduinoDataManager.Instance.LightStatus = "2";
         }
 
         if (_onRed)
         {
-            ArduinoDataManager.Instance.LightStatus = "3";
+            OLD_ArduinoDataManager.Instance.LightStatus = "3";
         }
         else
         {
-            ArduinoDataManager.Instance.LightStatus = "4";
+            OLD_ArduinoDataManager.Instance.LightStatus = "4";
         }
     }
 

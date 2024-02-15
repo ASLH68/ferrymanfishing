@@ -4,38 +4,42 @@ using UnityEngine;
 
 public class TestMovingScript : MonoBehaviour
 {
-    [SerializeField] private TestDataTranslator _data;
-    [Space]
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private string _customSendCharacter = "c";
     private bool _onGreen, _onRed;
 
     private void Update()
     {
-        if (_data.GetReceivedData() == TestDataTranslator.ReceiveData.LeftButtonIsPressed)
+        if (ArduinoManager.Instance.Translator.GetReceivedData() == TestDataTranslator.ReceiveData.LeftButtonIsPressed)
         {
             MoveCube(-1);
         }
-        else if (_data.GetReceivedData() == TestDataTranslator.ReceiveData.RightButtonIsPressed)
+        else if (ArduinoManager.Instance.Translator.GetReceivedData() == TestDataTranslator.ReceiveData.RightButtonIsPressed)
         {
             MoveCube(1);
         }
 
         TransmitData();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ArduinoManager.Instance.Translator.TransmitCustomData(_customSendCharacter);
+        }
     }
 
     private void TransmitData()
     {
         if (_onGreen)
         {
-            _data.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnGreen);
+            ArduinoManager.Instance.Translator.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnGreen);
         }
         else if(_onRed)
         {
-            _data.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnRed);
+            ArduinoManager.Instance.Translator.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnRed);
         }
         else
         {
-            _data.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnNothing);
+            ArduinoManager.Instance.Translator.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnNothing);
         }
     }
 

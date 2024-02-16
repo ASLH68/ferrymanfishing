@@ -14,7 +14,6 @@ public class TestThreadingScript : MonoBehaviour
     [Header("Arduino")]
     [SerializeField] private int _baudRate;
     [SerializeField] private int _readTimeout;
-    [SerializeField] private float _rxTxInterval = 0.1f;
     [SerializeField] private string _portName;
     private Arduino _arduino;
     private Thread _thread;

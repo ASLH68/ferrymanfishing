@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class TestDataTranslator : MonoBehaviour
 {
-    [SerializeField] private bool _debugDataMessages = false;
-
     public enum ReceiveData
     { 
         LeftButtonIsPressed,
         RightButtonIsPressed,
         NoButtonsArePressed,
+        NoDataIsReceived,
     }
 
     public enum TransmittableData
@@ -22,54 +21,42 @@ public class TestDataTranslator : MonoBehaviour
 
     public void TransmitDataToArduino(TransmittableData data)
     {
-        if (_debugDataMessages)
-        {
-            Debug.Log("Sending data: " + data);
-        }
-
         switch (data)
         {
             case TransmittableData.PlayerIsOnGreen:
-                ArduinoManager.Instance.Thread.DataToTransmit = "1";
+                ArduinoManager.Instance.Thread.EnqueueData("1");
                 break;
             case TransmittableData.PlayerIsOnRed:
-                ArduinoManager.Instance.Thread.DataToTransmit = "2";
+                ArduinoManager.Instance.Thread.EnqueueData("2");
                 break;
             case TransmittableData.PlayerIsOnNothing:
-                ArduinoManager.Instance.Thread.DataToTransmit = "0";
+                ArduinoManager.Instance.Thread.EnqueueData("0");
                 break;
             default:
-                ArduinoManager.Instance.Thread.DataToTransmit = "0";
+                ArduinoManager.Instance.Thread.EnqueueData("");
                 break;
         }
     }
 
     public void TransmitCustomData(string data)
     {
-        if (_debugDataMessages && data != null)
-        {
-            Debug.Log("Sending data: " + data);
-        }
-
-        ArduinoManager.Instance.Thread.DataToTransmit = data;
+        ArduinoManager.Instance.Thread.EnqueueData(data);
     }
 
     public ReceiveData GetReceivedData()
     {
         string data = ArduinoManager.Instance.Thread.ReceivedData;
-        if (_debugDataMessages && data != null)
-        {
-            Debug.Log("Receiving: " + data);
-        }
 
-        switch (ArduinoManager.Instance.Thread.ReceivedData)
+        switch (data)
         {
             case "1":
                 return ReceiveData.LeftButtonIsPressed;
             case "2":
                 return ReceiveData.RightButtonIsPressed;
-            default:
+            case "0":
                 return ReceiveData.NoButtonsArePressed;
+            default:
+                return ReceiveData.NoDataIsReceived;
         }
     }
 }

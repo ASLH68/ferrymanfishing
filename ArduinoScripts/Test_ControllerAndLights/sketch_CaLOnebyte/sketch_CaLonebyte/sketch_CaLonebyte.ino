@@ -8,6 +8,7 @@ const unsigned long delayTime = 10;
 
 int greenLightState;
 int redLightState;
+int builtinState;
 
 void setup() {
   Serial.begin(19200);
@@ -17,6 +18,7 @@ void setup() {
 
   pinMode(LED_GREEN, OUTPUT);
   pinMode(LED_RED, OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
@@ -33,7 +35,7 @@ void SendSerialData()
 {
   int pressedL = digitalRead(BUTTON_L);
   int pressedR = digitalRead(BUTTON_R);
-  int sendData = 69;
+  int sendData = 0;
 
   if(pressedL)
   {
@@ -51,26 +53,35 @@ void RecieveSerialData()
 {
   if(Serial.available())
   {
-    char message = (char)Serial.read();
+    char data = (char)Serial.read();
 
-    if(message == '1')
+    if(data == '1')
     {
       greenLightState = 1;
       redLightState = 0;
     }
-    else if(message == '2')
+    else if(data == '2')
     {
       greenLightState = 0;
       redLightState = 1;
     }
-    else if(message == '0')
+    else if(data == '0')
     {
       greenLightState = 0;
       redLightState = 0;
     }
+    else if(data == '3')
+    {
+      builtinState = 1;
+    }
+    else if(data == '4')
+    {
+      builtinState = 0;
+    }
     
     ActivateLight(LED_GREEN, greenLightState);
     ActivateLight(LED_RED, redLightState);
+    ActivateLight(LED_BUILTIN, builtinState);
   }
 }
 

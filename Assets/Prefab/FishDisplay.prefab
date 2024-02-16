@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -218.1, y: -58.7}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: -204.49115, y: -28}
+  m_SizeDelta: {x: 132.196, y: 136.94}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &4345840031619369954
 CanvasRenderer:
@@ -111,8 +111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -87.1, y: -58.7}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: -54.824, y: -28}
+  m_SizeDelta: {x: 133.863, y: 136.94}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &4345840031774159639
 CanvasRenderer:
@@ -166,7 +166,7 @@ GameObject:
   m_Layer: 5
   m_Name: CaughtFish1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
@@ -187,8 +187,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -350, y: -58.7}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: -355, y: -28}
+  m_SizeDelta: {x: 141.687, y: 136.941}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &4345840031776994491
 CanvasRenderer:
@@ -423,11 +423,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fishImageObject: {fileID: 4345840032487980194}
   _fishSprites:
-  - {fileID: 21300000, guid: 137e3eba357438840b0db2637a55eae2, type: 3}
+  - {fileID: 21300000, guid: 2577250bddcfe1a41995c692c836d149, type: 3}
   - {fileID: 21300000, guid: 521cb58ebd0b5e448a4aa6549e2b25a7, type: 3}
   - {fileID: 21300000, guid: 828c6299647cb1047bc2d00d43047ada, type: 3}
   - {fileID: 21300000, guid: e08f6e731aa2e594f812656fc6e3f26d, type: 3}
+  - {fileID: 21300000, guid: f7b220f0ae232044fa09db7a7d50265a, type: 3}
+  - {fileID: 21300000, guid: 6ef46f00a6a75764991c1aac2f802bc9, type: 3}
+  _legendaryFS:
+  - {fileID: 21300000, guid: 137e3eba357438840b0db2637a55eae2, type: 3}
   - {fileID: 21300000, guid: 6189667fc19f997409dc4b69922d138f, type: 3}
+  - {fileID: 21300000, guid: f5a6d423ac7e6264e8edd0dc4ddf968e, type: 3}
   _fish1Spot: {fileID: 4345840031776994486}
   _fish2Spot: {fileID: 4345840031619369953}
   _fish3Spot: {fileID: 4345840031774159634}

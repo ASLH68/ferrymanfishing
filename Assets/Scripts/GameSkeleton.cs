@@ -99,6 +99,7 @@ public class GameSkeleton : MonoBehaviour
             _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax+1);
             //print(_castWaitTime);
             StartCoroutine(CastTimer());
+            IntroSceneBehavior.Instance.CastingScreen(false);
             UIController.Instance.CastText(false);
         }
     }

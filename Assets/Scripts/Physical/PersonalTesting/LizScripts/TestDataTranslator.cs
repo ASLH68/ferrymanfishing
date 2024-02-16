@@ -78,8 +78,6 @@ public class TestDataTranslator : MonoBehaviour
                 text.text = "Receiving: Button";
             }
         }
-        
-        ArduinoManager.Instance.Thread.ReceivedData = null;
         switch (data)
         {
             case "1":

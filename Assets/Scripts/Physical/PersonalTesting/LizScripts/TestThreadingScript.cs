@@ -9,19 +9,21 @@ using System.IO;
 public class TestThreadingScript : MonoBehaviour
 {
     [SerializeField] private bool _debugExceptions;
+    [SerializeField] private bool _debugSendReceiveData;
 
     [Header("Arduino")]
     [SerializeField] private int _baudRate;
     [SerializeField] private int _readTimeout;
-    [SerializeField] private float _readWriteInterval;
+    [SerializeField] private float _rxTxInterval = 0.1f;
     [SerializeField] private string _portName;
     private Arduino _arduino;
     private Thread _thread;
     private Queue _rxQueue;
     private Queue _txQueue;
-    private string _receivedData;
-    private string _dataToTransmit;
     private bool _threadActive = true;
+
+    private string _receivedData;
+    private string _lastTransmitData;
 
     public string ReceivedData
     {
@@ -31,29 +33,61 @@ public class TestThreadingScript : MonoBehaviour
         }
     }
 
-    public string DataToTransmit
-    {
-        set
-        {
-            _dataToTransmit = value;
-        }
-    }
-
     private void Start()
     {
         StartThread();
-
-        InvokeRepeating(nameof(TransmitData), 0f, _readWriteInterval);
     }
 
     private void Update()
     {
-        ReceiveRxQueue();
+        UpdateReceivedData();
     }
 
-    private void TransmitData()
+    public void EnqueueData(string data)
     {
-        SendToTXQueue(_dataToTransmit);
+        if (data == "")
+        {
+            return;
+        }
+
+        if (data == _lastTransmitData)
+        {
+            return;
+        }
+
+        if (_debugSendReceiveData)
+        {
+            Debug.Log("Transmitting data: " + data);
+        }
+
+        _lastTransmitData = data;
+        _txQueue.Enqueue(data);
+    }
+
+    private void UpdateReceivedData()
+    {
+        if (_rxQueue.Count == 0)
+        {
+            return;
+        }
+
+        string data = (string)_rxQueue.Dequeue();
+        if (data == "")
+        {
+            return;
+        }
+
+        if (data == _receivedData)
+        {
+            return;
+        }
+
+        if (_debugSendReceiveData)
+        {
+            Debug.Log("Receiving data: " + data);
+        }
+
+        _receivedData = data;
     }
 
     private void StartThread()
@@ -130,26 +164,6 @@ public class TestThreadingScript : MonoBehaviour
         }
     }
 
-    public void SendToTXQueue(string msg)
-    {
-        if (msg == null)
-        {
-            return;
-        }
-
-        _txQueue.Enqueue(msg);
-    }
-
-    private string ReadRXQueue()
-    {
-        if (_rxQueue.Count == 0)
-        {
-            return null;
-        }
-
-        return (string)_rxQueue.Dequeue();
-    }
-
     public bool ThreadActive()
     {
         lock (this)
@@ -165,17 +179,6 @@ public class TestThreadingScript : MonoBehaviour
         {
             _threadActive = false;
         }
-    }
-
-    private void ReceiveRxQueue()
-    {
-        string data = ReadRXQueue();
-        if (data == null)
-        {
-            return;
-        }
-
-        _receivedData = data;
     }
 
     private void OnDisable()

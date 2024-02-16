@@ -5,8 +5,6 @@ using UnityEngine;
 public class TestMovingScript : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private string _customSendCharacter = "c";
-    private bool _onGreen, _onRed;
 
     private void Update()
     {
@@ -17,29 +15,6 @@ public class TestMovingScript : MonoBehaviour
         else if (ArduinoManager.Instance.Translator.GetReceivedData() == TestDataTranslator.ReceiveData.RightButtonIsPressed)
         {
             MoveCube(1);
-        }
-
-        TransmitData();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ArduinoManager.Instance.Translator.TransmitCustomData(_customSendCharacter);
-        }
-    }
-
-    private void TransmitData()
-    {
-        if (_onGreen)
-        {
-            ArduinoManager.Instance.Translator.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnGreen);
-        }
-        else if(_onRed)
-        {
-            ArduinoManager.Instance.Translator.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnRed);
-        }
-        else
-        {
-            ArduinoManager.Instance.Translator.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnNothing);
         }
     }
 
@@ -52,23 +27,19 @@ public class TestMovingScript : MonoBehaviour
     {
         if (collision.gameObject.name == "GreenOn")
         {
-            _onGreen = true;
+            ArduinoManager.Instance.Translator.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnGreen);
         }
         if (collision.gameObject.name == "RedOn")
         {
-            _onRed = true;
+            ArduinoManager.Instance.Translator.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnRed);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "GreenOn")
+        if (collision.gameObject.name == "GreenOn" || collision.gameObject.name == "RedOn")
         {
-            _onGreen = false;
-        }
-        if (collision.gameObject.name == "RedOn")
-        {
-            _onRed = false;
+            ArduinoManager.Instance.Translator.TransmitDataToArduino(TestDataTranslator.TransmittableData.PlayerIsOnNothing);
         }
     }
 }

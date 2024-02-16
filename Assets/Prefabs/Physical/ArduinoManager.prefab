@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d8203829ff934e8ea28bf7f89bdfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugDataMessages: 1
 --- !u!1 &8748473238816339706
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,9 +89,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugExceptions: 0
+  _debugSendReceiveData: 1
   _baudRate: 19200
   _readTimeout: 500
-  _readWriteInterval: 0.1
+  _writeInterval: 0.1
   _portName: 
 --- !u!1 &8748473239133487587
 GameObject:

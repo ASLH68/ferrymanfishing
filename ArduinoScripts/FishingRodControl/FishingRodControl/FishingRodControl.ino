@@ -31,17 +31,18 @@ const char ButtonHigh = 'e';
 const char ButtonLow = 'f';
 const char EncoderIncreased = 'g';
 const int ServoHighValue = 180;
-const int ServoLowValue = 90;
+const int ServoLowValue = 70;
 
 
 void setup() {
   Serial.begin(19200);
   pinMode(buttonPin, INPUT);
- // buttonState = digitalRead(buttonPin);
+  // buttonState = digitalRead(buttonPin);
   pinMode(encoderCLK, INPUT);
   pinMode(encoderDT, INPUT);
   pinMode(ServoPin, OUTPUT);
   pinMode(rumblePin, OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
   servo.attach(ServoPin);
   encoderInitState = digitalRead(encoderCLK);
 }
@@ -57,10 +58,9 @@ void loop() {
 
   //send data
   if (millis() <= time) return;
-  
-    time = millis() + delayTime;
-    SendSerialData();
-  
+
+  time = millis() + delayTime;
+  SendSerialData();
 }
 
 int prevState = 0;
@@ -68,8 +68,7 @@ void GatherHardwareData() {
   //get whether button is pushed. Check for changes
   prevState = buttonState;
   buttonState = digitalRead(buttonPin);
-  if(buttonState != prevState)
-  {
+  if (buttonState != prevState) {
     buttonStateChanged = true;
   }
 
@@ -82,7 +81,7 @@ void GatherHardwareData() {
       negativeIncreased = false;
     } else {
       //negative decr
-     negativeIncreased = true;
+      negativeIncreased = true;
       positiveIncreased = false;
     }
   }
@@ -122,9 +121,8 @@ void SendSerialData() {
     positiveIncreased = false;
     Serial.print(EncoderIncreased);
   }
-  
-  if(dataSend)
-  {
+
+  if (dataSend) {
     Serial.println();
   }
 }
@@ -134,46 +132,67 @@ void RecieveSerialData() {
   if (Serial.available()) {
     char message = (char)Serial.read();
 
-    switch (message) {
-      case HapticOn:
-        int prev = hapticState;
-        hapticState = HIGH;
-        if (prev != hapticState) {
-          hapticStateChanged = true;
-        }
-        break;
-      case HapticOff:
-        int prevHaptic = hapticState;
-        hapticState = LOW;
-        if (prevHaptic != hapticState) {
-          hapticStateChanged = true;
-        }
-        //do b shit
-        break;
-      case ServoHigh:
-        int prevServo = servoRotation;
-        servoRotation = ServoHighValue;
-        if (prevServo != servoRotation) {
-          servoChanged = true;
-        }
-        break;
-      case ServoLow:
-        int prevServo2 = servoRotation;
-        servoRotation = ServoLowValue;
-        if (prevServo2 != servoRotation) {
-          servoChanged = true;
-        }
-        break;
-      default:
-        break;
+    if (message == HapticOn) {
+      int prev = hapticState;
+      hapticState = HIGH;
+      if (prev != hapticState) {
+        hapticStateChanged = true;
+      }
+    } else if (message == HapticOff) {
+      int prevHaptic = hapticState;
+      hapticState = LOW;
+      if (prevHaptic != hapticState) {
+        hapticStateChanged = true;
+      }
+    } else if (message == ServoHigh) {
+      int prevServo = servoRotation;
+      servoRotation = ServoHighValue;
+      if (prevServo != servoRotation) {
+        servoChanged = true;
+      }
+    } else if (message == ServoLow) {
+      int prevServo2 = servoRotation;
+      servoRotation = ServoLowValue;
+      if (prevServo2 != servoRotation) {
+        servoChanged = true;
+      }
     }
-  }
-}
 
-void ActivateLight(int pin, int digitalState) {
-  if (digitalState == 1) {
-    digitalWrite(pin, HIGH);
-  } else {
-    digitalWrite(pin, LOW);
+    //   switch (message) {
+    //     case HapticOn:
+
+    //       int prev = hapticState;
+    //       hapticState = HIGH;
+    //       if (prev != hapticState) {
+    //         hapticStateChanged = true;
+    //       }
+    //       break;
+    //     case HapticOff:
+
+    //       int prevHaptic = hapticState;
+    //       hapticState = LOW;
+    //       if (prevHaptic != hapticState) {
+    //         hapticStateChanged = true;
+    //       }
+    //       //do b shit
+    //       break;
+    //     case ServoHigh:
+    //       int prevServo = servoRotation;
+    //       servoRotation = ServoHighValue;
+    //       if (prevServo != servoRotation) {
+    //         servoChanged = true;
+    //       }
+    //       break;
+    //     case ServoLow:
+    //       int prevServo2 = servoRotation;
+    //       servoRotation = ServoLowValue;
+    //       if (prevServo2 != servoRotation) {
+    //         servoChanged = true;
+    //       }
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    // }
   }
 }

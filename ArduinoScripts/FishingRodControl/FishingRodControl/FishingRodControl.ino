@@ -1,6 +1,6 @@
 #include <Servo.h>
 //button
-const int buttonPin = 1;
+const int buttonPin = 5;
 int buttonState = 0;
 bool buttonStateChanged = false;
 //servo
@@ -20,7 +20,7 @@ const int rumblePin = 4;
 bool hapticStateChanged = false;
 int hapticState = 0;
 unsigned long time = 0;
-const unsigned long delayTime = 10;
+const unsigned long delayTime = 100;
 
 
 const char HapticOn = 'a';
@@ -37,7 +37,7 @@ const int ServoLowValue = 90;
 void setup() {
   Serial.begin(19200);
   pinMode(buttonPin, INPUT);
-  buttonState = digitalRead(buttonPin);
+ // buttonState = digitalRead(buttonPin);
   pinMode(encoderCLK, INPUT);
   pinMode(encoderDT, INPUT);
   pinMode(ServoPin, OUTPUT);
@@ -56,18 +56,22 @@ void loop() {
   ApplyReceivedData();
 
   //send data
-  if (millis() > time) {
-    SendSerialData();
+  if (millis() <= time) return;
+  
     time = millis() + delayTime;
-  }
+    SendSerialData();
+  
 }
 
+int prevState = 0;
 void GatherHardwareData() {
   //get whether button is pushed. Check for changes
-  int prevState = buttonState;
+  prevState = buttonState;
   buttonState = digitalRead(buttonPin);
-  buttonStateChanged = prevState != buttonState;
-
+  if(buttonState != prevState)
+  {
+    buttonStateChanged = true;
+  }
 
   //read in the encoder values
   encoderState = digitalRead(encoderCLK);
@@ -78,10 +82,11 @@ void GatherHardwareData() {
       negativeIncreased = false;
     } else {
       //negative decr
-      negativeIncreased = true;
+     negativeIncreased = true;
       positiveIncreased = false;
     }
   }
+  encoderInitState = encoderState;
 }
 
 
@@ -100,20 +105,28 @@ void ApplyReceivedData() {
 
 void SendSerialData() {
   //button is pushed
+  bool dataSend = false;
   if (buttonStateChanged) {
+    buttonStateChanged = false;
     if (buttonState == HIGH) {
+      dataSend = true;
       Serial.print(ButtonHigh);
     } else {
+      dataSend = true;
       Serial.print(ButtonLow);
     }
-    buttonStateChanged = false;
   }
   //rotatry encoder both ways
   if (positiveIncreased) {
-    Serial.print(EncoderIncreased);
+    dataSend = true;
     positiveIncreased = false;
+    Serial.print(EncoderIncreased);
   }
-  Serial.println();
+  
+  if(dataSend)
+  {
+    Serial.println();
+  }
 }
 
 void RecieveSerialData() {

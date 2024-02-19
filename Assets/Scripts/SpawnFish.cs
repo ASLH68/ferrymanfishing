@@ -5,7 +5,7 @@
 //
 // Brief Description : It sapwns the fish after it was catched
 *****************************************************************************/
-using Microsoft.Unity.VisualStudio.Editor;
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +26,12 @@ public class SpawnFish : MonoBehaviour
     [SerializeField] private GameObject _fish2Spot;
     [SerializeField] private GameObject _fish3Spot;
     [SerializeField] private float _animationTime;
+    [SerializeField] private Image _uICanvas;
+    [SerializeField] private Sprite _fishCaughtImage1;
+    [SerializeField] private Sprite _fishCaughtImage2;
+    [SerializeField] private Sprite _fishCaughtImage3;
+    [SerializeField] private float _fadeDuration = 0.05f;
+    [SerializeField] private Animator _uiAnimator;
 
     /// <summary>
     /// It checks if the Fish is on screen or not
@@ -65,7 +71,7 @@ public class SpawnFish : MonoBehaviour
         {
             int numberFish = Random.Range(0, _legendaryFS.Count);
             _legendaryFS.ElementAt(numberFish);
-            _fishImageObject.GetComponentInChildren<UnityEngine.UI.Image>().sprite = _legendaryFS[numberFish];
+            _fishImageObject.GetComponentInChildren<Image>().sprite = _legendaryFS[numberFish];
             _legendaryFS.Remove(_legendaryFS[numberFish]);
         }
         else
@@ -86,24 +92,64 @@ public class SpawnFish : MonoBehaviour
 
         if (_caughtFish1 == false && _caughtFish2 == false && _caughtFish3 == false)
         {
+            _uICanvas.sprite = _fishCaughtImage1;
+            StartCoroutine(CaughtFishUI());
             StartCoroutine(MoveFish(_fish1Spot, animateTime));
             _caughtFish1 = true;
             return;
         }
         if (_caughtFish1 == true && _caughtFish2 == false && _caughtFish3 == false)
         {
+            _uICanvas.sprite = _fishCaughtImage2;
+            StartCoroutine(CaughtFishUI());
             StartCoroutine(MoveFish(_fish2Spot, animateTime));
             _caughtFish2 = true;
             return;
         }
         if (_caughtFish1 == true && _caughtFish2 == true && _caughtFish3 == false)
         {
+            _uICanvas.sprite = _fishCaughtImage3;
+            StartCoroutine(CaughtFishUI());
             StartCoroutine(MoveFish(_fish3Spot, animateTime));
             _caughtFish3 = true;
             return;
         }
     }
 
+   /// <summary>
+   /// it calls in the animator to animate the UI of the fish caught, has old code if necessary
+   /// </summary>
+   /// <returns></returns>
+    IEnumerator CaughtFishUI()
+    {
+        _uiAnimator.Play("FadeIn");
+        yield return new WaitForSeconds(_fadeDuration);
+        _uiAnimator.Play("FadeOut");
+        //// fade from opaque to transparent
+        //if (fadeAway)
+        //{
+        //    uIDisplay.gameObject.SetActive(true);
+        //    // loop over 1 second backwards
+        //    for (float i = 1; i >= 0; i -= Time.deltaTime)
+        //    {
+        //        // set color with i as alpha
+        //        uIDisplay.color = new Color(1, 1, 1, i);
+        //        yield return new WaitForSeconds(_fadeDuration);
+        //    }
+        //}
+        //// fade from transparent to opaque
+        //else
+        //{
+        //    // loop over 1 second
+        //    for (float i = 0; i <= 1; i += Time.deltaTime)
+        //    {
+        //        // set color with i as alpha
+        //        uIDisplay.color = new Color(1, 1, 1, i);
+        //        yield return new WaitForSeconds(_fadeDuration);
+        //    }
+        //    uIDisplay.gameObject.SetActive(false);
+        //}
+    }
     /// <summary>
     /// Removes the images from the top tight of the screen, not currently being used
     /// </summary>

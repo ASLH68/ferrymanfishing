@@ -20,7 +20,7 @@ public class ArduinoManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    [SerializeField] private TestThreadingScript _thread;
+    [SerializeField] private ArduinoThread _thread;
     [SerializeField] private TestDataTranslator _translator;
 
     public TestDataTranslator Translator
@@ -31,7 +31,7 @@ public class ArduinoManager : MonoBehaviour
         }
     }
 
-    public TestThreadingScript Thread
+    public ArduinoThread Thread
     {
         get
         {

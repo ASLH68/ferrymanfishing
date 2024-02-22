@@ -6,7 +6,7 @@ using System.Threading;
 using System;
 using System.IO;
 
-public class TestThreadingScript : MonoBehaviour
+public class ArduinoThread : MonoBehaviour
 {
     [SerializeField] private bool _debugExceptions;
     [SerializeField] private bool _debugSendReceiveData;

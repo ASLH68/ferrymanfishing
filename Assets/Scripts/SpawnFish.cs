@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,8 +31,6 @@ public class SpawnFish : MonoBehaviour
     [SerializeField] private Sprite _fishCaughtImage1;
     [SerializeField] private Sprite _fishCaughtImage2;
     [SerializeField] private Sprite _fishCaughtImage3;
-    [SerializeField] private float _fadeDuration = 0.05f;
-    [SerializeField] private Animator _uiAnimator;
 
     /// <summary>
     /// It checks if the Fish is on screen or not
@@ -93,63 +92,29 @@ public class SpawnFish : MonoBehaviour
         if (_caughtFish1 == false && _caughtFish2 == false && _caughtFish3 == false)
         {
             _uICanvas.sprite = _fishCaughtImage1;
-            StartCoroutine(CaughtFishUI());
-            StartCoroutine(MoveFish(_fish1Spot, animateTime));
+            StartCoroutine(UIController.Instance.CaughtFishUI(_fish1Spot,_fishImageObject));
+            //StartCoroutine(MoveFish(_fish1Spot, animateTime));
             _caughtFish1 = true;
             return;
         }
         if (_caughtFish1 == true && _caughtFish2 == false && _caughtFish3 == false)
         {
             _uICanvas.sprite = _fishCaughtImage2;
-            StartCoroutine(CaughtFishUI());
-            StartCoroutine(MoveFish(_fish2Spot, animateTime));
+            StartCoroutine(UIController.Instance.CaughtFishUI(_fish2Spot, _fishImageObject));
+            //StartCoroutine(MoveFish(_fish2Spot, animateTime));
             _caughtFish2 = true;
             return;
         }
         if (_caughtFish1 == true && _caughtFish2 == true && _caughtFish3 == false)
         {
             _uICanvas.sprite = _fishCaughtImage3;
-            StartCoroutine(CaughtFishUI());
-            StartCoroutine(MoveFish(_fish3Spot, animateTime));
+            StartCoroutine(UIController.Instance.CaughtFishUI(_fish3Spot, _fishImageObject));
+            //StartCoroutine(MoveFish(_fish3Spot, animateTime));
             _caughtFish3 = true;
             return;
         }
     }
 
-   /// <summary>
-   /// it calls in the animator to animate the UI of the fish caught, has old code if necessary
-   /// </summary>
-   /// <returns></returns>
-    IEnumerator CaughtFishUI()
-    {
-        _uiAnimator.Play("FadeIn");
-        yield return new WaitForSeconds(_fadeDuration);
-        _uiAnimator.Play("FadeOut");
-        //// fade from opaque to transparent
-        //if (fadeAway)
-        //{
-        //    uIDisplay.gameObject.SetActive(true);
-        //    // loop over 1 second backwards
-        //    for (float i = 1; i >= 0; i -= Time.deltaTime)
-        //    {
-        //        // set color with i as alpha
-        //        uIDisplay.color = new Color(1, 1, 1, i);
-        //        yield return new WaitForSeconds(_fadeDuration);
-        //    }
-        //}
-        //// fade from transparent to opaque
-        //else
-        //{
-        //    // loop over 1 second
-        //    for (float i = 0; i <= 1; i += Time.deltaTime)
-        //    {
-        //        // set color with i as alpha
-        //        uIDisplay.color = new Color(1, 1, 1, i);
-        //        yield return new WaitForSeconds(_fadeDuration);
-        //    }
-        //    uIDisplay.gameObject.SetActive(false);
-        //}
-    }
     /// <summary>
     /// Removes the images from the top tight of the screen, not currently being used
     /// </summary>
@@ -169,31 +134,31 @@ public class SpawnFish : MonoBehaviour
     /// <param name="targetPosition"></param>
     /// <param name="animationTime"></param>
     /// <returns></returns>
-    private IEnumerator MoveFish(GameObject targetPosition, float animationTime)
-    {
-        yield return new WaitForSeconds(GameSkeleton.Instance.GetDisplayTime());
-        Vector3 Start = _fishImageObject.transform.position;
-        float time =0;
-        while (time < animationTime)
-        {
+    //private IEnumerator MoveFish(GameObject targetPosition, float animationTime)
+    //{
+    //    yield return new WaitForSeconds(GameSkeleton.Instance.GetDisplayTime());
+    //    Vector3 Start = _fishImageObject.transform.position;
+    //    float time =0;
+    //    while (time < animationTime)
+    //    {
             
-            time += Time.deltaTime;
-            float t = time/ animationTime;
-            Vector3 currentPosition = Vector3.Lerp(Start, targetPosition.transform.position, t);
-            _fishImageObject.transform.position = currentPosition;
+    //        time += Time.deltaTime;
+    //        float t = time/ animationTime;
+    //        Vector3 currentPosition = Vector3.Lerp(Start, targetPosition.transform.position, t);
+    //        _fishImageObject.transform.position = currentPosition;
 
-            yield return null;
-        }
-        _fishImageObject.transform.position = Start;
+    //        yield return null;
+    //    }
+    //    _fishImageObject.transform.position = Start;
 
-        targetPosition.SetActive(true);
-        targetPosition.GetComponent<UnityEngine.UI.Image>().sprite = _fishImageObject.GetComponent<UnityEngine.UI.Image>().sprite;
+    //    targetPosition.SetActive(true);
+    //    targetPosition.GetComponent<UnityEngine.UI.Image>().sprite = _fishImageObject.GetComponent<UnityEngine.UI.Image>().sprite;
 
-        //GameSkeleton skeleton = GameObject.FindObjectOfType<GameSkeleton>();
-        //skeleton._canReel = true;
+    //    //GameSkeleton skeleton = GameObject.FindObjectOfType<GameSkeleton>();
+    //    //skeleton._canReel = true;
 
-        FishApperance(false);
-    }
+    //    FishApperance(false);
+    //}
 
     /// <summary>
     /// It calls both the FishApperance and UIFish function

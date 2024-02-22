@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4887317586697096517}
   - component: {fileID: 1273074312932508317}
-  - component: {fileID: 1463415226211439970}
+  - component: {fileID: 1373946358}
   m_Layer: 5
   m_Name: FishBackground
   m_TagString: Untagged
@@ -127,26 +127,20 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!95 &1463415226211439970
-Animator:
-  serializedVersion: 4
+--- !u!114 &1373946358
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245095593935311561}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 028a17685647bee4e92dfe87bed9d940, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3cb47aadd9a2940b76133d03fbc7d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeDuration: 2
+  _uiAnimator: {fileID: 2153551795459600034}
 --- !u!1 &4345840031619369953
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4345840032487980199
 RectTransform:
   m_ObjectHideFlags: 0
@@ -434,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -464,6 +458,7 @@ GameObject:
   - component: {fileID: 4345840032491813666}
   - component: {fileID: 4345840032491813667}
   - component: {fileID: 4345840032491813664}
+  - component: {fileID: 2153551795459600034}
   m_Layer: 5
   m_Name: FishDisplay
   m_TagString: Untagged
@@ -589,5 +584,23 @@ MonoBehaviour:
   _fishCaughtImage1: {fileID: 21300000, guid: 0a294b48901a45441a80a72c81cda446, type: 3}
   _fishCaughtImage2: {fileID: 21300000, guid: 44a2c7d682dd6514cbaafe1cd2466c76, type: 3}
   _fishCaughtImage3: {fileID: 21300000, guid: ac9cf886e60e62c439f3d7f59e6446bd, type: 3}
-  _fadeDuration: 3
-  _uiAnimator: {fileID: 1463415226211439970}
+--- !u!95 &2153551795459600034
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4345840032491813665}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 028a17685647bee4e92dfe87bed9d940, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

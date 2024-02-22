@@ -25,13 +25,31 @@ const unsigned long delayTime = 100;
 
 const char HapticOn = 'a';
 const char HapticOff = 'b';
-const char ServoHigh = 'c';
-const char ServoLow = 'd';
-const char ButtonHigh = 'e';
-const char ButtonLow = 'f';
-const char EncoderIncreased = 'g';
-const int ServoHighValue = 180;
-const int ServoLowValue = 70;
+const char ButtonHigh = 'c';
+const char ButtonLow = 'd';
+const char EncoderIncreased = 'e';
+const char Servo0 = 'f';
+const char Servo1 = 'g';
+const char Servo2 = 'h';
+const char Servo3 = 'i';
+const char Servo4 = 'j';
+const char Servo5 = 'k';
+const char Servo6 = 'l';
+const char Servo7 = 'm';
+const char Servo8 = 'n';
+const char Servo9 = 'o';
+
+const int ServoValue0 = 5;
+const int ServoValue1 = 10;
+const int ServoValue2 = 15;
+const int ServoValue3 = 20;
+const int ServoValue4 = 25;
+const int ServoValue5 = 30;
+const int ServoValue6 = 35;
+const int ServoValue7 = 40;
+const int ServoValue8 = 45;
+const int ServoValue9 = 50;
+const int ServoOffset = 0;
 
 
 void setup() {
@@ -131,7 +149,8 @@ void RecieveSerialData() {
 
   if (Serial.available()) {
     char message = (char)Serial.read();
-
+    int prevServo = servo.read();
+    //arduino doesn't support switch cases??? 
     if (message == HapticOn) {
       int prev = hapticState;
       hapticState = HIGH;
@@ -144,55 +163,93 @@ void RecieveSerialData() {
       if (prevHaptic != hapticState) {
         hapticStateChanged = true;
       }
-    } else if (message == ServoHigh) {
-      int prevServo = servoRotation;
-      servoRotation = ServoHighValue;
+    } else if (message == Servo0) {
+      servoRotation = ServoValue0 + ServoOffset;
       if (prevServo != servoRotation) {
         servoChanged = true;
       }
-    } else if (message == ServoLow) {
-      int prevServo2 = servoRotation;
-      servoRotation = ServoLowValue;
-      if (prevServo2 != servoRotation) {
+    } else if (message == Servo1) {
+      servoRotation = ServoValue1 + ServoOffset;
+      if (prevServo != servoRotation) {
+        servoChanged = true;
+      }
+    } else if (message == Servo2) {
+      servoRotation = ServoValue2 + ServoOffset;
+      if (prevServo != servoRotation) {
+        servoChanged = true;
+      }
+    } else if (message == Servo3) {
+      servoRotation = ServoValue3 + ServoOffset;
+      if (prevServo != servoRotation) {
+        servoChanged = true;
+      }
+    } else if (message == Servo4) {
+      servoRotation = ServoValue4 + ServoOffset;
+      if (prevServo != servoRotation) {
+        servoChanged = true;
+      }
+    } else if (message == Servo5) {
+      servoRotation = ServoValue5 + ServoOffset;
+      if (prevServo != servoRotation) {
+        servoChanged = true;
+      }
+    } else if (message == Servo6) {
+      servoRotation = ServoValue6 + ServoOffset;
+      if (prevServo != servoRotation) {
+        servoChanged = true;
+      }
+    } else if (message == Servo7) {
+      servoRotation = ServoValue7 + ServoOffset;
+      if (prevServo != servoRotation) {
+        servoChanged = true;
+      }
+    } else if (message == Servo8) {
+      servoRotation = ServoValue8 + ServoOffset;
+      if (prevServo != servoRotation) {
+        servoChanged = true;
+      }
+    } else if (message == Servo9) {
+      servoRotation = ServoValue9 + ServoOffset;
+      if (prevServo != servoRotation) {
         servoChanged = true;
       }
     }
-
-    //   switch (message) {
-    //     case HapticOn:
-
-    //       int prev = hapticState;
-    //       hapticState = HIGH;
-    //       if (prev != hapticState) {
-    //         hapticStateChanged = true;
-    //       }
-    //       break;
-    //     case HapticOff:
-
-    //       int prevHaptic = hapticState;
-    //       hapticState = LOW;
-    //       if (prevHaptic != hapticState) {
-    //         hapticStateChanged = true;
-    //       }
-    //       //do b shit
-    //       break;
-    //     case ServoHigh:
-    //       int prevServo = servoRotation;
-    //       servoRotation = ServoHighValue;
-    //       if (prevServo != servoRotation) {
-    //         servoChanged = true;
-    //       }
-    //       break;
-    //     case ServoLow:
-    //       int prevServo2 = servoRotation;
-    //       servoRotation = ServoLowValue;
-    //       if (prevServo2 != servoRotation) {
-    //         servoChanged = true;
-    //       }
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    // }
   }
+
+  //   switch (message) {
+  //     case HapticOn:
+
+  //       int prev = hapticState;
+  //       hapticState = HIGH;
+  //       if (prev != hapticState) {
+  //         hapticStateChanged = true;
+  //       }
+  //       break;
+  //     case HapticOff:
+
+  //       int prevHaptic = hapticState;
+  //       hapticState = LOW;
+  //       if (prevHaptic != hapticState) {
+  //         hapticStateChanged = true;
+  //       }
+  //       //do b shit
+  //       break;
+  //     case ServoHigh:
+  //       int prevServo = servoRotation;
+  //       servoRotation = ServoHighValue;
+  //       if (prevServo != servoRotation) {
+  //         servoChanged = true;
+  //       }
+  //       break;
+  //     case ServoLow:
+  //       int prevServo2 = servoRotation;
+  //       servoRotation = ServoLowValue;
+  //       if (prevServo2 != servoRotation) {
+  //         servoChanged = true;
+  //       }
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
 }

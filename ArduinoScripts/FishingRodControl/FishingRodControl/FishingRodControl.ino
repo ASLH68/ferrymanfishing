@@ -61,6 +61,7 @@ void setup() {
   pinMode(ServoPin, OUTPUT);
   pinMode(rumblePin, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
+  servo.write(0);
   servo.attach(ServoPin);
   encoderInitState = digitalRead(encoderCLK);
 }

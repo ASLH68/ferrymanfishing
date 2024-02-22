@@ -38,4 +38,9 @@ public class ArduinoManager : MonoBehaviour
             return _thread;
         }
     }
+
+    public void SendData(string data)
+    {
+        Thread.EnqueueData(data);
+    }
 }

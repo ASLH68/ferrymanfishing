@@ -44,7 +44,7 @@ public class TestThreadingScript : MonoBehaviour
 
     public void EnqueueData(string data)
     {
-        if (data == "")
+        if (string.IsNullOrEmpty(data))
         {
             return;
         }
@@ -184,5 +184,11 @@ public class TestThreadingScript : MonoBehaviour
     {
         _arduino.DataStream.Close();
         StopThread();
+    }
+
+    public void ClearReceivedData()
+    {
+        if (string.IsNullOrEmpty(_receivedData)) return;
+        _receivedData = null;
     }
 }

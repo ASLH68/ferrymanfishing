@@ -175,10 +175,12 @@ public class ArduinoInterface : MonoBehaviour
         }
         catch (TimeoutException e)
         {
+            Debug.Log(e);
             return null;
         }
         catch (IOException e)
         {
+            Debug.Log(e);
             return null;
         }
     }

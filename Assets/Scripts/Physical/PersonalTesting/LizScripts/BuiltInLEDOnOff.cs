@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class BuiltInLEDOnOff : MonoBehaviour
 {
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.O))
-        {
-            ArduinoManager.Instance.Translator.TransmitCustomData("3");
-        }
+    //void Update()
+    //{
+    //    if (Input.GetKey(KeyCode.O))
+    //    {
+    //        ArduinoManager.Instance.Translator.TransmitCustomData("3");
+    //    }
         
-        if (Input.GetKey(KeyCode.P))
-        {
-            ArduinoManager.Instance.Translator.TransmitCustomData("4");
-        }
-    }
+    //    if (Input.GetKey(KeyCode.P))
+    //    {
+    //        ArduinoManager.Instance.Translator.TransmitCustomData("4");
+    //    }
+    //}
 }

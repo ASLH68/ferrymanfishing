@@ -21,9 +21,9 @@ public class ArduinoManager : MonoBehaviour
     }
 
     [SerializeField] private ArduinoThread _thread;
-    [SerializeField] private TestDataTranslator _translator;
+    [SerializeField] private PhysicalConnection _translator;
 
-    public TestDataTranslator Translator
+    public PhysicalConnection Translator
     {
         get
         {

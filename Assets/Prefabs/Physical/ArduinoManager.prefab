@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8748473238573181828}
-  - component: {fileID: 8748473238573181827}
+  - component: {fileID: 6299704558018046149}
   m_Layer: 0
   m_Name: Translator
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 8748473239133487588}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8748473238573181827
+--- !u!114 &6299704558018046149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8748473238573181826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e12d8203829ff934e8ea28bf7f89bdfb, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ee47324efc8e3d49a18c2591c16bcd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ButtonPressed>k__BackingField: 0
 --- !u!1 &8748473238816339706
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +93,6 @@ MonoBehaviour:
   _debugSendReceiveData: 1
   _baudRate: 19200
   _readTimeout: 500
-  _writeInterval: 0.1
   _portName: 
 --- !u!1 &8748473239133487587
 GameObject:
@@ -141,4 +141,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thread: {fileID: 8748473238816339708}
-  _translator: {fileID: 8748473238573181827}
+  _translator: {fileID: 6299704558018046149}

@@ -39,8 +39,8 @@ const char Servo7 = 'm';
 const char Servo8 = 'n';
 const char Servo9 = 'o';
 
-const int ServoValue0 = 5;
-const int ServoValue1 = 10;
+const int ServoValue0 = 54;
+const int ServoValue1 = 59;
 const int ServoValue2 = 15;
 const int ServoValue3 = 20;
 const int ServoValue4 = 25;
@@ -51,6 +51,8 @@ const int ServoValue8 = 45;
 const int ServoValue9 = 50;
 const int ServoOffset = 0;
 
+//54 base rotation
+//59 open rotation
 
 void setup() {
   Serial.begin(19200);
@@ -61,7 +63,7 @@ void setup() {
   pinMode(ServoPin, OUTPUT);
   pinMode(rumblePin, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
-  servo.write(0);
+  servo.write(ServoValue0);
   servo.attach(ServoPin);
   encoderInitState = digitalRead(encoderCLK);
 }

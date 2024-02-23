@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIController : MonoBehaviour
+public class FishUIController : MonoBehaviour
 {
-    public static UIController Instance;
+    public static FishUIController Instance;
     [SerializeField] private float _fadeDuration = 0.05f;
     [SerializeField] private Animator _uiAnimator;
 

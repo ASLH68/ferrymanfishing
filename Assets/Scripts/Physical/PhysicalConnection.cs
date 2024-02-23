@@ -30,7 +30,7 @@ public class PhysicalConnection : MonoBehaviour
     /// </summary>
     public Action OnRotaryEncoderIncreased;
 
-    [field: SerializeField] public bool ButtonPressed { get; private set; }
+    public bool ButtonPressed { get; private set; }
 
     private void Update()
     {

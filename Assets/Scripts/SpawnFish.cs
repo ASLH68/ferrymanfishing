@@ -26,7 +26,7 @@ public class SpawnFish : MonoBehaviour
     [SerializeField] private GameObject _fish1Spot;
     [SerializeField] private GameObject _fish2Spot;
     [SerializeField] private GameObject _fish3Spot;
-    [SerializeField] private float _animationTime;
+    //[SerializeField] private float _animationTime;
     [SerializeField] private Image _uICanvas;
     [SerializeField] private Sprite _fishCaughtImage1;
     [SerializeField] private Sprite _fishCaughtImage2;
@@ -86,7 +86,7 @@ public class SpawnFish : MonoBehaviour
     /// It iddentifies when a fish has been caught and put it on the right side of the screen
     /// </summary>
     /// <param name="animateTime"></param>
-    public void UIFish(float animateTime)
+    public void UIFish()
     {
 
         if (_caughtFish1 == false && _caughtFish2 == false && _caughtFish3 == false)
@@ -166,7 +166,7 @@ public class SpawnFish : MonoBehaviour
     public void DisplayFish()
     {
         FishApperance(true);
-        UIFish(_animationTime);
+        UIFish();
 
     }
 

@@ -69,8 +69,10 @@ public class GameSkeleton : MonoBehaviour
 
         _reel = _myPlayerInput.currentActionMap.FindAction("Reel");
         _cast = _myPlayerInput.currentActionMap.FindAction("Cast");
-        _reel.started += ReelCount;
-        _cast.started += WhenCast;
+        //_reel.started += ReelCount;
+        //_cast.started += WhenCast;
+        ArduinoManager.Instance.Translator.OnButtonPressed += WhenCast;
+        ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased += ReelCount;
 
         _canCast = true;
         print("cast");
@@ -92,7 +94,7 @@ public class GameSkeleton : MonoBehaviour
     /// player will wait for the reeling to start, and starts the cast timer 
     /// with that random time.
     /// </summary>
-    public void WhenCast(InputAction.CallbackContext obj)
+    public void WhenCast() //;InputAction.CallbackContext obj)
     {
         if (_canCast)
         {
@@ -127,7 +129,7 @@ public class GameSkeleton : MonoBehaviour
     /// checks if a milestone was reached.
     /// </summary>
     /// <param name="obj"></param>
-    private void ReelCount(InputAction.CallbackContext obj)
+    private void ReelCount() //InputAction.CallbackContext obj)
     {
         if (_canReel)
         {
@@ -171,6 +173,7 @@ public class GameSkeleton : MonoBehaviour
     /// </summary>
     private void UpdateNextMilestone()
     {
+        StartCoroutine(ControlRumble(1f));
         switch (_milestonesReached)
         {
             case 0:
@@ -231,14 +234,21 @@ public class GameSkeleton : MonoBehaviour
             UIController.Instance.CastText(true);
             UIController.Instance.CatchingText(false);
         }
-    
-    
+    }
+
+    IEnumerator ControlRumble(float input)
+    {
+        ArduinoManager.Instance.Translator.ToggleHapticMotor(true);
+        yield return new WaitForSeconds(input);
+        ArduinoManager.Instance.Translator.ToggleHapticMotor(false);
     }
 
     private void OnDisable()
     {
 
-        _reel.started -= ReelCount;
-        _cast.started -= WhenCast;
+        //_reel.started -= ReelCount;
+        //_cast.started -= WhenCast;
+        ArduinoManager.Instance.Translator.OnButtonPressed -= WhenCast;
+        ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased -= ReelCount;
     }
 }

@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee47324efc8e3d49a18c2591c16bcd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ButtonPressed>k__BackingField: 0
 --- !u!1 &8748473238816339706
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugExceptions: 0
-  _debugSendReceiveData: 1
+  _debugSendReceiveData: 0
   _baudRate: 19200
   _readTimeout: 500
   _portName: 

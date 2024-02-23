@@ -72,7 +72,10 @@ public class Arduino
             }
         }
 
-        Debug.LogWarning("COM Port not detected! Is the Arduino plugged in? Are you using Windows?");
+        Debug.LogWarning($"COM Port not detected! Is the Arduino plugged in? If yes, click for more solutions. \n" +
+            $"1. Manually enter your COM port into the Arduino Thread field to bypass autodetection. \n" +
+            $"2. If you do not have the Arduino IDE, download it for Windows here: https://www.arduino.cc/en/software. \n" +
+            $"Integration for other operation systems is not implemented. \n");
         return null;
     }
 }

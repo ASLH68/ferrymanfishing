@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3cb47aadd9a2940b76133d03fbc7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeDuration: 2
+  _fadeDuration: 2.5
   _uiAnimator: {fileID: 2153551795459600034}
 --- !u!1 &4345840031619369953
 GameObject:
@@ -579,7 +579,6 @@ MonoBehaviour:
   _fish1Spot: {fileID: 4345840031776994486}
   _fish2Spot: {fileID: 4345840031619369953}
   _fish3Spot: {fileID: 4345840031774159634}
-  _animationTime: 2
   _uICanvas: {fileID: 1183701165}
   _fishCaughtImage1: {fileID: 21300000, guid: 0a294b48901a45441a80a72c81cda446, type: 3}
   _fishCaughtImage2: {fileID: 21300000, guid: 44a2c7d682dd6514cbaafe1cd2466c76, type: 3}

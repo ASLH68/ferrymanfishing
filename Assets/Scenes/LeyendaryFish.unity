@@ -130,14 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1373946358, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
-      propertyPath: _fadeDuration
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1273074312932508317, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4345840032491813665, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Name
       value: FishDisplay
@@ -349,10 +341,6 @@ PrefabInstance:
     - target: {fileID: 349336371605629365, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}

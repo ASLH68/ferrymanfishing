@@ -11,6 +11,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Windows;
 
 public class GameSkeleton : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class GameSkeleton : MonoBehaviour
     private PlayerInput _myPlayerInput;
     private InputAction _reel, _cast;
     public static int TotalFishCaught;
+
+    [Header("Arduino")]
+    [SerializeField] private bool _usingArduino;
+    [SerializeField] GameObject _arduioPrefab;
 
     [Header("Cast Phase")]
     [SerializeField] private float _castWaitTimeMax;
@@ -69,10 +74,19 @@ public class GameSkeleton : MonoBehaviour
 
         _reel = _myPlayerInput.currentActionMap.FindAction("Reel");
         _cast = _myPlayerInput.currentActionMap.FindAction("Cast");
-        //_reel.started += ReelCount;
-        //_cast.started += WhenCast;
-        ArduinoManager.Instance.Translator.OnButtonPressed += WhenCast;
-        ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased += ReelCount;
+        
+
+        if (_usingArduino)
+        {
+            _arduioPrefab.SetActive(true);
+            ArduinoManager.Instance.Translator.OnButtonPressed += WhenCast;
+            ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased += ReelCount;
+        }
+        else
+        {
+            _reel.started += ReelCount;
+            _cast.started += WhenCast;
+        }
 
         _canCast = true;
         print("cast");
@@ -94,11 +108,23 @@ public class GameSkeleton : MonoBehaviour
     /// player will wait for the reeling to start, and starts the cast timer 
     /// with that random time.
     /// </summary>
-    public void WhenCast() //;InputAction.CallbackContext obj)
+    public void WhenCast(InputAction.CallbackContext obj)
     {
         if (_canCast)
         {
             _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax+1);
+            //print(_castWaitTime);
+            StartCoroutine(CastTimer());
+            IntroSceneBehavior.Instance.CastingScreen(false);
+            UIController.Instance.CastText(false);
+        }
+    }
+
+    public void WhenCast()
+    {
+        if (_canCast)
+        {
+            _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
             //print(_castWaitTime);
             StartCoroutine(CastTimer());
             IntroSceneBehavior.Instance.CastingScreen(false);
@@ -129,7 +155,30 @@ public class GameSkeleton : MonoBehaviour
     /// checks if a milestone was reached.
     /// </summary>
     /// <param name="obj"></param>
-    private void ReelCount() //InputAction.CallbackContext obj)
+    private void ReelCount(InputAction.CallbackContext obj)
+    {
+        if (_canReel)
+        {
+            //if timer is null start one and cache it
+            if (_reelTimer == null)
+            {
+                _reelTimer = StartCoroutine(ReelTimer());
+            }
+
+            ReelValue += _reelIncrementValue;
+            //print(ReelValue);
+
+            //chack if milestone was reached
+            if (ReelValue >= _currentReelMilestone)
+            {
+                print("milestone reached");
+                ReelValue = 0;
+                UpdateNextMilestone();
+            }
+        }
+    }
+
+    private void ReelCount()
     {
         if (_canReel)
         {
@@ -223,8 +272,7 @@ public class GameSkeleton : MonoBehaviour
         if (TotalFishCaught == 3)
         {
             //end game
-            print("GameOver");
-            SceneManager.LoadScene(0);
+            EndGame.LoadEndScene();
         }
         else
         {
@@ -238,17 +286,25 @@ public class GameSkeleton : MonoBehaviour
 
     IEnumerator ControlRumble(float input)
     {
-        ArduinoManager.Instance.Translator.ToggleHapticMotor(true);
-        yield return new WaitForSeconds(input);
-        ArduinoManager.Instance.Translator.ToggleHapticMotor(false);
+        if (_usingArduino)
+        {
+            ArduinoManager.Instance.Translator.ToggleHapticMotor(true);
+            yield return new WaitForSeconds(input);
+            ArduinoManager.Instance.Translator.ToggleHapticMotor(false);
+        }
     }
 
     private void OnDisable()
     {
-
-        //_reel.started -= ReelCount;
-        //_cast.started -= WhenCast;
-        ArduinoManager.Instance.Translator.OnButtonPressed -= WhenCast;
-        ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased -= ReelCount;
+        if(_usingArduino)
+        {
+            ArduinoManager.Instance.Translator.OnButtonPressed -= WhenCast;
+            ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased -= ReelCount;
+        }
+        else
+        {
+            _reel.started -= ReelCount;
+            _cast.started -= WhenCast;
+        }
     }
 }

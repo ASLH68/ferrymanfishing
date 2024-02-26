@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class IntroSceneBehavior : MonoBehaviour
 {
-    Image rend;
+    private Image _introSceneBehavior;
     public static IntroSceneBehavior Instance;
     [SerializeField]private GameObject _castScreen;
    
@@ -32,7 +32,7 @@ public class IntroSceneBehavior : MonoBehaviour
     void Start()
     {
         _castScreen.gameObject.SetActive(true);
-        rend = GetComponentInChildren<Image>();
+        _introSceneBehavior = GetComponentInChildren<Image>();
         
     }
 
@@ -59,9 +59,9 @@ public class IntroSceneBehavior : MonoBehaviour
     {
         for (float f = 1f; f >= -0.05f; f -= 0.05f)
         {
-            Color c = rend.color;
+            Color c = _introSceneBehavior.color;
             c.a = f;
-            rend.color= c;
+            _introSceneBehavior.color= c;
             yield return new WaitForSeconds(0.05f);
         }
     }

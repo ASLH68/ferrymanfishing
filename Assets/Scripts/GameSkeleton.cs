@@ -17,7 +17,7 @@ public class GameSkeleton : MonoBehaviour
 {
     public static GameSkeleton Instance;
     private PlayerInput _myPlayerInput;
-    private InputAction _reel, _cast;
+    private InputAction _reel, _cast, _lock, _unlock;
     public static int TotalFishCaught;
 
     [Header("Arduino")]
@@ -50,6 +50,12 @@ public class GameSkeleton : MonoBehaviour
     [SerializeField] private float _milestone2;
     [SerializeField] private float _milestone3;
 
+    [Header("Rumble Times")]
+    [SerializeField] private float _milestoneRumbleMin;
+    [SerializeField] private float _milestoneRumbleMax;
+    [SerializeField] private float _catchRumble;
+    [SerializeField] private float _castRumble;
+
     /// <summary>
     /// Called before start
     /// </summary>
@@ -74,13 +80,18 @@ public class GameSkeleton : MonoBehaviour
 
         _reel = _myPlayerInput.currentActionMap.FindAction("Reel");
         _cast = _myPlayerInput.currentActionMap.FindAction("Cast");
-        
+        _lock = _myPlayerInput.currentActionMap.FindAction("LockServo");
+        _unlock = _myPlayerInput.currentActionMap.FindAction("UnlockServo");
+
 
         if (_usingArduino)
         {
             _arduioPrefab.SetActive(true);
             ArduinoManager.Instance.Translator.OnButtonPressed += WhenCast;
             ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased += ReelCount;
+
+            _lock.started += LockServo;
+            _unlock.started += UnlockServo;
         }
         else
         {
@@ -222,17 +233,29 @@ public class GameSkeleton : MonoBehaviour
     /// </summary>
     private void UpdateNextMilestone()
     {
-        StartCoroutine(ControlRumble(1f));
         switch (_milestonesReached)
         {
             case 0:
                 _currentReelMilestone = _milestone1; //1.5f;
+                if (_usingArduino)
+                {
+                    StartCoroutine(ControlRumble(_castRumble));
+                }
                 break;
             case 1:
                 _currentReelMilestone = _milestone2; // 2.0f;
+                if (_usingArduino)
+                {
+                    StartCoroutine(ControlRumble(RandomRumble()));
+                    
+                }
                 break;
             case 2:
                 _currentReelMilestone = _milestone3; // 2.5f;
+                if (_usingArduino)
+                {
+                    StartCoroutine(ControlRumble(RandomRumble()));
+                }
                 break;
             case 3:     //the fish is caught
                 print("YOU CAUGHT THE FISH!! (reeling)");
@@ -241,6 +264,10 @@ public class GameSkeleton : MonoBehaviour
                 StartCoroutine(FishDisplay());
                 UIController.Instance.ReelText(false);
                 UIController.Instance.CatchingText(true);
+                if (_usingArduino)
+                {
+                    StartCoroutine(ControlRumble(_catchRumble));
+                }
                 break;
         }
         _milestonesReached++;
@@ -284,6 +311,10 @@ public class GameSkeleton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine to start and stop the controller rumble. Uses a float parameter
+    /// to determine how long the rumble lasts.
+    /// </summary>
     IEnumerator ControlRumble(float input)
     {
         if (_usingArduino)
@@ -294,12 +325,57 @@ public class GameSkeleton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Randomly selects a length for the control to rumble for the milestones.
+    /// </summary>
+    private float RandomRumble()
+    {
+        return UnityEngine.Random.Range(_milestoneRumbleMin, _milestoneRumbleMax);
+    }
+
+
+    /// <summary>
+    /// Locks the Servo for the controller
+    /// </summary>
+    private void LockServo(InputAction.CallbackContext obj)
+    {
+        if(_usingArduino)
+        {
+            ArduinoManager.Instance.Translator.SetServo(1);
+        }
+    }
+
+    /// <summary>
+    /// Unlocks the Servo for the controller
+    /// </summary>
+    private void UnlockServo(InputAction.CallbackContext obj)
+    {
+        if (_usingArduino)
+        {
+            ArduinoManager.Instance.Translator.SetServo(0);
+        }
+    }
+
+    /// <summary>
+    /// unlocks and then locks the servo as fast as possible 
+    /// </summary>
+    private void ServoCatch()
+    {
+        if (_usingArduino)
+        {
+            ArduinoManager.Instance.Translator.SetServo(0);
+            ArduinoManager.Instance.Translator.SetServo(1);
+        }
+    }
+
     private void OnDisable()
     {
         if(_usingArduino)
         {
             ArduinoManager.Instance.Translator.OnButtonPressed -= WhenCast;
             ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased -= ReelCount;
+            _lock.started -= LockServo;
+            _unlock.started -= UnlockServo;
         }
         else
         {

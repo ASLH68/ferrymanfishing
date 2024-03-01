@@ -21,13 +21,28 @@ public class DemoFull : MonoBehaviour
 
     private void Update()
     {
+        DebugTextTimer();
+
         buttonPressed = ArduinoManager.Instance.Translator.ButtonPressed;
         if (buttonWasPressed && !buttonPressed)
             ArduinoManager.Instance.Translator.SetServo(0);
         if (!buttonWasPressed && buttonPressed)
             ArduinoManager.Instance.Translator.SetServo(1);
-        DebugTextTimer();
         buttonWasPressed = buttonPressed;
+    }
+
+    public void ReleaseTension()
+    {
+        StartCoroutine(ReleaseTensionCoroutine());
+    }
+
+    private IEnumerator ReleaseTensionCoroutine()
+    {
+        ArduinoManager.Instance.Translator.SetServo(1);
+
+        yield return null;
+
+        ArduinoManager.Instance.Translator.SetServo(0);
     }
 
     private void OnEncoderIncreased()

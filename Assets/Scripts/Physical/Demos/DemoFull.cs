@@ -9,7 +9,9 @@ public class DemoFull : MonoBehaviour
     [SerializeField] private string _textDefault = "Awaiting Data...";
     [SerializeField] private float _textHideTime = 1f;
     private float _curTextHideTime;
-
+    private bool buttonWasPressed;
+    private bool buttonPressed;
+    private bool buttonState;
     private void Start()
     {
         ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased += OnEncoderIncreased;
@@ -19,12 +21,13 @@ public class DemoFull : MonoBehaviour
 
     private void Update()
     {
-        if (ArduinoManager.Instance.Translator.ButtonPressed)
-        {
-            SetDebugText("Button pressed!");
-        }
-
+        buttonPressed = ArduinoManager.Instance.Translator.ButtonPressed;
+        if (buttonWasPressed && !buttonPressed)
+            ArduinoManager.Instance.Translator.SetServo(0);
+        if (!buttonWasPressed && buttonPressed)
+            ArduinoManager.Instance.Translator.SetServo(1);
         DebugTextTimer();
+        buttonWasPressed = buttonPressed;
     }
 
     private void OnEncoderIncreased()

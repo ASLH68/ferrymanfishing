@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class IntroSceneBehavior : MonoBehaviour
 {
-    private Image _introSceneBehavior;
+    private Image _introImage;
     public static IntroSceneBehavior Instance;
     [SerializeField]private GameObject _castScreen;
    
@@ -32,7 +32,7 @@ public class IntroSceneBehavior : MonoBehaviour
     void Start()
     {
         _castScreen.gameObject.SetActive(true);
-        _introSceneBehavior = GetComponentInChildren<Image>();
+        _introImage = GetComponentInChildren<Image>();
         
     }
 
@@ -49,8 +49,9 @@ public class IntroSceneBehavior : MonoBehaviour
     public void CastingScreen(bool val)
     {
         StartFading();
+        
     }
-
+    
     /// <summary>
     /// This makes the Intro Scene Fadeout Once it gets called
     /// </summary>
@@ -59,11 +60,12 @@ public class IntroSceneBehavior : MonoBehaviour
     {
         for (float f = 1f; f >= -0.05f; f -= 0.05f)
         {
-            Color c = _introSceneBehavior.color;
+            Color c = _introImage.color;
             c.a = f;
-            _introSceneBehavior.color= c;
+            _introImage.color= c;
             yield return new WaitForSeconds(0.05f);
         }
+        _castScreen.gameObject.SetActive(false);
     }
     /// <summary>
     /// This coroutine calls for FadeOut
@@ -71,6 +73,7 @@ public class IntroSceneBehavior : MonoBehaviour
     public void StartFading()
     {
         StartCoroutine("FadeOut");
+        
     }
 
 }

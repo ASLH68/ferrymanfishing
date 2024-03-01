@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Text: 'Servo
 
 
-    LOCK'
+    UNLOCK'
 --- !u!222 &794993467
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -469,6 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debugText: {fileID: 2062410142}
   _textDefault: Awaiting Data...
+  _releaseTensionTime: 0.001
   _textHideTime: 1
 --- !u!1 &936329367
 GameObject:
@@ -483,7 +484,7 @@ GameObject:
   - component: {fileID: 936329370}
   - component: {fileID: 936329369}
   m_Layer: 5
-  m_Name: ServoLow
+  m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -561,7 +562,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: d
           m_BoolArgument: 0
@@ -960,7 +961,7 @@ MonoBehaviour:
   m_Text: 'Servo
 
 
-    UNLOCK'
+    LOCK'
 --- !u!222 &1635311662
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -982,7 +983,7 @@ GameObject:
   - component: {fileID: 1668428885}
   - component: {fileID: 1668428884}
   m_Layer: 5
-  m_Name: ServoHigh
+  m_Name: Unlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1060,7 +1061,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: c
           m_BoolArgument: 0
@@ -1464,10 +1465,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8748473238056053273}
-        m_TargetAssemblyTypeName: PhysicalConnection, Assembly-CSharp
-        m_MethodName: SetServo
-        m_Mode: 3
+      - m_Target: {fileID: 797912531}
+        m_TargetAssemblyTypeName: DemoFull, Assembly-CSharp
+        m_MethodName: ReleaseTension
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

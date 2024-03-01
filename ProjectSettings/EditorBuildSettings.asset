@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Physical/ArduinoTesting/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Game.unity
+    guid: 46c8cd47136a1fb4bb8e7311f8705b03
+  - enabled: 1
+    path: Assets/Scenes/EndScreenScene.unity
+    guid: 6d378a0165726f94ab87b67ba036b90c
   m_configObjects: {}

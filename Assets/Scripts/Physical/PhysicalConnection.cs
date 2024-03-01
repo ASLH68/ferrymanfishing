@@ -29,6 +29,7 @@ public class PhysicalConnection : MonoBehaviour
     /// Be sure to unsubscribe from the action when finished.
     /// </summary>
     public Action OnRotaryEncoderIncreased;
+    public Action OnButtonPressed;
 
     public bool ButtonPressed { get; private set; }
 
@@ -47,6 +48,7 @@ public class PhysicalConnection : MonoBehaviour
         {
             case ButtonHigh:
                 ButtonPressed = true;
+                OnButtonPressed?.Invoke();
                 break;
             case ButtonLow:
                 ButtonPressed = false;

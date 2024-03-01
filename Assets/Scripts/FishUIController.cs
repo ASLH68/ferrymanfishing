@@ -11,7 +11,7 @@ public class FishUIController : MonoBehaviour
 
     public void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }

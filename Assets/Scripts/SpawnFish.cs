@@ -58,7 +58,6 @@ public class SpawnFish : MonoBehaviour
             ChangingFish();
         }
         _fishImageObject.SetActive(value);
-        
     }
 
     /// <summary>

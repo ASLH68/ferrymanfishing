@@ -7,24 +7,41 @@ public class DemoFull : MonoBehaviour
 {
     [SerializeField] private Text _debugText;
     [SerializeField] private string _textDefault = "Awaiting Data...";
+    [SerializeField] private float _releaseTensionTime = 0.001f;
     [SerializeField] private float _textHideTime = 1f;
     private float _curTextHideTime;
 
     private void Start()
     {
         ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased += OnEncoderIncreased;
+        ArduinoManager.Instance.Translator.OnButtonPressed += ReleaseTension;
 
         _debugText.text = _textDefault;
     }
 
+    private void OnDisable()
+    {
+        ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased -= OnEncoderIncreased;
+        ArduinoManager.Instance.Translator.OnButtonPressed -= ReleaseTension;
+    }
+
     private void Update()
     {
-        if (ArduinoManager.Instance.Translator.ButtonPressed)
-        {
-            SetDebugText("Button pressed!");
-        }
-
         DebugTextTimer();
+    }
+
+    public void ReleaseTension()
+    {
+        StartCoroutine(ReleaseTensionCoroutine());
+    }
+
+    private IEnumerator ReleaseTensionCoroutine()
+    {
+        ArduinoManager.Instance.Translator.SetServo(1);
+
+        yield return new WaitForSeconds(_releaseTensionTime);
+
+        ArduinoManager.Instance.Translator.SetServo(0);
     }
 
     private void OnEncoderIncreased()

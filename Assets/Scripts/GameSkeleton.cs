@@ -140,6 +140,8 @@ public class GameSkeleton : MonoBehaviour
             StartCoroutine(CastTimer());
             IntroSceneBehavior.Instance.CastingScreen(false);
             UIController.Instance.CastText(false);
+
+            LockServo();
         }
     }
 
@@ -247,7 +249,7 @@ public class GameSkeleton : MonoBehaviour
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(RandomRumble()));
-                    
+                    ServoCatch();
                 }
                 break;
             case 2:
@@ -255,6 +257,7 @@ public class GameSkeleton : MonoBehaviour
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(RandomRumble()));
+                    ServoCatch();
                 }
                 break;
             case 3:     //the fish is caught
@@ -267,6 +270,7 @@ public class GameSkeleton : MonoBehaviour
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(_catchRumble));
+                    ServoCatch();
                 }
                 break;
         }
@@ -340,6 +344,14 @@ public class GameSkeleton : MonoBehaviour
     private void LockServo(InputAction.CallbackContext obj)
     {
         if(_usingArduino)
+        {
+            ArduinoManager.Instance.Translator.SetServo(1);
+        }
+    }
+
+    private void LockServo()
+    {
+        if (_usingArduino)
         {
             ArduinoManager.Instance.Translator.SetServo(1);
         }

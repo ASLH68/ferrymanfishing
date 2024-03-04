@@ -421,12 +421,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: _castRumble
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: _catchRumble
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _arduioPrefab
       value: 
       objectReference: {fileID: 419509427}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _usingArduino
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: _milestoneRumbleMax
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: _milestoneRumbleMin
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}

@@ -8,9 +8,11 @@ public class FishUIController : MonoBehaviour
     public static FishUIController Instance;
     [SerializeField] private float _fadeDuration = 0.05f;
     [SerializeField] private Animator _uiAnimator;
+    [SerializeField] private ParticleSystem _splash;
 
     public void Awake()
     {
+        _splash.Stop();
         if (Instance == null)
         {
             Instance = this;
@@ -27,7 +29,9 @@ public class FishUIController : MonoBehaviour
     public IEnumerator CaughtFishUI(GameObject targetPosition, GameObject _fishImageObject)
     {
         _uiAnimator.Play("FadeIn");
+        _splash.Play();
         yield return new WaitForSeconds(_fadeDuration);
+        _splash.Stop();
         _uiAnimator.Play("FadeOut");
         targetPosition.SetActive(true);
         targetPosition.GetComponent<UnityEngine.UI.Image>().sprite = _fishImageObject.GetComponent<UnityEngine.UI.Image>().sprite;

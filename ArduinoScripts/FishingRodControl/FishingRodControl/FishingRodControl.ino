@@ -40,7 +40,7 @@ const char Servo8 = 'n';
 const char Servo9 = 'o';
 
 const int ServoValue0 = 60;
-const int ServoValue1 = 56;
+const int ServoValue1 = 53;
 const int ServoValue2 = 15;
 const int ServoValue3 = 20;
 const int ServoValue4 = 25;

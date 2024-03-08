@@ -33,6 +33,7 @@ public class DemoFull : MonoBehaviour
     public void ReleaseTension()
     {
         StartCoroutine(ReleaseTensionCoroutine());
+        SetDebugText("Releasing Tension!");
     }
 
     private IEnumerator ReleaseTensionCoroutine()

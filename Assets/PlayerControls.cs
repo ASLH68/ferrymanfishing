@@ -44,6 +44,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockServo"",
+                    ""type"": ""Button"",
+                    ""id"": ""39e6ef08-d453-45f1-a7ab-5f9d4d114a00"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UnlockServo"",
+                    ""type"": ""Button"",
+                    ""id"": ""c76b06f6-0192-4d45-9ecb-a0029592946b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -90,6 +108,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Reel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d377efc-462b-4eac-b0f9-89e8670f241d"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockServo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19f080d5-8cbf-400d-b3d6-35978382e3c1"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnlockServo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -100,6 +140,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_MyActionMap = asset.FindActionMap("MyActionMap", throwIfNotFound: true);
         m_MyActionMap_Cast = m_MyActionMap.FindAction("Cast", throwIfNotFound: true);
         m_MyActionMap_Reel = m_MyActionMap.FindAction("Reel", throwIfNotFound: true);
+        m_MyActionMap_LockServo = m_MyActionMap.FindAction("LockServo", throwIfNotFound: true);
+        m_MyActionMap_UnlockServo = m_MyActionMap.FindAction("UnlockServo", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -161,12 +203,16 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IMyActionMapActions m_MyActionMapActionsCallbackInterface;
     private readonly InputAction m_MyActionMap_Cast;
     private readonly InputAction m_MyActionMap_Reel;
+    private readonly InputAction m_MyActionMap_LockServo;
+    private readonly InputAction m_MyActionMap_UnlockServo;
     public struct MyActionMapActions
     {
         private @PlayerControls m_Wrapper;
         public MyActionMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Cast => m_Wrapper.m_MyActionMap_Cast;
         public InputAction @Reel => m_Wrapper.m_MyActionMap_Reel;
+        public InputAction @LockServo => m_Wrapper.m_MyActionMap_LockServo;
+        public InputAction @UnlockServo => m_Wrapper.m_MyActionMap_UnlockServo;
         public InputActionMap Get() { return m_Wrapper.m_MyActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -182,6 +228,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Reel.started -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnReel;
                 @Reel.performed -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnReel;
                 @Reel.canceled -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnReel;
+                @LockServo.started -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnLockServo;
+                @LockServo.performed -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnLockServo;
+                @LockServo.canceled -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnLockServo;
+                @UnlockServo.started -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnUnlockServo;
+                @UnlockServo.performed -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnUnlockServo;
+                @UnlockServo.canceled -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnUnlockServo;
             }
             m_Wrapper.m_MyActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -192,6 +244,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Reel.started += instance.OnReel;
                 @Reel.performed += instance.OnReel;
                 @Reel.canceled += instance.OnReel;
+                @LockServo.started += instance.OnLockServo;
+                @LockServo.performed += instance.OnLockServo;
+                @LockServo.canceled += instance.OnLockServo;
+                @UnlockServo.started += instance.OnUnlockServo;
+                @UnlockServo.performed += instance.OnUnlockServo;
+                @UnlockServo.canceled += instance.OnUnlockServo;
             }
         }
     }
@@ -200,5 +258,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnCast(InputAction.CallbackContext context);
         void OnReel(InputAction.CallbackContext context);
+        void OnLockServo(InputAction.CallbackContext context);
+        void OnUnlockServo(InputAction.CallbackContext context);
     }
 }

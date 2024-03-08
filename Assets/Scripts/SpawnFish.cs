@@ -58,7 +58,6 @@ public class SpawnFish : MonoBehaviour
             ChangingFish();
         }
         _fishImageObject.SetActive(value);
-        
     }
 
     /// <summary>
@@ -88,7 +87,6 @@ public class SpawnFish : MonoBehaviour
     /// <param name="animateTime"></param>
     public void UIFish()
     {
-
         if (_caughtFish1 == false && _caughtFish2 == false && _caughtFish3 == false)
         {
             _uICanvas.sprite = _fishCaughtImage1;

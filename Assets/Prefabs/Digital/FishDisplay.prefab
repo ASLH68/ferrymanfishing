@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeDuration: 2.5
   _uiAnimator: {fileID: 2153551795459600034}
+  _splash: {fileID: 0}
 --- !u!1 &4345840031619369953
 GameObject:
   m_ObjectHideFlags: 0

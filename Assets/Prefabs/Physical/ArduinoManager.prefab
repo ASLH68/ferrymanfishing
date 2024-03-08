@@ -105,11 +105,11 @@ GameObject:
   - component: {fileID: 8748473239133487589}
   m_Layer: 0
   m_Name: ArduinoManager
-  m_TagString: Untagged
+  m_TagString: Arduino
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8748473239133487588
 Transform:
   m_ObjectHideFlags: 0

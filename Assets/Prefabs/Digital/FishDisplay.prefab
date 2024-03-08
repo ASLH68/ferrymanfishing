@@ -583,6 +583,7 @@ MonoBehaviour:
   _fishCaughtImage1: {fileID: 21300000, guid: 0a294b48901a45441a80a72c81cda446, type: 3}
   _fishCaughtImage2: {fileID: 21300000, guid: 44a2c7d682dd6514cbaafe1cd2466c76, type: 3}
   _fishCaughtImage3: {fileID: 21300000, guid: ac9cf886e60e62c439f3d7f59e6446bd, type: 3}
+  _splash: {fileID: 0}
 --- !u!95 &2153551795459600034
 Animator:
   serializedVersion: 4

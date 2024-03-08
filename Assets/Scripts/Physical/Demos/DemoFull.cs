@@ -37,11 +37,11 @@ public class DemoFull : MonoBehaviour
 
     private IEnumerator ReleaseTensionCoroutine()
     {
-        ArduinoManager.Instance.Translator.SetServo(1);
+        ArduinoManager.Instance.Translator.SetServo(0);
 
         yield return new WaitForSeconds(_releaseTensionTime);
 
-        ArduinoManager.Instance.Translator.SetServo(0);
+        ArduinoManager.Instance.Translator.SetServo(1);
     }
 
     private void OnEncoderIncreased()

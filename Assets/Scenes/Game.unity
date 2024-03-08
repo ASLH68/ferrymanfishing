@@ -496,7 +496,7 @@ PrefabInstance:
       objectReference: {fileID: 419509427}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _usingArduino
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _milestoneRumbleMax

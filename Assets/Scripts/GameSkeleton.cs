@@ -22,7 +22,6 @@ public class GameSkeleton : MonoBehaviour
 
     [Header("Arduino")]
     [SerializeField] private bool _usingArduino;
-    [SerializeField] GameObject _arduioPrefab;
 
     [Header("Cast Phase")]
     [SerializeField] private float _castWaitTimeMax;
@@ -86,7 +85,8 @@ public class GameSkeleton : MonoBehaviour
 
         if (_usingArduino)
         {
-            _arduioPrefab.SetActive(true);
+            //_arduioPrefab.SetActive(true);
+            ArduinoManager.Instance.gameObject.SetActive(true);
             ArduinoManager.Instance.Translator.OnButtonPressed += WhenCast;
             ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased += ReelCount;
 
@@ -95,6 +95,7 @@ public class GameSkeleton : MonoBehaviour
         }
         else
         {
+            //ArduinoManager.Instance.gameObject.SetActive(false);
             _reel.started += ReelCount;
             _cast.started += WhenCast;
         }

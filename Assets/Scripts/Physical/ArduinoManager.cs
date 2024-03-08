@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ArduinoManager : MonoBehaviour
 {
@@ -22,6 +23,14 @@ public class ArduinoManager : MonoBehaviour
 
     [SerializeField] private ArduinoThread _thread;
     [SerializeField] private PhysicalConnection _translator;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
 
     public PhysicalConnection Translator
     {

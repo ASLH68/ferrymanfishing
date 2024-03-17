@@ -9,7 +9,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,10 +18,12 @@ public class SpawnFish : MonoBehaviour
     [SerializeField] private GameObject _fishImageObject;
     public List<Sprite> _fishSprites;
     public List<Sprite> _legendaryFS;
+    public List<Sprite> _caughtFishSprites;
+    public List<Sprite> _caughtLeyendaryFS;
 
-    private bool _caughtFish1;
-    private bool _caughtFish2;
-    private bool _caughtFish3;
+    private bool _fishCaught1;
+    private bool _fishCaught2;
+    private bool _fishCaught3;
     [SerializeField] private GameObject _fish1Spot;
     [SerializeField] private GameObject _fish2Spot;
     [SerializeField] private GameObject _fish3Spot;
@@ -65,50 +66,63 @@ public class SpawnFish : MonoBehaviour
     /// </summary>
     private void ChangingFish()
     {
-        if (_caughtFish1 == true && _caughtFish2 == true && _caughtFish3 == false)
+        if (_fishCaught1 == true && _fishCaught2 == true && _fishCaught3 == false)
         {
             int numberFish = Random.Range(0, _legendaryFS.Count);
             _legendaryFS.ElementAt(numberFish);
             _fishImageObject.GetComponentInChildren<Image>().sprite = _legendaryFS[numberFish];
+            _fish3Spot.GetComponent<Image>().sprite = _caughtLeyendaryFS[numberFish];
             _legendaryFS.Remove(_legendaryFS[numberFish]);
+            _caughtLeyendaryFS.Remove(_caughtLeyendaryFS[numberFish]);
+
         }
         else
         {
             int numberFish = Random.Range(0, _fishSprites.Count);
             _fishSprites.ElementAt(numberFish);
             _fishImageObject.GetComponentInChildren<UnityEngine.UI.Image>().sprite = _fishSprites[numberFish];
+            if (_fishCaught1 == false)
+            {
+                _fish1Spot.GetComponent<Image>().sprite = _caughtFishSprites[numberFish];
+            }
+            else
+            {
+                _fish2Spot.GetComponent<Image>().sprite = _caughtFishSprites[numberFish];
+            }
             _fishSprites.Remove(_fishSprites[numberFish]);
+            _caughtFishSprites.Remove(_caughtFishSprites[numberFish]);
         }
     }
 
     /// <summary>
-    /// It iddentifies when a fish has been caught and put it on the right side of the screen
+    /// It identifies when a fish has been caught and put it on the right side of the screen
     /// </summary>
     /// <param name="animateTime"></param>
     public void UIFish()
     {
-        if (_caughtFish1 == false && _caughtFish2 == false && _caughtFish3 == false)
+
+        if (_fishCaught1 == false && _fishCaught2 == false && _fishCaught3 == false)
         {
             _uICanvas.sprite = _fishCaughtImage1;
             StartCoroutine(FishUIController.Instance.CaughtFishUI(_fish1Spot,_fishImageObject));
             //StartCoroutine(MoveFish(_fish1Spot, animateTime));
-            _caughtFish1 = true;
+            _fishCaught1 = true;
             return;
         }
-        if (_caughtFish1 == true && _caughtFish2 == false && _caughtFish3 == false)
+        if (_fishCaught1 == true && _fishCaught2 == false && _fishCaught3 == false)
         {
             _uICanvas.sprite = _fishCaughtImage2;
             StartCoroutine(FishUIController.Instance.CaughtFishUI(_fish2Spot, _fishImageObject));
             //StartCoroutine(MoveFish(_fish2Spot, animateTime));
-            _caughtFish2 = true;
+            _fishCaught2 = true;
             return;
         }
-        if (_caughtFish1 == true && _caughtFish2 == true && _caughtFish3 == false)
+        if (_fishCaught1 == true && _fishCaught2 == true && _fishCaught3 == false)
         {
             _uICanvas.sprite = _fishCaughtImage3;
             StartCoroutine(FishUIController.Instance.CaughtFishUI(_fish3Spot, _fishImageObject));
             //StartCoroutine(MoveFish(_fish3Spot, animateTime));
-            _caughtFish3 = true;
+            _fishCaught3 = true;
             return;
         }
     }
@@ -118,9 +132,9 @@ public class SpawnFish : MonoBehaviour
     /// </summary>
     public void ResetFish()
     { 
-        _caughtFish1 = false;
-        _caughtFish2 = false;
-        _caughtFish3 = false;
+        _fishCaught1 = false;
+        _fishCaught2 = false;
+        _fishCaught3 = false;
         _fish1Spot.SetActive(false);
         _fish2Spot.SetActive(false); 
         _fish3Spot.SetActive(false);

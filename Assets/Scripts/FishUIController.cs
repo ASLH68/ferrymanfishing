@@ -34,7 +34,7 @@ public class FishUIController : MonoBehaviour
         _splash.Stop();
         _uiAnimator.Play("FadeOut");
         targetPosition.SetActive(true);
-        targetPosition.GetComponent<UnityEngine.UI.Image>().sprite = _fishImageObject.GetComponent<UnityEngine.UI.Image>().sprite;
+        //targetPosition.GetComponent<UnityEngine.UI.Image>().sprite = _fishImageObject.GetComponent<UnityEngine.UI.Image>().sprite;
         //// fade from opaque to transparent
         //if (fadeAway)
         //{

@@ -143,7 +143,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245095593935311561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -182,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeDuration: 2.5
   _uiAnimator: {fileID: 2153551795459600034}
+  _splash: {fileID: 0}
 --- !u!1 &2434425429889056159
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -54.824, y: -28}
+  m_AnchoredPosition: {x: -54.823975, y: -28}
   m_SizeDelta: {x: 133.863, y: 136.94}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &4345840031774159639
@@ -521,7 +522,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 124.5928, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4345840032487980196
@@ -618,7 +619,7 @@ Canvas:
   m_GameObject: {fileID: 4345840032491813665}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

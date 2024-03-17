@@ -123,63 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &37880649
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1022753866507683626, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022753866507683626, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -24.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022753866507683626, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022753866507683626, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -19.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022753866507683626, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022753866507683626, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022753866507683626, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022753866507683626, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022753866507683626, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022753866507683626, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022753866507683626, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022753866507683631, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
-      propertyPath: m_Name
-      value: CastingAnimation
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
 --- !u!1001 &59061447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -187,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 298287078372530417, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -190.8
+      objectReference: {fileID: 0}
     - target: {fileID: 861542456703687216, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -234,6 +181,10 @@ PrefabInstance:
     - target: {fileID: 861542456703687223, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
       propertyPath: m_Name
       value: WaterSplash
+      objectReference: {fileID: 0}
+    - target: {fileID: 861542457113279734, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -201.23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
@@ -395,6 +346,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 336556042541282611, guid: 677dbada96eed76418f4f13fa8ac7cc8, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2045917070}
+    - target: {fileID: 336556042541282611, guid: 677dbada96eed76418f4f13fa8ac7cc8, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 336556042541282620, guid: 677dbada96eed76418f4f13fa8ac7cc8, type: 3}
       propertyPath: m_Name
       value: InstructionsCanvas
@@ -553,7 +512,7 @@ PrefabInstance:
       objectReference: {fileID: 419509427}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _usingArduino
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _milestoneRumbleMax
@@ -713,6 +672,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3573375612913201889, guid: 22b300e1e5e34ed41b70e8b8f931481e, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2045917070}
+    - target: {fileID: 3573375612913201889, guid: 22b300e1e5e34ed41b70e8b8f931481e, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3573375612913201917, guid: 22b300e1e5e34ed41b70e8b8f931481e, type: 3}
       propertyPath: m_Name
       value: IntroScreen
@@ -734,6 +701,14 @@ PrefabInstance:
       propertyPath: _splash
       value: 
       objectReference: {fileID: 552330733}
+    - target: {fileID: 4345840031774159637, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -54.823975
+      objectReference: {fileID: 0}
+    - target: {fileID: 4345840032487980199, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4345840032491813665, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Name
       value: FishDisplay
@@ -821,6 +796,18 @@ PrefabInstance:
     - target: {fileID: 4345840032491813668, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4345840032491813669, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2045917070}
+    - target: {fileID: 4345840032491813669, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887317586697096517, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1586
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32625cf151eb5324786347fba929d0f4, type: 3}

@@ -237,11 +237,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1813f7b1b28e72540be11476b6a7c86e, type: 3}
---- !u!1 &419509427 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8748473239133487587, guid: 4c3582d6e90b4494e84c136b69b3f8ba, type: 3}
-  m_PrefabInstance: {fileID: 1164020790}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &422874049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -316,6 +311,10 @@ PrefabInstance:
     - target: {fileID: 1022753866507683631, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
       propertyPath: m_Name
       value: CastingAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022753866507683631, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3658fc0df0868f64ea2878d54558bfe5, type: 3}
@@ -530,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 349336371605629365, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 349336371605629365, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: m_LocalPosition.z
@@ -564,30 +563,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
-      propertyPath: _castRumble
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
-      propertyPath: _catchRumble
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
-      propertyPath: _arduioPrefab
-      value: 
-      objectReference: {fileID: 419509427}
-    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
-      propertyPath: _usingArduino
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
-      propertyPath: _milestoneRumbleMax
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
-      propertyPath: _milestoneRumbleMin
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
 --- !u!1001 &1164020790
@@ -600,6 +575,10 @@ PrefabInstance:
     - target: {fileID: 8748473239133487587, guid: 4c3582d6e90b4494e84c136b69b3f8ba, type: 3}
       propertyPath: m_Name
       value: ArduinoManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748473239133487587, guid: 4c3582d6e90b4494e84c136b69b3f8ba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8748473239133487588, guid: 4c3582d6e90b4494e84c136b69b3f8ba, type: 3}
       propertyPath: m_RootOrder
@@ -662,7 +641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1341474772
 Transform:
   m_ObjectHideFlags: 0
@@ -1065,6 +1044,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SuccessAnimation
       objectReference: {fileID: 0}
+    - target: {fileID: 1669949376985930874, guid: 10ff09b7cfe971a4f801fb3c6ea6ce85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1669949376985930875, guid: 10ff09b7cfe971a4f801fb3c6ea6ce85, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1141,6 +1124,10 @@ PrefabInstance:
     - target: {fileID: 1795717299395559776, guid: 49caac2a4ef3b3e44a2b00a0de40d780, type: 3}
       propertyPath: m_Name
       value: IdleAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795717299395559776, guid: 49caac2a4ef3b3e44a2b00a0de40d780, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1795717299395559777, guid: 49caac2a4ef3b3e44a2b00a0de40d780, type: 3}
       propertyPath: m_RootOrder
@@ -1279,6 +1266,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CapturedFishAnimation
       objectReference: {fileID: 0}
+    - target: {fileID: 7411154831237836869, guid: 3b9755719a422ac4c853dbb8edcd1e78, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7411154831237836870, guid: 3b9755719a422ac4c853dbb8edcd1e78, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 0
@@ -1299,6 +1290,10 @@ PrefabInstance:
     - target: {fileID: 8296400289046060118, guid: 51bf87e062c1d944d9e396794e87fbbb, type: 3}
       propertyPath: m_Name
       value: Reel-InAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296400289046060118, guid: 51bf87e062c1d944d9e396794e87fbbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8296400289046060119, guid: 51bf87e062c1d944d9e396794e87fbbb, type: 3}
       propertyPath: m_RootOrder

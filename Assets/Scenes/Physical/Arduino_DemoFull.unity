@@ -469,7 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debugText: {fileID: 2062410142}
   _textDefault: Awaiting Data...
-  _releaseTensionTime: 0.001
+  _releaseTensionTime: 0.33
   _textHideTime: 1
 --- !u!1 &936329367
 GameObject:

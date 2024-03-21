@@ -7,7 +7,7 @@ public class DemoFull : MonoBehaviour
 {
     [SerializeField] private Text _debugText;
     [SerializeField] private string _textDefault = "Awaiting Data...";
-    [SerializeField] private float _releaseTensionTime = 0.001f;
+    [SerializeField] [Range(0.1f, 5f)] private float _releaseTensionTime = 0.1f;
     [SerializeField] private float _textHideTime = 1f;
     private float _curTextHideTime;
 

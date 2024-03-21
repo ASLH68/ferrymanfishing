@@ -86,7 +86,7 @@ public class SpawnFish : MonoBehaviour
 
             _fishSprites.ElementAt(_fishIndex);
             _fishImageObject.GetComponentInChildren<UnityEngine.UI.Image>().sprite = _fishSprites[_fishIndex];
-            if (_fishCaught1 == false)
+            if (_caughtFish1 == false)
             {
                 _fish1Spot.GetComponent<Image>().sprite = _caughtFishSprites[_fishIndex];
             }
@@ -105,28 +105,28 @@ public class SpawnFish : MonoBehaviour
     /// <param name="animateTime"></param>
     public void UIFish()
     {
-        if (_fishCaught1 == false && _fishCaught2 == false && _fishCaught3 == false)
+        if (_caughtFish1 == false && _caughtFish2 == false && _caughtFish3 == false)
         {
             _uICanvas.sprite = _fishCaughtImage1;
             StartCoroutine(FishUIController.Instance.CaughtFishUI(_fish1Spot,_fishImageObject));
             //StartCoroutine(MoveFish(_fish1Spot, animateTime));
-            _fishCaught1 = true;
+            _caughtFish1 = true;
             return;
         }
-        if (_fishCaught1 == true && _fishCaught2 == false && _fishCaught3 == false)
+        if (_caughtFish1 == true && _caughtFish2 == false && _caughtFish3 == false)
         {
             _uICanvas.sprite = _fishCaughtImage2;
             StartCoroutine(FishUIController.Instance.CaughtFishUI(_fish2Spot, _fishImageObject));
             //StartCoroutine(MoveFish(_fish2Spot, animateTime));
-            _fishCaught2 = true;
+            _caughtFish2 = true;
             return;
         }
-        if (_fishCaught1 == true && _fishCaught2 == true && _fishCaught3 == false)
+        if (_caughtFish1 == true && _caughtFish2 == true && _caughtFish3 == false)
         {
             _uICanvas.sprite = _fishCaughtImage3;
             StartCoroutine(FishUIController.Instance.CaughtFishUI(_fish3Spot, _fishImageObject));
             //StartCoroutine(MoveFish(_fish3Spot, animateTime));
-            _fishCaught3 = true;
+            _caughtFish3 = true;
             return;
         }
     }
@@ -135,10 +135,10 @@ public class SpawnFish : MonoBehaviour
     /// Removes the images from the top tight of the screen, not currently being used
     /// </summary>
     public void ResetFish()
-    { 
-        _fishCaught1 = false;
-        _fishCaught2 = false;
-        _fishCaught3 = false;
+    {
+        _caughtFish1 = false;
+        _caughtFish2 = false;
+        _caughtFish3 = false;
         _fish1Spot.SetActive(false);
         _fish2Spot.SetActive(false); 
         _fish3Spot.SetActive(false);

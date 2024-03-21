@@ -184,4 +184,13 @@ public class SpawnFish : MonoBehaviour
     {
         return _caughtFish1;
     }
+    public bool Caughtfish2()
+    {
+        return _caughtFish2;
     }
+
+    public bool Caughtfish3()
+    {
+        return _caughtFish3;
+    }
+}

@@ -19,6 +19,7 @@ public class GameSkeleton : MonoBehaviour
     private PlayerInput _myPlayerInput;
     private InputAction _reel, _cast, _lock, _unlock;
     public static int TotalFishCaught;
+    [SerializeField] private Animator _anim;
 
     [Header("Arduino")]
     [SerializeField] private bool _usingArduino;
@@ -82,6 +83,7 @@ public class GameSkeleton : MonoBehaviour
         _lock = _myPlayerInput.currentActionMap.FindAction("LockServo");
         _unlock = _myPlayerInput.currentActionMap.FindAction("UnlockServo");
 
+        _anim = GetComponent<Animator>();
 
         if (_usingArduino)
         {
@@ -124,6 +126,7 @@ public class GameSkeleton : MonoBehaviour
     {
         if (_canCast)
         {
+            _anim.SetTrigger("Cast");
             _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax+1);
             //print(_castWaitTime);
             StartCoroutine(CastTimer());
@@ -136,6 +139,7 @@ public class GameSkeleton : MonoBehaviour
     {
         if (_canCast)
         {
+            _anim.SetTrigger("Cast");
             _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
             //print(_castWaitTime);
             StartCoroutine(CastTimer());
@@ -158,6 +162,14 @@ public class GameSkeleton : MonoBehaviour
 
         //to start reel phase
         print("start reeling now");
+        _anim.SetTrigger("Captured");
+
+        //if timer is null start one and cache it
+        if (_reelTimer == null)
+        {
+            _reelTimer = StartCoroutine(ReelTimer());
+        }
+
         _canReel = true;
         UpdateNextMilestone();
         UIController.Instance.ReelText(true);
@@ -173,14 +185,8 @@ public class GameSkeleton : MonoBehaviour
     {
         if (_canReel)
         {
-            //if timer is null start one and cache it
-            if (_reelTimer == null)
-            {
-                _reelTimer = StartCoroutine(ReelTimer());
-            }
-
             ReelValue += _reelIncrementValue;
-            //print(ReelValue);
+            _anim.SetTrigger("Reel");
 
             //chack if milestone was reached
             if (ReelValue >= _currentReelMilestone)
@@ -196,14 +202,8 @@ public class GameSkeleton : MonoBehaviour
     {
         if (_canReel)
         {
-            //if timer is null start one and cache it
-            if (_reelTimer == null)
-            {
-                _reelTimer = StartCoroutine(ReelTimer());
-            }
-
             ReelValue += _reelIncrementValue;
-            //print(ReelValue);
+            _anim.SetTrigger("Reel");
 
             //chack if milestone was reached
             if (ReelValue >= _currentReelMilestone)
@@ -223,6 +223,7 @@ public class GameSkeleton : MonoBehaviour
     {
         yield return new WaitForSeconds(_reelMaxTime);
         print("YOU CAUGHT THE FISH!! (timer)");
+        _anim.SetTrigger("Success");
         _canReel = false;
         _milestonesReached = 3;
         UpdateNextMilestone();
@@ -263,11 +264,10 @@ public class GameSkeleton : MonoBehaviour
                 break;
             case 3:     //the fish is caught
                 print("YOU CAUGHT THE FISH!! (reeling)");
+                _anim.SetTrigger("Success");
                 _milestonesReached = -1;
                 StopCoroutine(_reelTimer);
-                StartCoroutine(FishDisplay());
                 UIController.Instance.ReelText(false);
-                UIController.Instance.CatchingText(true);
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(_catchRumble));
@@ -278,6 +278,11 @@ public class GameSkeleton : MonoBehaviour
         _milestonesReached++;
     }
 
+    private void StartFishDisplayCoroutine()
+    {
+        StartCoroutine(FishDisplay());
+    }
+
     /// <summary>
     /// Displays the caught fish for the player. Then determines if the game
     /// should loop and catch another fish or end.
@@ -286,6 +291,8 @@ public class GameSkeleton : MonoBehaviour
     IEnumerator FishDisplay()
     {
         print("displaying fish and animation now");
+
+        UIController.Instance.CatchingText(true);
 
         _reelTimer = null;
         _canReel = false;

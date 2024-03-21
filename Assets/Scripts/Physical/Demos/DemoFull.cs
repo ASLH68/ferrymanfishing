@@ -7,7 +7,7 @@ public class DemoFull : MonoBehaviour
 {
     [SerializeField] private Text _debugText;
     [SerializeField] private string _textDefault = "Awaiting Data...";
-    [SerializeField] private float _releaseTensionTime = 0.001f;
+    [SerializeField] [Range(0.1f, 5f)] private float _releaseTensionTime = 0.1f;
     [SerializeField] private float _textHideTime = 1f;
     private float _curTextHideTime;
 
@@ -33,15 +33,16 @@ public class DemoFull : MonoBehaviour
     public void ReleaseTension()
     {
         StartCoroutine(ReleaseTensionCoroutine());
+        SetDebugText("Releasing Tension!");
     }
 
     private IEnumerator ReleaseTensionCoroutine()
     {
-        ArduinoManager.Instance.Translator.SetServo(1);
+        ArduinoManager.Instance.Translator.SetServo(0);
 
         yield return new WaitForSeconds(_releaseTensionTime);
 
-        ArduinoManager.Instance.Translator.SetServo(0);
+        ArduinoManager.Instance.Translator.SetServo(1);
     }
 
     private void OnEncoderIncreased()

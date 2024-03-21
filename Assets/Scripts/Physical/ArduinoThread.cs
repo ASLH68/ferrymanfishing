@@ -180,15 +180,19 @@ public class ArduinoThread : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        _arduino.DataStream.Close();
-        StopThread();
-    }
-
     public void ClearReceivedData()
     {
         if (string.IsNullOrEmpty(_receivedData)) return;
         _receivedData = null;
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (_arduino.DataStream != null)
+        {
+            _arduino.DataStream.Close();
+        }
+
+        StopThread();
     }
 }

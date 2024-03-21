@@ -39,8 +39,8 @@ const char Servo7 = 'm';
 const char Servo8 = 'n';
 const char Servo9 = 'o';
 
-const int ServoValue0 = 60;
-const int ServoValue1 = 53;
+const int ServoValue0 = 57; // Open Rotation
+const int ServoValue1 = 52; // Closed Rotation (Base)
 const int ServoValue2 = 15;
 const int ServoValue3 = 20;
 const int ServoValue4 = 25;
@@ -50,9 +50,6 @@ const int ServoValue7 = 40;
 const int ServoValue8 = 45;
 const int ServoValue9 = 50;
 const int ServoOffset = 0;
-
-//56 base rotation
-//60 open rotation
 
 void setup() {
   Serial.begin(19200);

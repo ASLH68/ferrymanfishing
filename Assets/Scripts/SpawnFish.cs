@@ -22,7 +22,6 @@ public class SpawnFish : MonoBehaviour
 
     private int _fishIndex = -1;
     
-
     private bool _caughtFish1;
     private bool _caughtFish2;
     private bool _caughtFish3;
@@ -72,16 +71,18 @@ public class SpawnFish : MonoBehaviour
         if (_caughtFish1 == true && _caughtFish2 == true && _caughtFish3 == false)
         {
            _fishIndex = Random.Range(0, _legendaryFS.Count);
-            _legendaryFS.ElementAt(_fishIndex);
             SoundEffectsController.Instance.FishSound();
+
+            _legendaryFS.ElementAt(_fishIndex);
             _fishImageObject.GetComponentInChildren<Image>().sprite = _legendaryFS[_fishIndex];
             _legendaryFS.Remove(_legendaryFS[_fishIndex]);
         }
         else
         {
            _fishIndex = Random.Range(0, _fishSprites.Count);
-            _fishSprites.ElementAt(_fishIndex);
             SoundEffectsController.Instance.FishSound();
+
+            _fishSprites.ElementAt(_fishIndex);
             _fishImageObject.GetComponentInChildren<UnityEngine.UI.Image>().sprite = _fishSprites[_fishIndex];
             _fishSprites.Remove(_fishSprites[_fishIndex]);
         }
@@ -172,7 +173,6 @@ public class SpawnFish : MonoBehaviour
     {
         FishApperance(true);
         UIFish();
-
     }
 
     public int FishIndex()

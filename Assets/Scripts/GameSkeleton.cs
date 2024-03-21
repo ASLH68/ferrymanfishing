@@ -186,7 +186,7 @@ public class GameSkeleton : MonoBehaviour
         if (_canReel)
         {
             ReelValue += _reelIncrementValue;
-            //print(ReelValue);
+            _anim.SetTrigger("Reel");
 
             //chack if milestone was reached
             if (ReelValue >= _currentReelMilestone)
@@ -203,7 +203,7 @@ public class GameSkeleton : MonoBehaviour
         if (_canReel)
         {
             ReelValue += _reelIncrementValue;
-            //print(ReelValue);
+            _anim.SetTrigger("Reel");
 
             //chack if milestone was reached
             if (ReelValue >= _currentReelMilestone)
@@ -267,9 +267,7 @@ public class GameSkeleton : MonoBehaviour
                 _anim.SetTrigger("Success");
                 _milestonesReached = -1;
                 StopCoroutine(_reelTimer);
-                StartCoroutine(FishDisplay());
                 UIController.Instance.ReelText(false);
-                UIController.Instance.CatchingText(true);
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(_catchRumble));
@@ -280,6 +278,11 @@ public class GameSkeleton : MonoBehaviour
         _milestonesReached++;
     }
 
+    private void StartFishDisplayCoroutine()
+    {
+        StartCoroutine(FishDisplay());
+    }
+
     /// <summary>
     /// Displays the caught fish for the player. Then determines if the game
     /// should loop and catch another fish or end.
@@ -288,6 +291,8 @@ public class GameSkeleton : MonoBehaviour
     IEnumerator FishDisplay()
     {
         print("displaying fish and animation now");
+
+        UIController.Instance.CatchingText(true);
 
         _reelTimer = null;
         _canReel = false;

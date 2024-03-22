@@ -140,6 +140,12 @@ void SendSerialData() {
     Serial.print(EncoderIncreased);
   }
 
+  if (negativeIncreased) {
+    dataSend = true;
+    negativeIncreased = false;
+    Serial.print(EncoderIncreased);
+  }
+
   if (dataSend) {
     Serial.println();
   }

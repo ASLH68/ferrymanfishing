@@ -1732,6 +1732,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArduinoManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8748473239133487587, guid: 4c3582d6e90b4494e84c136b69b3f8ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8748473239133487588, guid: 4c3582d6e90b4494e84c136b69b3f8ba, type: 3}
       propertyPath: m_RootOrder
       value: 1

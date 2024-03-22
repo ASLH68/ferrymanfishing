@@ -203,6 +203,7 @@ public class GameSkeleton : MonoBehaviour
         if (_canReel)
         {
             ReelValue += _reelIncrementValue;
+            Debug.Log("Reeling!");
             _anim.SetTrigger("Reel");
 
             //chack if milestone was reached

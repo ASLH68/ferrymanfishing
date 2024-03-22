@@ -130,21 +130,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 298287078372530417, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298287078372530417, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298287078372530417, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 861542456703687216, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 861542456703687216, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -833.9823
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 861542456703687216, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -266.55835
+      value: 1.89
       objectReference: {fileID: 0}
     - target: {fileID: 861542456703687216, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 293.57053
+      value: 101.06
       objectReference: {fileID: 0}
     - target: {fileID: 861542456703687216, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
       propertyPath: m_LocalRotation.w
@@ -178,8 +190,61 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterSplash
       objectReference: {fileID: 0}
+    - target: {fileID: 861542457113279733, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_Range
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 861542457113279733, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_Intensity
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 861542457113279733, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_SpotAngle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 861542457113279733, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 861542457113279734, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 861542457113279734, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 861542457113279734, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -27.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618569123582209503, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078521175249871916, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078521175249871916, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078521175249871916, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101571025042067714, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+--- !u!198 &59061448 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8101571025042067714, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
+  m_PrefabInstance: {fileID: 59061447}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &206859592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -730,6 +795,14 @@ PrefabInstance:
       propertyPath: _splash
       value: 
       objectReference: {fileID: 552330733}
+    - target: {fileID: 1373946358, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: _Lsplash
+      value: 
+      objectReference: {fileID: 552330733}
+    - target: {fileID: 1373946358, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: _Rsplash
+      value: 
+      objectReference: {fileID: 59061448}
     - target: {fileID: 4345840032491813665, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Name
       value: FishDisplay

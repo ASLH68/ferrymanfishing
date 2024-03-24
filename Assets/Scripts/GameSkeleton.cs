@@ -105,7 +105,7 @@ public class GameSkeleton : MonoBehaviour
         _canCast = true;
         print("cast");
 
-       
+        TotalFishCaught = 0;
     }
     #region getters
     /// <summary>
@@ -278,6 +278,9 @@ public class GameSkeleton : MonoBehaviour
         _milestonesReached++;
     }
 
+    /// <summary>
+    /// Called in an animatin event in the fishing rod's success animation
+    /// </summary>
     private void StartFishDisplayCoroutine()
     {
         StartCoroutine(FishDisplay());

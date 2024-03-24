@@ -35,7 +35,7 @@ public class EndSceneBehavior : MonoBehaviour
             alpha += change;
             
             background.color = new Color(background.color.r, background.color.g, background.color.b, alpha);
-            Debug.Log(alpha);
+            //Debug.Log(alpha);
             yield return new WaitForSeconds(_fadeDuration * 0.01f);
         }
 

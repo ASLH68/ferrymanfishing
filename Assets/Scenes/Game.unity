@@ -130,18 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 298287078372530417, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 298287078372530417, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 298287078372530417, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 861542456703687216, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -189,54 +177,6 @@ PrefabInstance:
     - target: {fileID: 861542456703687223, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
       propertyPath: m_Name
       value: WaterSplash
-      objectReference: {fileID: 0}
-    - target: {fileID: 861542457113279733, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_Range
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 861542457113279733, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_Intensity
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 861542457113279733, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_SpotAngle
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 861542457113279733, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_InnerSpotAngle
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 861542457113279734, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 861542457113279734, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 861542457113279734, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -27.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 3618569123582209503, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5078521175249871916, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5078521175249871916, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5078521175249871916, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8101571025042067714, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}
-      propertyPath: looping
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2f876e6c36acd42ba4ba7bf2f96f50, type: 3}

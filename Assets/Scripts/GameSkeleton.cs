@@ -38,8 +38,10 @@ public class GameSkeleton : MonoBehaviour
     [HideInInspector]public bool _canReel = false;
     [SerializeField] private float _reelMaxTime;
     private Coroutine _reelTimer;
+    [SerializeField] private float _reelAnimCooldown;
+    private Coroutine _reelAnimCache;
 
- 
+
     [Header("Display Fish Phase")]
     [SerializeField] private float _displayFishTime;
     [SerializeField] private float _fishToCerberusTime;
@@ -183,9 +185,15 @@ public class GameSkeleton : MonoBehaviour
         if (_canReel)
         {
             ReelValue += _reelIncrementValue;
-            _anim.SetTrigger("Reel");
 
-            //chack if milestone was reached
+            _anim.SetTrigger("Reel");
+            if (_reelAnimCache != null)
+            {
+                StopCoroutine(_reelAnimCache);
+            }
+            _reelAnimCache = StartCoroutine(ReelAnimCooldown());
+
+            //check if milestone was reached
             if (ReelValue >= _currentReelMilestone)
             {
                 print("milestone reached");
@@ -200,9 +208,15 @@ public class GameSkeleton : MonoBehaviour
         if (_canReel)
         {
             ReelValue += _reelIncrementValue;
-            _anim.SetTrigger("Reel");
 
-            //chack if milestone was reached
+            _anim.SetTrigger("Reel");
+            if (_reelAnimCache != null)
+            {
+                StopCoroutine(_reelAnimCache);
+            }
+            _reelAnimCache = StartCoroutine(ReelAnimCooldown());
+
+            //check if milestone was reached
             if (ReelValue >= _currentReelMilestone)
             {
                 print("milestone reached");
@@ -229,6 +243,16 @@ public class GameSkeleton : MonoBehaviour
     }
 
     /// <summary>
+    /// A coroutine to aid the reeling animation's responsiveness. Ends Reel anim.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator ReelAnimCooldown()
+    {
+        yield return new WaitForSeconds(_reelAnimCooldown);
+        _anim.SetTrigger("EndReel");
+    }
+
+    /// <summary>
     /// sets the milestones for the reeling phase at start and when a new 
     /// milestone is reached.
     /// </summary>
@@ -245,6 +269,7 @@ public class GameSkeleton : MonoBehaviour
                 break;
             case 1:
                 _currentReelMilestone = _milestone2; // 2.0f;
+                _anim.SetTrigger("MilestoneReel");
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(RandomRumble()));
@@ -253,6 +278,7 @@ public class GameSkeleton : MonoBehaviour
                 break;
             case 2:
                 _currentReelMilestone = _milestone3; // 2.5f;
+                _anim.SetTrigger("MilestoneReel");
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(RandomRumble()));

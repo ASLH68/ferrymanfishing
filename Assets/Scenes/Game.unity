@@ -353,6 +353,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 677dbada96eed76418f4f13fa8ac7cc8, type: 3}
+--- !u!114 &756032407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1183701165, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+  m_PrefabInstance: {fileID: 1867788541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &817335116
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,18 +742,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1373946358, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
-      propertyPath: _splash
-      value: 
-      objectReference: {fileID: 552330733}
-    - target: {fileID: 1373946358, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+    - target: {fileID: 1592033502, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: _Lsplash
       value: 
       objectReference: {fileID: 552330733}
-    - target: {fileID: 1373946358, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+    - target: {fileID: 1592033502, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: _Rsplash
       value: 
       objectReference: {fileID: 59061448}
+    - target: {fileID: 8470920188559316, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: _caught1Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0a294b48901a45441a80a72c81cda446, type: 3}
+    - target: {fileID: 8470920188559316, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: _caught2Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 44a2c7d682dd6514cbaafe1cd2466c76, type: 3}
+    - target: {fileID: 8470920188559316, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: _caught3Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ac9cf886e60e62c439f3d7f59e6446bd, type: 3}
+    - target: {fileID: 8470920188559316, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: _caughtBGImage
+      value: 
+      objectReference: {fileID: 756032407}
     - target: {fileID: 4345840032491813665, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Name
       value: FishDisplay
@@ -837,6 +860,61 @@ PrefabInstance:
       objectReference: {fileID: 2045917070}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+--- !u!1 &2032945758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2032945759}
+  - component: {fileID: 2032945760}
+  m_Layer: 0
+  m_Name: Game Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2032945759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032945758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.07977407, y: -0.43849945, z: 73.71474}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2032945760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032945758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ed4f55e7621f74c85c86b4b0919e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _commonFish:
+  - {fileID: 11400000, guid: 94bd9a1b34b05184592239bde010b43d, type: 2}
+  - {fileID: 11400000, guid: 5892b121565a3bc4d9da44c73e99287a, type: 2}
+  - {fileID: 11400000, guid: 0230dea571b884f409ad8f20af23f9e5, type: 2}
+  - {fileID: 11400000, guid: 815202d1fdea77443bc414109b4ef39d, type: 2}
+  - {fileID: 11400000, guid: 37b1b5419a98c684295738ca4a678a51, type: 2}
+  - {fileID: 11400000, guid: f7c2214f09304d74bb1d354266bd5ca3, type: 2}
+  _legendaryFish:
+  - {fileID: 11400000, guid: fcdf6d3d94711ba41bee7e7ba1463a67, type: 2}
+  - {fileID: 11400000, guid: 2e316a2c9bc901a4e90a520bd898109e, type: 2}
+  - {fileID: 11400000, guid: e91f6fe968ca0ee4481edd7845d10bf2, type: 2}
 --- !u!1 &2045917068
 GameObject:
   m_ObjectHideFlags: 0

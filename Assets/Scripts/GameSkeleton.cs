@@ -127,8 +127,6 @@ public class GameSkeleton : MonoBehaviour
         if (_canCast)
         {
             _anim.SetTrigger("Cast");
-            _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax+1);
-            //print(_castWaitTime);
             StartCoroutine(CastTimer());
             IntroSceneBehavior.Instance.CastingScreen(false);
             UIController.Instance.CastText(false);
@@ -141,7 +139,6 @@ public class GameSkeleton : MonoBehaviour
         {
             _anim.SetTrigger("Cast");
             _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
-            //print(_castWaitTime);
             StartCoroutine(CastTimer());
             IntroSceneBehavior.Instance.CastingScreen(false);
             UIController.Instance.CastText(false);
@@ -298,12 +295,9 @@ public class GameSkeleton : MonoBehaviour
         _canReel = false;
 
         //DisplayFish
-        SpawnFish.Instance.DisplayFish();
+        GameController.Instance.ChooseFish();
 
         yield return new WaitForSeconds(_displayFishTime);
-
-        //Fish to Cerberus
-        //SpawnFish.Instance.FishApperance(false);
 
         yield return new WaitForSeconds(_fishToCerberusTime);
 

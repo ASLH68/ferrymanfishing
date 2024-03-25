@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fe4336e42122f49856e81553d3a289, type: 3}
+  m_Name: Moth Ray
+  m_EditorClassIdentifier: 
+  FishName: Moth Ray Fish
+  FishNameCard: {fileID: 21300000, guid: b1b3b6e30d7543c44818a8460d0450c1, type: 3}
+  CatchSound: {fileID: 8300000, guid: d514bbd492b651b42ae9648fc855ca20, type: 3}
+  CaughtSprite: {fileID: 21300000, guid: 6ef46f00a6a75764991c1aac2f802bc9, type: 3}
+  BowlSprite: {fileID: 21300000, guid: 155daa6cb8ed5a143a47fe2a4abec668, type: 3}

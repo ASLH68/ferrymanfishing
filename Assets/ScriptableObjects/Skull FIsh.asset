@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fe4336e42122f49856e81553d3a289, type: 3}
+  m_Name: Skull FIsh
+  m_EditorClassIdentifier: 
+  FishName: Skull Fish
+  FishNameCard: {fileID: 21300000, guid: d417b7150f2a37b40bac251f862aae3c, type: 3}
+  CatchSound: {fileID: 8300000, guid: 7603491b5e018d74da061d43c1eafe97, type: 3}
+  CaughtSprite: {fileID: 21300000, guid: f5a6d423ac7e6264e8edd0dc4ddf968e, type: 3}
+  BowlSprite: {fileID: 21300000, guid: 81fec2ded622f04469a5f27d2865ae17, type: 3}

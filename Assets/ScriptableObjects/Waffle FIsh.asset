@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fe4336e42122f49856e81553d3a289, type: 3}
+  m_Name: Waffle FIsh
+  m_EditorClassIdentifier: 
+  FishName: Waffle Fish
+  FishNameCard: {fileID: 21300000, guid: cedfe2b5fda6b8a4c96f090a31935b84, type: 3}
+  CatchSound: {fileID: 8300000, guid: 709adc02d30bd114c84d95517cd54626, type: 3}
+  CaughtSprite: {fileID: 21300000, guid: 2577250bddcfe1a41995c692c836d149, type: 3}
+  BowlSprite: {fileID: 21300000, guid: 34d4d4cfa84a90e4a96c53fd7106d502, type: 3}

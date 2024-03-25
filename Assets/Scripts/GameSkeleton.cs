@@ -211,8 +211,13 @@ public class GameSkeleton : MonoBehaviour
         if (_canReel)
         {
             ReelValue += _reelIncrementValue;
-            
 
+            _anim.SetTrigger("Reel");
+            if (_reelAnimCache != null)
+            {
+                StopCoroutine(_reelAnimCache);
+            }
+            _reelAnimCache = StartCoroutine(ReelAnimCooldown());
 
             //check if milestone was reached
             if (ReelValue >= _currentReelMilestone)

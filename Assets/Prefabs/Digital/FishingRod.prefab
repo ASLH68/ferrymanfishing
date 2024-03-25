@@ -84,6 +84,7 @@ MonoBehaviour:
   _reelIncrementValue: 0.1
   _canReel: 0
   _reelMaxTime: 20
+  _reelAnimCooldown: 0.3
   _displayFishTime: 5
   _fishToCerberusTime: 2
   _milestone1: 1.5

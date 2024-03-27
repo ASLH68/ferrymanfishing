@@ -415,6 +415,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &861038859 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1200434280, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+  m_PrefabInstance: {fileID: 1152852753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1152852753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -429,6 +434,10 @@ PrefabInstance:
     - target: {fileID: 349336371605629363, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: m_Name
       value: FishingRod
+      objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629363, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 349336371605629365, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: m_RootOrder
@@ -475,6 +484,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: _anim
+      value: 
+      objectReference: {fileID: 861038859}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _castRumble
       value: 1
       objectReference: {fileID: 0}
@@ -484,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _reelMaxTime
-      value: 60
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _arduioPrefab

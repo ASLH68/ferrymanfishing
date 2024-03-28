@@ -15,5 +15,5 @@ MonoBehaviour:
   FishName: Skull Fish
   FishNameCard: {fileID: 21300000, guid: d417b7150f2a37b40bac251f862aae3c, type: 3}
   CatchSound: {fileID: 8300000, guid: 7603491b5e018d74da061d43c1eafe97, type: 3}
-  CaughtSprite: {fileID: 21300000, guid: f5a6d423ac7e6264e8edd0dc4ddf968e, type: 3}
+  CaughtSprite: {fileID: 21300000, guid: 39f93f68eb8cbd549add7aae26bc0a7b, type: 3}
   BowlSprite: {fileID: 21300000, guid: 81fec2ded622f04469a5f27d2865ae17, type: 3}

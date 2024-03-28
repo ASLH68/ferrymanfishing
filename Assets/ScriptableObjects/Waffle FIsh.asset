@@ -15,5 +15,5 @@ MonoBehaviour:
   FishName: Waffle Fish
   FishNameCard: {fileID: 21300000, guid: cedfe2b5fda6b8a4c96f090a31935b84, type: 3}
   CatchSound: {fileID: 8300000, guid: 709adc02d30bd114c84d95517cd54626, type: 3}
-  CaughtSprite: {fileID: 21300000, guid: 2577250bddcfe1a41995c692c836d149, type: 3}
+  CaughtSprite: {fileID: 21300000, guid: 05bbb40637caa2941ab43b621aeaf6e3, type: 3}
   BowlSprite: {fileID: 21300000, guid: 34d4d4cfa84a90e4a96c53fd7106d502, type: 3}

@@ -14,7 +14,8 @@ public class FishUIDisplays : MonoBehaviour
 {
     public static FishUIDisplays Instance;
     [SerializeField] private GameObject _fishImageObject;
-
+     
+    [Header("Fish Bowl")]
     [SerializeField] private GameObject _fish1Spot;
     [SerializeField] private GameObject _fish2Spot;
     [SerializeField] private GameObject _fish3Spot;
@@ -24,6 +25,8 @@ public class FishUIDisplays : MonoBehaviour
     [SerializeField] private Sprite _caught1Sprite;
     [SerializeField] private Sprite _caught2Sprite;
     [SerializeField] private Sprite _caught3Sprite;
+    [SerializeField] private Image _fishCardImg;
+
 
     /// <summary>
     /// It checks if the Fish is on screen or not
@@ -75,6 +78,14 @@ public class FishUIDisplays : MonoBehaviour
     }
 
     /// <summary>
+    /// Sets the fish card img
+    /// </summary>
+    private void SetFishCardImg()
+    {
+        _fishCardImg.sprite = GameController.Instance.CurrentFish.FishNameCard;
+    }
+
+    /// <summary>
     /// Changes the background of the caught fish
     /// </summary>
     private void ChangeCaughtBG()
@@ -111,6 +122,7 @@ public class FishUIDisplays : MonoBehaviour
     {
         SetCaughtImg();
         SetFishBowlImg();
+        SetFishCardImg();
         StartCoroutine(UIAnimController.Instance.PlayCaughtAnims());
     }
 }

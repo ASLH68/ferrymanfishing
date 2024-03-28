@@ -15,5 +15,5 @@ MonoBehaviour:
   FishName: Moth Ray Fish
   FishNameCard: {fileID: 21300000, guid: b1b3b6e30d7543c44818a8460d0450c1, type: 3}
   CatchSound: {fileID: 8300000, guid: d514bbd492b651b42ae9648fc855ca20, type: 3}
-  CaughtSprite: {fileID: 21300000, guid: 6ef46f00a6a75764991c1aac2f802bc9, type: 3}
+  CaughtSprite: {fileID: 21300000, guid: 2e472691201382f41b624a734e7213b6, type: 3}
   BowlSprite: {fileID: 21300000, guid: 155daa6cb8ed5a143a47fe2a4abec668, type: 3}

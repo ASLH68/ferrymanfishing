@@ -15,5 +15,5 @@ MonoBehaviour:
   FishName: Angel Fish
   FishNameCard: {fileID: 21300000, guid: fa8d75234e85ed649ba1b8ac8edce72a, type: 3}
   CatchSound: {fileID: 8300000, guid: 32e09690f347f2543a1200d667f1b173, type: 3}
-  CaughtSprite: {fileID: 21300000, guid: e08f6e731aa2e594f812656fc6e3f26d, type: 3}
+  CaughtSprite: {fileID: 21300000, guid: c71ec5ecef348e94697574bdf92c21df, type: 3}
   BowlSprite: {fileID: 21300000, guid: 4e6520907f409154598edcc3f558a7ed, type: 3}

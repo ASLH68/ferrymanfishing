@@ -126,25 +126,33 @@ public class GameSkeleton : MonoBehaviour
     /// </summary>
     public void WhenCast(InputAction.CallbackContext obj)
     {
-        if (_canCast)
+        if (_canCast && GameController.Instance.NumFishCaught >= 1)
         {
-            _anim.SetTrigger("Cast");
-            StartCoroutine(CastTimer());
-            IntroSceneBehavior.Instance.CastingScreen(false);
-            UIController.Instance.CastText(false);
+            TriggerCast();
         }
+
+        IntroSceneBehavior.Instance.CastingScreen(false);
+    }
+
+    public void TriggerCast()
+    {
+        _anim.SetTrigger("Cast");
+        StartCoroutine(CastTimer());
     }
 
     public void WhenCast()
     {
         if (_canCast)
         {
-            _anim.SetTrigger("Cast");
-            _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
-            StartCoroutine(CastTimer());
-            IntroSceneBehavior.Instance.CastingScreen(false);
-            UIController.Instance.CastText(false);
+            if(GameController.Instance.NumFishCaught >= 1)
+            {
+                _anim.SetTrigger("Cast");
+                _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
+                StartCoroutine(CastTimer());
+                
+            }
 
+            IntroSceneBehavior.Instance.CastingScreen(false);
             LockServo();
         }
     }
@@ -171,7 +179,6 @@ public class GameSkeleton : MonoBehaviour
 
         _canReel = true;
         UpdateNextMilestone();
-        UIController.Instance.ReelText(true);
     }
 
     /// <summary>
@@ -238,8 +245,6 @@ public class GameSkeleton : MonoBehaviour
         _canReel = false;
         _milestonesReached = 3;
         UpdateNextMilestone();
-        UIController.Instance.ReelText(false);
-        UIController.Instance.CatchingText(true);
     }
 
     /// <summary>
@@ -290,7 +295,6 @@ public class GameSkeleton : MonoBehaviour
                 _anim.SetTrigger("Success");
                 _milestonesReached = -1;
                 StopCoroutine(_reelTimer);
-                UIController.Instance.ReelText(false);
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(_catchRumble));
@@ -318,8 +322,6 @@ public class GameSkeleton : MonoBehaviour
     {
         print("displaying fish and animation now");
 
-        UIController.Instance.CatchingText(true);
-
         _reelTimer = null;
         _canReel = false;
 
@@ -334,15 +336,15 @@ public class GameSkeleton : MonoBehaviour
         if (TotalFishCaught == 3)
         {
             //end game
-            EndGame.LoadEndScene();
+            //EndGame.LoadEndScene();
+            EndSceneBehavior.Instance.GameOver();
+
         }
         else
         {
             //start at cast phase again
             print("cast");
             _canCast = true;
-            UIController.Instance.CastText(true);
-            UIController.Instance.CatchingText(false);
         }
     }
 

@@ -62,6 +62,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6a54e77-9369-4178-b304-7d4e9b3c0916"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GoToEndScreen"",
+                    ""type"": ""Button"",
+                    ""id"": ""e38d97a0-b07a-4d7c-9acd-3dd42ebec9b5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -130,6 +148,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""UnlockServo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2c2be7c-d50f-4211-9542-a93ced77d4f8"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7bc08ec-6ebb-4a31-9c5b-411ba66466ca"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GoToEndScreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -142,6 +182,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_MyActionMap_Reel = m_MyActionMap.FindAction("Reel", throwIfNotFound: true);
         m_MyActionMap_LockServo = m_MyActionMap.FindAction("LockServo", throwIfNotFound: true);
         m_MyActionMap_UnlockServo = m_MyActionMap.FindAction("UnlockServo", throwIfNotFound: true);
+        m_MyActionMap_Quit = m_MyActionMap.FindAction("Quit", throwIfNotFound: true);
+        m_MyActionMap_GoToEndScreen = m_MyActionMap.FindAction("GoToEndScreen", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,6 +247,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_MyActionMap_Reel;
     private readonly InputAction m_MyActionMap_LockServo;
     private readonly InputAction m_MyActionMap_UnlockServo;
+    private readonly InputAction m_MyActionMap_Quit;
+    private readonly InputAction m_MyActionMap_GoToEndScreen;
     public struct MyActionMapActions
     {
         private @PlayerControls m_Wrapper;
@@ -213,6 +257,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Reel => m_Wrapper.m_MyActionMap_Reel;
         public InputAction @LockServo => m_Wrapper.m_MyActionMap_LockServo;
         public InputAction @UnlockServo => m_Wrapper.m_MyActionMap_UnlockServo;
+        public InputAction @Quit => m_Wrapper.m_MyActionMap_Quit;
+        public InputAction @GoToEndScreen => m_Wrapper.m_MyActionMap_GoToEndScreen;
         public InputActionMap Get() { return m_Wrapper.m_MyActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -234,6 +280,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @UnlockServo.started -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnUnlockServo;
                 @UnlockServo.performed -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnUnlockServo;
                 @UnlockServo.canceled -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnUnlockServo;
+                @Quit.started -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnQuit;
+                @Quit.performed -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnQuit;
+                @Quit.canceled -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnQuit;
+                @GoToEndScreen.started -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnGoToEndScreen;
+                @GoToEndScreen.performed -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnGoToEndScreen;
+                @GoToEndScreen.canceled -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnGoToEndScreen;
             }
             m_Wrapper.m_MyActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -250,6 +302,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @UnlockServo.started += instance.OnUnlockServo;
                 @UnlockServo.performed += instance.OnUnlockServo;
                 @UnlockServo.canceled += instance.OnUnlockServo;
+                @Quit.started += instance.OnQuit;
+                @Quit.performed += instance.OnQuit;
+                @Quit.canceled += instance.OnQuit;
+                @GoToEndScreen.started += instance.OnGoToEndScreen;
+                @GoToEndScreen.performed += instance.OnGoToEndScreen;
+                @GoToEndScreen.canceled += instance.OnGoToEndScreen;
             }
         }
     }
@@ -260,5 +318,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnReel(InputAction.CallbackContext context);
         void OnLockServo(InputAction.CallbackContext context);
         void OnUnlockServo(InputAction.CallbackContext context);
+        void OnQuit(InputAction.CallbackContext context);
+        void OnGoToEndScreen(InputAction.CallbackContext context);
     }
 }

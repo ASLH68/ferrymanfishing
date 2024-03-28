@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2613d2f9c9d9a134aab4cf41f9f02f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anim: {fileID: 0}
+  _anim: {fileID: 1200434280}
   _usingArduino: 0
   _castWaitTimeMax: 3
   _castWaitTimeMin: 5
@@ -89,6 +89,9 @@ MonoBehaviour:
   _milestone1: 1.5
   _milestone2: 2
   _milestone3: 2.5
+  servoCatchTime1: 0.1
+  servoCatchTime2: 0.2
+  servoCatchTime3: 0.5
   _milestoneRumbleMin: 1
   _milestoneRumbleMax: 3
   _catchRumble: 1.5

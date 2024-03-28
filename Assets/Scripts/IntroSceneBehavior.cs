@@ -46,7 +46,10 @@ public class IntroSceneBehavior : MonoBehaviour
     /// <param name="val"></param>
     public void CastingScreen(bool val)
     {
-        StartFading();
+        if (GameController.Instance.NumFishCaught == 0)
+        {
+            StartFading();
+        }
     }
 
     /// <summary>

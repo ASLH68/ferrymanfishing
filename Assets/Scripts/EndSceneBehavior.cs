@@ -8,15 +8,32 @@ using UnityEngine.UI;
 
 public class EndSceneBehavior : MonoBehaviour
 {
+    public static EndSceneBehavior Instance;
+
     [SerializeField] private float _fadeDuration;
     [SerializeField] private float _endingDuration;
 
     AsyncOperation _asyncOperation;
-    private void Start()
+
+    private void Awake()
     {
-        StartCoroutine(FadeBackground(0, 1, 0.01f));
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
+    public void GameOver()
+    {
+        _asyncOperation = SceneManager.LoadSceneAsync(0);
+        _asyncOperation.allowSceneActivation = false;
+
+        StartCoroutine(FadeBackground(0, 1, 0.01f));
+    }
 
     /// <summary>
     /// Fades the background in and out
@@ -39,7 +56,21 @@ public class EndSceneBehavior : MonoBehaviour
             yield return new WaitForSeconds(_fadeDuration * 0.01f);
         }
 
-        if(start == 0)
+        yield return new WaitForSeconds(_endingDuration);
+        // fades out background if just faded in
+        if(change > 0)
+        {
+            StartCoroutine(FadeBackground(1, 0, -0.01f));
+        }
+        // reloads scene if bg faded out
+        else if (change < 0)
+        {
+            _asyncOperation.allowSceneActivation = true;
+            //SceneManager.LoadScene(0);
+        }
+
+        // Old async code
+/*        if(start == 0)
         {
             SceneManager.UnloadSceneAsync(0);
             StartCoroutine(ReturnToGame());
@@ -48,8 +79,7 @@ public class EndSceneBehavior : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync(1);
             _asyncOperation.allowSceneActivation = true;
-            
-        }
+        }*/
     }
 
     /// <summary>

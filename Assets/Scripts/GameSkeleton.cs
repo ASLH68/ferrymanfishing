@@ -130,8 +130,8 @@ public class GameSkeleton : MonoBehaviour
         {
             TriggerCast();
         }
-        IntroSceneBehavior.Instance.CastingScreen(false);
 
+        IntroSceneBehavior.Instance.CastingScreen(false);
     }
 
     public void TriggerCast()
@@ -336,7 +336,9 @@ public class GameSkeleton : MonoBehaviour
         if (TotalFishCaught == 3)
         {
             //end game
-            EndGame.LoadEndScene();
+            //EndGame.LoadEndScene();
+            EndSceneBehavior.Instance.GameOver();
+
         }
         else
         {

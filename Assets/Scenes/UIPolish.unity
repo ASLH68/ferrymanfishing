@@ -743,6 +743,14 @@ PrefabInstance:
       propertyPath: _Rsplash
       value: 
       objectReference: {fileID: 59061448}
+    - target: {fileID: 483300955089150943, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190861956934308069, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4345840032491813665, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Name
       value: FishDisplay
@@ -835,6 +843,22 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2045917070}
+    - target: {fileID: 4867928056584809770, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5139188756993680061, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256867514698765908, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377142986416809893, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
 --- !u!1 &2045917068

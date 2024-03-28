@@ -31,7 +31,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4345840032491813668}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -110,7 +110,7 @@ RectTransform:
   - {fileID: 8327615375887813478}
   - {fileID: 3481879103957769802}
   m_Father: {fileID: 4345840032491813668}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -224,7 +224,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4345840032491813668}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -303,9 +303,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 515261625903119905}
   - {fileID: 1183701167}
   - {fileID: 4345840032487980199}
-  - {fileID: 515261625903119905}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -411,6 +411,10 @@ MonoBehaviour:
   _fish1Spot: {fileID: 5139188756993680061}
   _fish2Spot: {fileID: 7574750206306899069}
   _fish3Spot: {fileID: 6233985198803347017}
+  _caughtBGImage: {fileID: 0}
+  _caught1Sprite: {fileID: 0}
+  _caught2Sprite: {fileID: 0}
+  _caught3Sprite: {fileID: 0}
 --- !u!114 &1592033502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3cb47aadd9a2940b76133d03fbc7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeDuration: 2.5
   _uiAnimator: {fileID: 2153551795459600034}
   _Lsplash: {fileID: 0}
   _Rsplash: {fileID: 0}

@@ -6,7 +6,6 @@ using UnityEngine;
 public class UIAnimController : MonoBehaviour
 {
     public static UIAnimController Instance;
-    [SerializeField] private float _fadeDuration = 0.05f;
     [SerializeField] private Animator _uiAnimator;
     [SerializeField] private ParticleSystem _Lsplash;
     [SerializeField] private ParticleSystem _Rsplash;

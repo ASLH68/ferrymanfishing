@@ -36,6 +36,10 @@ public class UIAnimController : MonoBehaviour
         yield return new WaitForSeconds(GameSkeleton.Instance.GetDisplayFishTime());
         _Lsplash.Stop();
         _Rsplash.Stop();
-        _uiAnimator.Play("FadeOut");
+
+        if (!GameSkeleton.Instance.CaughtMaxFish())
+        {
+            _uiAnimator.Play("FadeOut");
+        }
     }
 }

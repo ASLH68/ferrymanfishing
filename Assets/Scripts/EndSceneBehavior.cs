@@ -17,9 +17,10 @@ public class EndSceneBehavior : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
         else
         {
@@ -47,51 +48,22 @@ public class EndSceneBehavior : MonoBehaviour
         Image background = GetComponentInChildren<Image>();
         float alpha = start;
 
-        while(Mathf.Abs(alpha - end) > 0.01)
+        while (Mathf.Abs(alpha - end) > 0.01)
         {
             alpha += change;
-            
+
             background.color = new Color(background.color.r, background.color.g, background.color.b, alpha);
             //Debug.Log(alpha);
             yield return new WaitForSeconds(_fadeDuration * 0.01f);
         }
 
         yield return new WaitForSeconds(_endingDuration);
+
         // fades out background if just faded in
-        if(change > 0)
+        if (change > 0)
         {
+            _asyncOperation.allowSceneActivation = true;
             StartCoroutine(FadeBackground(1, 0, -0.01f));
         }
-        // reloads scene if bg faded out
-        else if (change < 0)
-        {
-            _asyncOperation.allowSceneActivation = true;
-            //SceneManager.LoadScene(0);
-        }
-
-        // Old async code
-/*        if(start == 0)
-        {
-            SceneManager.UnloadSceneAsync(0);
-            StartCoroutine(ReturnToGame());
-        }
-        if(start == 1)
-        {
-            SceneManager.UnloadSceneAsync(1);
-            _asyncOperation.allowSceneActivation = true;
-        }*/
-    }
-
-    /// <summary>
-    /// Loads in the game scene and fades out the background
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator ReturnToGame()
-    {
-        _asyncOperation = SceneManager.LoadSceneAsync(0);
-        _asyncOperation.allowSceneActivation = false;
-
-        yield return new WaitForSeconds(_endingDuration);        
-        StartCoroutine(FadeBackground(1, 0, -0.01f));
     }
 }

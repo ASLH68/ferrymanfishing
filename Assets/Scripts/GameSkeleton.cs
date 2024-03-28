@@ -19,7 +19,9 @@ public class GameSkeleton : MonoBehaviour
     private PlayerInput _myPlayerInput;
     private InputAction _reel, _cast, _lock, _unlock;
     public static int TotalFishCaught;
-    [SerializeField] private Animator _anim;
+    private Animator _anim;
+
+    [SerializeField] private int _numFishToCatch;
 
     [Header("Arduino")]
     [SerializeField] private bool _usingArduino;
@@ -119,6 +121,26 @@ public class GameSkeleton : MonoBehaviour
         return _displayFishTime;
     }
     #endregion
+
+    public void WhenCast()
+    {
+        if (_canCast)
+        {
+            _canCast = false;
+            if(GameController.Instance.NumFishCaught >= 1)
+            {
+                TriggerCast();
+            }
+            else
+            {
+                IntroSceneBehavior.Instance.CastingScreen();
+            }
+
+            
+            LockServo();
+        }
+    }
+
     /// <summary>
     /// When Cast input is detected, this function determines how long the
     /// player will wait for the reeling to start, and starts the cast timer 
@@ -126,35 +148,26 @@ public class GameSkeleton : MonoBehaviour
     /// </summary>
     public void WhenCast(InputAction.CallbackContext obj)
     {
-        if (_canCast && GameController.Instance.NumFishCaught >= 1)
+        if (_canCast)
         {
-            TriggerCast();
+            _canCast = false;
+            if (GameController.Instance.NumFishCaught >= 1)
+            {
+                TriggerCast();
+            }
+            else
+            {
+                IntroSceneBehavior.Instance.CastingScreen();
+            }
         }
-
-        IntroSceneBehavior.Instance.CastingScreen(false);
     }
 
     public void TriggerCast()
     {
+        //CastScreen.Instance.AHideScreen?.Invoke();
         _anim.SetTrigger("Cast");
+        _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
         StartCoroutine(CastTimer());
-    }
-
-    public void WhenCast()
-    {
-        if (_canCast)
-        {
-            if(GameController.Instance.NumFishCaught >= 1)
-            {
-                _anim.SetTrigger("Cast");
-                _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
-                StartCoroutine(CastTimer());
-                
-            }
-
-            IntroSceneBehavior.Instance.CastingScreen(false);
-            LockServo();
-        }
     }
 
     /// <summary>
@@ -163,13 +176,10 @@ public class GameSkeleton : MonoBehaviour
     /// <returns></returns>
     private IEnumerator CastTimer()
     {
-        _canCast = false;
-
         yield return new WaitForSeconds(_castWaitTime);
 
-        //to start reel phase
-        print("start reeling now");
         _anim.SetTrigger("Captured");
+        _canReel = true;
 
         //if timer is null start one and cache it
         if (_reelTimer == null)
@@ -177,9 +187,10 @@ public class GameSkeleton : MonoBehaviour
             _reelTimer = StartCoroutine(ReelTimer());
         }
 
-        _canReel = true;
         UpdateNextMilestone();
     }
+
+    
 
     /// <summary>
     /// When Reel input is detected, this function increments the reel value to
@@ -306,7 +317,7 @@ public class GameSkeleton : MonoBehaviour
     }
 
     /// <summary>
-    /// Called in an animatin event in the fishing rod's success animation
+    /// Called in an animation event in the fishing rod's success animation
     /// </summary>
     private void StartFishDisplayCoroutine()
     {
@@ -320,8 +331,6 @@ public class GameSkeleton : MonoBehaviour
     /// <returns></returns>
     IEnumerator FishDisplay()
     {
-        print("displaying fish and animation now");
-
         _reelTimer = null;
         _canReel = false;
 
@@ -333,10 +342,8 @@ public class GameSkeleton : MonoBehaviour
         yield return new WaitForSeconds(_fishToCerberusTime);
 
         TotalFishCaught++;
-        if (TotalFishCaught == 3)
+        if (CaughtMaxFish())
         {
-            //end game
-            //EndGame.LoadEndScene();
             EndSceneBehavior.Instance.GameOver();
 
         }
@@ -345,7 +352,13 @@ public class GameSkeleton : MonoBehaviour
             //start at cast phase again
             print("cast");
             _canCast = true;
+            //CastScreen.Instance.AShowScreen?.Invoke();
         }
+    }
+
+    public bool CaughtMaxFish()
+    {
+        return GameController.Instance.NumFishCaught == _numFishToCatch;
     }
 
     public float GetDisplayFishTime()

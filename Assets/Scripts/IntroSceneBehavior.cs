@@ -44,7 +44,7 @@ public class IntroSceneBehavior : MonoBehaviour
     /// this to set and call CastingScreen in the Gameskeleton to make intro scene fadeout 
     /// </summary>
     /// <param name="val"></param>
-    public void CastingScreen(bool val)
+    public void CastingScreen()
     {
         if (GameController.Instance.NumFishCaught == 0)
         {

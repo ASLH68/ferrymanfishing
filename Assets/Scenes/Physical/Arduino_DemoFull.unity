@@ -470,7 +470,7 @@ MonoBehaviour:
   _debugText: {fileID: 2062410142}
   _textDefault: Awaiting Data...
   _releaseTensionTime: 0.33
-  _textHideTime: 1
+  _textHideTime: 0.1
 --- !u!1 &936329367
 GameObject:
   m_ObjectHideFlags: 0

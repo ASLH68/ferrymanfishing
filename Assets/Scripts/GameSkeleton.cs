@@ -346,6 +346,11 @@ public class GameSkeleton : MonoBehaviour
         }
     }
 
+    public float GetDisplayFishTime()
+    {
+        return _displayFishTime;
+    }
+
     /// <summary>
     /// Coroutine to start and stop the controller rumble. Uses a float parameter
     /// to determine how long the rumble lasts.

@@ -34,7 +34,7 @@ public class UIAnimController : MonoBehaviour
         _uiAnimator.Play("FadeIn");
         _Lsplash.Play();
         _Rsplash.Play();
-        yield return new WaitForSeconds(_fadeDuration);
+        yield return new WaitForSeconds(GameSkeleton.Instance.GetDisplayFishTime());
         _Lsplash.Stop();
         _Rsplash.Stop();
         _uiAnimator.Play("FadeOut");

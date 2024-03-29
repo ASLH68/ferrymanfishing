@@ -17,7 +17,7 @@ public class GameSkeleton : MonoBehaviour
 {
     public static GameSkeleton Instance;
     private PlayerInput _myPlayerInput;
-    private InputAction _reel, _cast, _lock, _unlock;
+    private InputAction _reel, _cast, _lock, _unlock, _quit, _goToEnd;
     public static int TotalFishCaught;
     private Animator _anim;
 
@@ -53,6 +53,10 @@ public class GameSkeleton : MonoBehaviour
     [SerializeField] private float _milestone1;
     [SerializeField] private float _milestone2;
     [SerializeField] private float _milestone3;
+    private float servoCatchTime;
+    [SerializeField] private float servoCatchTime1;
+    [SerializeField] private float servoCatchTime2;
+    [SerializeField] private float servoCatchTime3;
 
     [Header("Rumble Times")]
     [SerializeField] private float _milestoneRumbleMin;
@@ -86,6 +90,11 @@ public class GameSkeleton : MonoBehaviour
         _cast = _myPlayerInput.currentActionMap.FindAction("Cast");
         _lock = _myPlayerInput.currentActionMap.FindAction("LockServo");
         _unlock = _myPlayerInput.currentActionMap.FindAction("UnlockServo");
+        _quit = _myPlayerInput.currentActionMap.FindAction("Quit");
+        _goToEnd = _myPlayerInput.currentActionMap.FindAction("GoToEndScreen");
+
+        _quit.started += QuitBuild;
+        _goToEnd.started += SkipToEndScreen;
 
         _anim = GetComponent<Animator>();
 
@@ -253,7 +262,6 @@ public class GameSkeleton : MonoBehaviour
         yield return new WaitForSeconds(_reelMaxTime);
         print("YOU CAUGHT THE FISH!! (timer)");
         _anim.SetTrigger("Success");
-        _canReel = false;
         _milestonesReached = 3;
         UpdateNextMilestone();
     }
@@ -289,6 +297,7 @@ public class GameSkeleton : MonoBehaviour
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(RandomRumble()));
+                    servoCatchTime = servoCatchTime1;
                     ServoCatch();
                 }
                 break;
@@ -298,6 +307,7 @@ public class GameSkeleton : MonoBehaviour
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(RandomRumble()));
+                    servoCatchTime = servoCatchTime2;
                     ServoCatch();
                 }
                 break;
@@ -306,9 +316,11 @@ public class GameSkeleton : MonoBehaviour
                 _anim.SetTrigger("Success");
                 _milestonesReached = -1;
                 StopCoroutine(_reelTimer);
+                _canReel = false;
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(_catchRumble));
+                    servoCatchTime = servoCatchTime3;
                     ServoCatch();
                 }
                 break;
@@ -426,14 +438,31 @@ public class GameSkeleton : MonoBehaviour
     {
         if (_usingArduino)
         {
-            ArduinoManager.Instance.Translator.SetServo(0);
-            ArduinoManager.Instance.Translator.SetServo(1);
+            StartCoroutine(ServoCatch1());
         }
+    }
+
+    IEnumerator ServoCatch1()
+    {
+        ArduinoManager.Instance.Translator.SetServo(0); //open
+        yield return new WaitForSeconds(servoCatchTime);
+        ArduinoManager.Instance.Translator.SetServo(1); //close
+    }
+
+    private void QuitBuild(InputAction.CallbackContext obj)
+    {
+        Application.Quit();
+    }
+
+    private void SkipToEndScreen(InputAction.CallbackContext obj)
+    {
+        StopAllCoroutines();
+        EndGame.LoadEndScene();
     }
 
     private void OnDisable()
     {
-        if(_usingArduino)
+        if (_usingArduino)
         {
             ArduinoManager.Instance.Translator.OnButtonPressed -= WhenCast;
             ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased -= ReelCount;
@@ -445,5 +474,9 @@ public class GameSkeleton : MonoBehaviour
             _reel.started -= ReelCount;
             _cast.started -= WhenCast;
         }
+
+        _quit.started -= QuitBuild;
+        _goToEnd.started -= SkipToEndScreen;
+
     }
 }

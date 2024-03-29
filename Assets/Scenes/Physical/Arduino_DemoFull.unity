@@ -470,7 +470,7 @@ MonoBehaviour:
   _debugText: {fileID: 2062410142}
   _textDefault: Awaiting Data...
   _releaseTensionTime: 0.33
-  _textHideTime: 1
+  _textHideTime: 0.1
 --- !u!1 &936329367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,6 +1731,10 @@ PrefabInstance:
     - target: {fileID: 8748473239133487587, guid: 4c3582d6e90b4494e84c136b69b3f8ba, type: 3}
       propertyPath: m_Name
       value: ArduinoManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748473239133487587, guid: 4c3582d6e90b4494e84c136b69b3f8ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8748473239133487588, guid: 4c3582d6e90b4494e84c136b69b3f8ba, type: 3}
       propertyPath: m_RootOrder

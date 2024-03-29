@@ -39,8 +39,8 @@ const char Servo7 = 'm';
 const char Servo8 = 'n';
 const char Servo9 = 'o';
 
-const int ServoValue0 = 57; // Open Rotation
-const int ServoValue1 = 52; // Closed Rotation (Base)
+const int ServoValue0 = 56; // Open Rotation
+const int ServoValue1 = 51; // Closed Rotation (Base)
 const int ServoValue2 = 15;
 const int ServoValue3 = 20;
 const int ServoValue4 = 25;
@@ -137,6 +137,12 @@ void SendSerialData() {
   if (positiveIncreased) {
     dataSend = true;
     positiveIncreased = false;
+    Serial.print(EncoderIncreased);
+  }
+
+  if (negativeIncreased) {
+    dataSend = true;
+    negativeIncreased = false;
     Serial.print(EncoderIncreased);
   }
 

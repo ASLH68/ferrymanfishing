@@ -457,7 +457,7 @@ public class GameSkeleton : MonoBehaviour
     private void SkipToEndScreen(InputAction.CallbackContext obj)
     {
         StopAllCoroutines();
-        EndGame.LoadEndScene();
+        EndSceneBehavior.Instance.GameOver();
     }
 
     private void OnDisable()

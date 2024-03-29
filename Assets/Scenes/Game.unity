@@ -822,6 +822,10 @@ PrefabInstance:
       propertyPath: _Rsplash
       value: 
       objectReference: {fileID: 59061448}
+    - target: {fileID: 515261625903119905, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 88.04701
+      objectReference: {fileID: 0}
     - target: {fileID: 4345840032491813665, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Name
       value: FishDisplay

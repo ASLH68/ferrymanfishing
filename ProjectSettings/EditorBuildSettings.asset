@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 46c8cd47136a1fb4bb8e7311f8705b03
   - enabled: 0
     path: Assets/Scenes/EndScreenScene.unity
     guid: 6d378a0165726f94ab87b67ba036b90c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Physical/Arduino_DemoFull.unity
     guid: d39722380e81d964ab46b860809fe1ee
   m_configObjects: {}

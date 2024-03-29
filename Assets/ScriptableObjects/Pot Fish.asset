@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pot Fish
   m_EditorClassIdentifier: 
   FishName: Pot Fish
-  FishNameCard: {fileID: 21300000, guid: 3355a8a8094f13443b780ff1de1eb6d4, type: 3}
+  FishNameCard: {fileID: 21300000, guid: 191e4c293a717b846bc08abba99959a6, type: 3}
   CatchSound: {fileID: 8300000, guid: 4b9038dc684fa194fb2f5ed28eeae35f, type: 3}
   CaughtSprite: {fileID: 21300000, guid: ece732abcee83d04d90905e24706b04e, type: 3}
   BowlSprite: {fileID: 21300000, guid: 60c6d8d2f920ffe4d9479e87218bb197, type: 3}

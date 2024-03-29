@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Charybdis
   m_EditorClassIdentifier: 
   FishName: Charybdis
-  FishNameCard: {fileID: 21300000, guid: da63c1c2a419f2c479632767d27734fb, type: 3}
+  FishNameCard: {fileID: 21300000, guid: 2c2842a3ae204e84c9d8730ce32e0f1a, type: 3}
   CatchSound: {fileID: 8300000, guid: bd89db5074231b042b904ad2c432d1b9, type: 3}
   CaughtSprite: {fileID: 21300000, guid: 80861174a739aa742b37db61456ce3c2, type: 3}
   BowlSprite: {fileID: 21300000, guid: 1168e2661804a2f4db5ec7dd4e619af7, type: 3}

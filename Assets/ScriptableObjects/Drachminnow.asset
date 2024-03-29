@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Drachminnow
   m_EditorClassIdentifier: 
   FishName: Drachminnow
-  FishNameCard: {fileID: 21300000, guid: cb2cb1050ede848439f6812d47476cd9, type: 3}
+  FishNameCard: {fileID: 21300000, guid: f4fd41a66736aea49bfcccfec571ade3, type: 3}
   CatchSound: {fileID: 8300000, guid: 0b01da75f0d436943b368e8ec752310c, type: 3}
   CaughtSprite: {fileID: 21300000, guid: b84e6fc0752f6cf41b8b75f27f2e7723, type: 3}
   BowlSprite: {fileID: 21300000, guid: 8016eac32a40cc3459fac9d46764e285, type: 3}

@@ -485,6 +485,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: _numFishToCatch
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
 --- !u!1001 &1164020790
@@ -805,6 +809,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IntroScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 3573375612913201917, guid: 22b300e1e5e34ed41b70e8b8f931481e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22b300e1e5e34ed41b70e8b8f931481e, type: 3}
 --- !u!1001 &1867788541
@@ -815,8 +823,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1183701165, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d3d3c3ed43c9f3547a3852541631b534, type: 3}
+    - target: {fileID: 1183701165, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1183701167, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1592033502, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: _Lsplash
@@ -826,6 +842,14 @@ PrefabInstance:
       propertyPath: _Rsplash
       value: 
       objectReference: {fileID: 59061448}
+    - target: {fileID: 8470920188559316, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: _caught1Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4727e71a7a63e3549966d3afbf5d6f05, type: 3}
+    - target: {fileID: 8470920188559316, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: _caught2Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d3d3c3ed43c9f3547a3852541631b534, type: 3}
     - target: {fileID: 515261625903119905, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 61.69995
@@ -835,12 +859,36 @@ PrefabInstance:
       value: 88.047
       objectReference: {fileID: 0}
     - target: {fileID: 3539871048448039889, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.8999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3539871048448039889, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7.8999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3539871048448039889, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7.8999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3539871048448039889, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1240.8
+      value: 26.099976
       objectReference: {fileID: 0}
     - target: {fileID: 3539871048448039889, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -259.38
+      value: -330.03003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4345840032487980197, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b84e6fc0752f6cf41b8b75f27f2e7723, type: 3}
+    - target: {fileID: 4345840032487980197, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4345840032487980199, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 81.2
       objectReference: {fileID: 0}
     - target: {fileID: 4345840032491813665, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Name
@@ -937,7 +985,7 @@ PrefabInstance:
     - target: {fileID: 6999689738517060253, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e8aa79cec808e044797a36e8234af35d, type: 3}
+      objectReference: {fileID: 21300000, guid: f4fd41a66736aea49bfcccfec571ade3, type: 3}
     - target: {fileID: 6999689738517060253, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -1108,7 +1156,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050488733}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 203f684d3df111843bdfa5440c8d1b01, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 5a4e98671a1f0f74fae9c9e5daf08249, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 2045917070}

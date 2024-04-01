@@ -7,11 +7,13 @@ using UnityEngine;
 public class BackgroundMusic : MonoBehaviour
 {
     public static BackgroundMusic Instance;
-    public AudioSource _BGMusic;
+    private AudioSource _bgMusic;
+    [SerializeField] private float _fadeDuration;
+    [SerializeField] private float _defaultVolume;
 
     private void Start()
     {
-        _BGMusic = GetComponent<AudioSource>();
+        _bgMusic = GetComponent<AudioSource>();
     }
 
     private void Awake()
@@ -22,26 +24,24 @@ public class BackgroundMusic : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
     }
-    private void Update()
-    {
 
-    }
     /// <summary>
     /// this will fadeout the music 
     /// </summary>
     public void FadeOut()
     {
-        StartCoroutine(Fade(false, _BGMusic, 0.5f, 0f));
+        StartCoroutine(Fade(false, _bgMusic, 0f));
     }
     /// <summary>
     /// this will fadein the music
     /// </summary>
     public void FadeIn()
     {
-        StartCoroutine(Fade(true, _BGMusic, 1f, 1f));
+        StartCoroutine(Fade(true, _bgMusic, _defaultVolume));
     }
     /// <summary>
     /// this will fade in and out the music 
@@ -51,7 +51,7 @@ public class BackgroundMusic : MonoBehaviour
     /// <param name="duration"></param>
     /// <param name="targetVolume"></param>
     /// <returns></returns>
-    public IEnumerator Fade(bool fadein, AudioSource _BGMusic, float duration, float targetVolume)
+    public IEnumerator Fade(bool fadein, AudioSource _BGMusic, float targetVolume)
     {
         Debug.Log("sound");
         //if (!fadein)
@@ -62,12 +62,12 @@ public class BackgroundMusic : MonoBehaviour
 
         float time = 0f;
         float startVol = _BGMusic.volume;
-        while (time < duration)
+        while (time < _fadeDuration)
         {
             string fadeSituation = fadein ? "fadeIn" : "fadeOut";
             Debug.Log(fadeSituation);
             time += Time.deltaTime;
-            _BGMusic.volume = Mathf.Lerp(startVol, targetVolume, time / duration);
+            _BGMusic.volume = Mathf.Lerp(startVol, targetVolume, time / _fadeDuration);
             yield return null;
         }
 

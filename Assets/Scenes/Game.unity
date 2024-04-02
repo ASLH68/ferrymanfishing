@@ -485,10 +485,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
-      propertyPath: _numFishToCatch
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
 --- !u!1001 &1164020790
@@ -856,7 +852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 515261625903119905, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 88.047
+      value: 88.04701
       objectReference: {fileID: 0}
     - target: {fileID: 3539871048448039889, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_LocalScale.x

@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numFishToCatch: 1
+  _instructionCallouts: {fileID: 0}
   _usingArduino: 0
   _castWaitTimeMax: 3
   _castWaitTimeMin: 5

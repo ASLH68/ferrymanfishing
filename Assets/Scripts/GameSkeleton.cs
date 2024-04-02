@@ -23,6 +23,9 @@ public class GameSkeleton : MonoBehaviour
 
     [SerializeField] private int _numFishToCatch;
 
+    [SerializeField] private GameObject _instructionCallouts;
+    private Animator _calloutsAnim;
+
     [Header("Arduino")]
     [SerializeField] private bool _usingArduino;
 
@@ -97,6 +100,7 @@ public class GameSkeleton : MonoBehaviour
         _goToEnd.started += SkipToEndScreen;
 
         _anim = GetComponent<Animator>();
+        _calloutsAnim = _instructionCallouts.GetComponent<Animator>();
 
         if (_usingArduino)
         {
@@ -177,6 +181,7 @@ public class GameSkeleton : MonoBehaviour
         _anim.SetTrigger("Cast");
         _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
         StartCoroutine(CastTimer());
+        _calloutsAnim.SetTrigger("Wait");
     }
 
     /// <summary>
@@ -189,6 +194,7 @@ public class GameSkeleton : MonoBehaviour
 
         _anim.SetTrigger("Captured");
         _canReel = true;
+        _calloutsAnim.SetTrigger("Reel");
 
         //if timer is null start one and cache it
         if (_reelTimer == null)
@@ -314,6 +320,7 @@ public class GameSkeleton : MonoBehaviour
             case 3:     //the fish is caught
                 print("YOU CAUGHT THE FISH!! (reeling)");
                 _anim.SetTrigger("Success");
+                _calloutsAnim.SetTrigger("Stop");
                 _milestonesReached = -1;
                 StopCoroutine(_reelTimer);
                 _canReel = false;
@@ -345,6 +352,7 @@ public class GameSkeleton : MonoBehaviour
     {
         _reelTimer = null;
         _canReel = false;
+        _calloutsAnim.SetTrigger("StopFadeOut");
 
         //DisplayFish
         GameController.Instance.ChooseFish();
@@ -354,6 +362,7 @@ public class GameSkeleton : MonoBehaviour
         yield return new WaitForSeconds(_fishToCerberusTime);
 
         TotalFishCaught++;
+
         if (CaughtMaxFish())
         {
             EndSceneBehavior.Instance.GameOver();
@@ -364,6 +373,7 @@ public class GameSkeleton : MonoBehaviour
             //start at cast phase again
             print("cast");
             _canCast = true;
+            _calloutsAnim.SetTrigger("Cast");
             //CastScreen.Instance.AShowScreen?.Invoke();
         }
     }

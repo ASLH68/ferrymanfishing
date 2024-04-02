@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kraken
   m_EditorClassIdentifier: 
   FishName: Kraken
-  FishNameCard: {fileID: 21300000, guid: c4d00a7bff11bf44b8d4083dcd1fce08, type: 3}
+  FishNameCard: {fileID: 21300000, guid: fa47fb9763fbec8448bdea16697ba4fb, type: 3}
   CatchSound: {fileID: 8300000, guid: 32b9b4f280f18fb42a80b83130053717, type: 3}
   CaughtSprite: {fileID: 21300000, guid: 99a289ef6a293fc45a7d4abb7ed77d9e, type: 3}
   BowlSprite: {fileID: 21300000, guid: 2b9aa3f5f1136da4da5221c490a127d1, type: 3}

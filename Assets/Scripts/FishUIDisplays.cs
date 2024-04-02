@@ -48,8 +48,7 @@ public class FishUIDisplays : MonoBehaviour
     /// </summary>
     private void SetCaughtImg()
     {
-        SoundEffectsController.Instance.FishSound();
-
+        BackgroundMusic.Instance.FadeOut();
         ChangeCaughtBG();
         _fishImageObject.GetComponentInChildren<Image>().sprite = GameController.Instance.CurrentFish.CaughtSprite;
         _fishImageObject.SetActive(true);          

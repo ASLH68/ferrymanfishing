@@ -23,6 +23,9 @@ public class GameSkeleton : MonoBehaviour
 
     [SerializeField] private int _numFishToCatch;
 
+    [SerializeField] private GameObject _instructionCallouts;
+    private Animator _calloutsAnim;
+
     [Header("Arduino")]
     [SerializeField] private bool _usingArduino;
 
@@ -35,7 +38,6 @@ public class GameSkeleton : MonoBehaviour
     [Header("Reel Phase")]
     [SerializeField] private float _reelIncrementValue;
     public static float ReelValue;
-    private float _currentReelMilestone;
     private int _milestonesReached;
     [HideInInspector]public bool _canReel = false;
     [SerializeField] private float _reelMaxTime;
@@ -50,13 +52,26 @@ public class GameSkeleton : MonoBehaviour
 
 
     [Header("Fish Milestones")]
-    [SerializeField] private float _milestone1;
-    [SerializeField] private float _milestone2;
-    [SerializeField] private float _milestone3;
+    private float _currentReelMilestone;
+    [SerializeField] private float _milestone1_1;
+    [SerializeField] private float _milestone1_2;
+    [SerializeField] private float _milestone1_3;
+    [SerializeField] private float _milestone2_1;
+    [SerializeField] private float _milestone2_2;
+    [SerializeField] private float _milestone2_3;
+    [SerializeField] private float _milestone3_1;
+    [SerializeField] private float _milestone3_2;
+    [SerializeField] private float _milestone3_3;
     private float servoCatchTime;
-    [SerializeField] private float servoCatchTime1;
-    [SerializeField] private float servoCatchTime2;
-    [SerializeField] private float servoCatchTime3;
+    [SerializeField] private float servoCatchTime1_1;
+    [SerializeField] private float servoCatchTime1_2;
+    [SerializeField] private float servoCatchTime1_3;
+    [SerializeField] private float servoCatchTime2_1;
+    [SerializeField] private float servoCatchTime2_2;
+    [SerializeField] private float servoCatchTime2_3;
+    [SerializeField] private float servoCatchTime3_1;
+    [SerializeField] private float servoCatchTime3_2;
+    [SerializeField] private float servoCatchTime3_3;
 
     [Header("Rumble Times")]
     [SerializeField] private float _milestoneRumbleMin;
@@ -97,6 +112,7 @@ public class GameSkeleton : MonoBehaviour
         _goToEnd.started += SkipToEndScreen;
 
         _anim = GetComponent<Animator>();
+        _calloutsAnim = _instructionCallouts.GetComponent<Animator>();
 
         if (_usingArduino)
         {
@@ -177,6 +193,7 @@ public class GameSkeleton : MonoBehaviour
         _anim.SetTrigger("Cast");
         _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
         StartCoroutine(CastTimer());
+        _calloutsAnim.SetTrigger("Wait");
     }
 
     /// <summary>
@@ -189,6 +206,7 @@ public class GameSkeleton : MonoBehaviour
 
         _anim.SetTrigger("Captured");
         _canReel = true;
+        _calloutsAnim.SetTrigger("Reel");
 
         //if timer is null start one and cache it
         if (_reelTimer == null)
@@ -285,48 +303,125 @@ public class GameSkeleton : MonoBehaviour
         switch (_milestonesReached)
         {
             case 0:
-                _currentReelMilestone = _milestone1; //1.5f;
+                UpdateCurrentValues();
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(_castRumble));
                 }
                 break;
             case 1:
-                _currentReelMilestone = _milestone2; // 2.0f;
+                UpdateCurrentValues();
                 _anim.SetTrigger("MilestoneReel");
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(RandomRumble()));
-                    servoCatchTime = servoCatchTime1;
                     ServoCatch();
                 }
                 break;
             case 2:
-                _currentReelMilestone = _milestone3; // 2.5f;
+                UpdateCurrentValues();
                 _anim.SetTrigger("MilestoneReel");
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(RandomRumble()));
-                    servoCatchTime = servoCatchTime2;
                     ServoCatch();
                 }
                 break;
             case 3:     //the fish is caught
                 print("YOU CAUGHT THE FISH!! (reeling)");
+                UpdateCurrentValues();
                 _anim.SetTrigger("Success");
+                _calloutsAnim.SetTrigger("Stop");
                 _milestonesReached = -1;
                 StopCoroutine(_reelTimer);
                 _canReel = false;
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(_catchRumble));
-                    servoCatchTime = servoCatchTime3;
                     ServoCatch();
                 }
                 break;
         }
         _milestonesReached++;
     }
+
+    /// <summary>
+    /// This function updates the value of the current milestone and servo catch
+    /// time depending on the number of fish caught and milestones reached.
+    /// </summary>
+    private void UpdateCurrentValues()
+    {
+        if(TotalFishCaught == 0) //first fish
+        {
+            switch(_milestonesReached)
+            {
+                case 0:
+                    _currentReelMilestone = _milestone1_1;
+                    servoCatchTime = 0.1f;
+                    break;
+                case 1:
+                    _currentReelMilestone = _milestone1_2;
+                    servoCatchTime = servoCatchTime1_1;
+                    break;
+                case 2:
+                    _currentReelMilestone = _milestone1_3;
+                    servoCatchTime = servoCatchTime1_2;
+                    break;
+                default:
+                    _milestonesReached = -1;
+                    servoCatchTime = servoCatchTime1_3;
+                    break;
+            }
+        }
+        else if(TotalFishCaught == 1) //second fish
+        {
+            switch (_milestonesReached)
+            {
+                case 0:
+                    _currentReelMilestone = _milestone2_1;
+                    servoCatchTime = 0.1f;
+                    break;
+                case 1:
+                    _currentReelMilestone = _milestone2_2;
+                    servoCatchTime = servoCatchTime2_1;
+                    break;
+                case 2:
+                    _currentReelMilestone = _milestone2_3;
+                    servoCatchTime = servoCatchTime2_2;
+                    break;
+                default:
+                    _milestonesReached = -1;
+                    servoCatchTime = servoCatchTime2_3;
+                    break;
+            }
+        }
+        else if(TotalFishCaught >= 2) //third and any following fish
+        {
+            switch (_milestonesReached)
+            {
+                case 0:
+                    _currentReelMilestone = _milestone3_1;
+                    servoCatchTime = 0.1f;
+                    break;
+                case 1:
+                    _currentReelMilestone = _milestone3_2;
+                    servoCatchTime = servoCatchTime3_1;
+                    break;
+                case 2:
+                    _currentReelMilestone = _milestone3_3;
+                    servoCatchTime = servoCatchTime3_2;
+                    break;
+                default:
+                    _milestonesReached = -1;
+                    servoCatchTime = servoCatchTime3_3;
+                    break;
+            }
+        }
+
+        print(_currentReelMilestone + " and " + servoCatchTime);
+    }
+
+
 
     /// <summary>
     /// Called in an animation event in the fishing rod's success animation
@@ -345,6 +440,7 @@ public class GameSkeleton : MonoBehaviour
     {
         _reelTimer = null;
         _canReel = false;
+        _calloutsAnim.SetTrigger("StopFadeOut");
 
         //DisplayFish
         GameController.Instance.ChooseFish();
@@ -354,6 +450,7 @@ public class GameSkeleton : MonoBehaviour
         yield return new WaitForSeconds(_fishToCerberusTime);
 
         TotalFishCaught++;
+
         if (CaughtMaxFish())
         {
             EndSceneBehavior.Instance.GameOver();
@@ -364,6 +461,7 @@ public class GameSkeleton : MonoBehaviour
             //start at cast phase again
             print("cast");
             _canCast = true;
+            _calloutsAnim.SetTrigger("Cast");
             //CastScreen.Instance.AShowScreen?.Invoke();
         }
     }

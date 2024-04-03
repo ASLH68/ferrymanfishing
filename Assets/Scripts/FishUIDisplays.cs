@@ -57,7 +57,7 @@ public class FishUIDisplays : MonoBehaviour
     /// <summary>
     /// Sets the img of the fish in the fishbowl UI
     /// </summary>
-    private void SetFishBowlImg()
+    public void SetFishBowlImg()
     {
         if (GameController.Instance.IsLegendary())
         {
@@ -120,7 +120,7 @@ public class FishUIDisplays : MonoBehaviour
     public void DisplayFish()
     {
         SetCaughtImg();
-        SetFishBowlImg();
+        //SetFishBowlImg();
         SetFishCardImg();
         StartCoroutine(UIAnimController.Instance.PlayCaughtAnims());
     }

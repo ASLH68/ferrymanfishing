@@ -40,6 +40,7 @@ public class UIAnimController : MonoBehaviour
         if (!GameSkeleton.Instance.CaughtMaxFish())
         {
             _uiAnimator.Play("FadeOut");
+            FishUIDisplays.Instance.SetFishBowlImg();
         }
     }
 }

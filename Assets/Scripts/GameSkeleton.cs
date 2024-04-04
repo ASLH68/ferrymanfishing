@@ -207,6 +207,7 @@ public class GameSkeleton : MonoBehaviour
         _anim.SetTrigger("Captured");
         _canReel = true;
         _calloutsAnim.SetTrigger("Reel");
+        ReelValue = 0;
 
         //if timer is null start one and cache it
         if (_reelTimer == null)
@@ -418,7 +419,7 @@ public class GameSkeleton : MonoBehaviour
             }
         }
 
-        print(_currentReelMilestone + " and " + servoCatchTime);
+        //print(_currentReelMilestone + " and " + servoCatchTime);
     }
 
 

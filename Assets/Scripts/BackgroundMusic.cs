@@ -30,14 +30,14 @@ public class BackgroundMusic : MonoBehaviour
 
     }
     /// <summary>
-    /// this will fadeout the music 
+    /// this will fadeout the music when the corourtine starts
     /// </summary>
     public void FadeOut()
     {
         StartCoroutine(Fade(false, _BGMusic, 0.5f, 0f));
     }
     /// <summary>
-    /// this will fadein the music
+    /// this will fadein the music when the coroutine starts
     /// </summary>
     public void FadeIn()
     {

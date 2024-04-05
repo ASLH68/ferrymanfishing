@@ -17,7 +17,7 @@ public class GameSkeleton : MonoBehaviour
 {
     public static GameSkeleton Instance;
     private PlayerInput _myPlayerInput;
-    private InputAction _reel, _cast, _lock, _unlock, _quit, _goToEnd;
+    private InputAction _reel, _cast, _lock, _unlock, _quit, _goToEnd, _skip;
     public static int TotalFishCaught;
     private Animator _anim;
 
@@ -107,9 +107,7 @@ public class GameSkeleton : MonoBehaviour
         _unlock = _myPlayerInput.currentActionMap.FindAction("UnlockServo");
         _quit = _myPlayerInput.currentActionMap.FindAction("Quit");
         _goToEnd = _myPlayerInput.currentActionMap.FindAction("GoToEndScreen");
-
-        _quit.started += QuitBuild;
-        _goToEnd.started += SkipToEndScreen;
+        _skip = _myPlayerInput.currentActionMap.FindAction("SkipMilestone");
 
         _anim = GetComponent<Animator>();
         _calloutsAnim = _instructionCallouts.GetComponent<Animator>();
@@ -124,18 +122,18 @@ public class GameSkeleton : MonoBehaviour
             _lock.started += LockServo;
             _unlock.started += UnlockServo;
         }
-        else
-        {
-            //ArduinoManager.Instance.gameObject.SetActive(false);
-            _reel.started += ReelCount;
-            _cast.started += WhenCast;
-        }
+        _reel.started += ReelCount;
+        _cast.started += WhenCast;
+        _quit.started += QuitBuild;
+        _goToEnd.started += SkipToEndScreen;
+        _skip.started += SkipMilestone;
 
         _canCast = true;
         print("cast");
 
         TotalFishCaught = 0;
     }
+
     #region getters
     /// <summary>
     /// It returns _displayFishTime
@@ -191,9 +189,9 @@ public class GameSkeleton : MonoBehaviour
     {
         //CastScreen.Instance.AHideScreen?.Invoke();
         _anim.SetTrigger("Cast");
-        _castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
-        StartCoroutine(CastTimer());
-        _calloutsAnim.SetTrigger("Wait");
+        //_castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
+        //StartCoroutine(CastTimer());
+        //_calloutsAnim.SetTrigger("Wait");
     }
 
     /// <summary>
@@ -205,6 +203,13 @@ public class GameSkeleton : MonoBehaviour
         yield return new WaitForSeconds(_castWaitTime);
 
         _anim.SetTrigger("Captured");
+    }
+
+    /// <summary>
+    /// Function called at the end of the Cast animation
+    /// </summary>
+    private void EndCast()
+    {
         _canReel = true;
         _calloutsAnim.SetTrigger("Reel");
 
@@ -216,7 +221,6 @@ public class GameSkeleton : MonoBehaviour
 
         UpdateNextMilestone();
     }
-
     
 
     /// <summary>
@@ -418,10 +422,8 @@ public class GameSkeleton : MonoBehaviour
             }
         }
 
-        print(_currentReelMilestone + " and " + servoCatchTime);
+        //print(_currentReelMilestone + " and " + servoCatchTime);
     }
-
-
 
     /// <summary>
     /// Called in an animation event in the fishing rod's success animation
@@ -440,7 +442,6 @@ public class GameSkeleton : MonoBehaviour
     {
         _reelTimer = null;
         _canReel = false;
-        _calloutsAnim.SetTrigger("StopFadeOut");
 
         //DisplayFish
         GameController.Instance.ChooseFish();
@@ -557,6 +558,13 @@ public class GameSkeleton : MonoBehaviour
         StopAllCoroutines();
         EndSceneBehavior.Instance.GameOver();
     }
+    private void SkipMilestone(InputAction.CallbackContext obj)
+    {
+        if(_milestonesReached <= 3 && _canReel)
+        {
+            UpdateNextMilestone();
+        }
+    }
 
     private void OnDisable()
     {
@@ -567,14 +575,13 @@ public class GameSkeleton : MonoBehaviour
             _lock.started -= LockServo;
             _unlock.started -= UnlockServo;
         }
-        else
-        {
-            _reel.started -= ReelCount;
-            _cast.started -= WhenCast;
-        }
+
+        _reel.started -= ReelCount;
+        _cast.started -= WhenCast;
 
         _quit.started -= QuitBuild;
         _goToEnd.started -= SkipToEndScreen;
+        _skip.started -= SkipMilestone;
 
     }
 }

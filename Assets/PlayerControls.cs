@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkipMilestone"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe001514-8047-4dd2-945a-d4ceb765818b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -170,6 +179,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""GoToEndScreen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""472022b9-1f8e-4f10-bf7b-720106569a2a"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipMilestone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -184,6 +204,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_MyActionMap_UnlockServo = m_MyActionMap.FindAction("UnlockServo", throwIfNotFound: true);
         m_MyActionMap_Quit = m_MyActionMap.FindAction("Quit", throwIfNotFound: true);
         m_MyActionMap_GoToEndScreen = m_MyActionMap.FindAction("GoToEndScreen", throwIfNotFound: true);
+        m_MyActionMap_SkipMilestone = m_MyActionMap.FindAction("SkipMilestone", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,6 +270,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_MyActionMap_UnlockServo;
     private readonly InputAction m_MyActionMap_Quit;
     private readonly InputAction m_MyActionMap_GoToEndScreen;
+    private readonly InputAction m_MyActionMap_SkipMilestone;
     public struct MyActionMapActions
     {
         private @PlayerControls m_Wrapper;
@@ -259,6 +281,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @UnlockServo => m_Wrapper.m_MyActionMap_UnlockServo;
         public InputAction @Quit => m_Wrapper.m_MyActionMap_Quit;
         public InputAction @GoToEndScreen => m_Wrapper.m_MyActionMap_GoToEndScreen;
+        public InputAction @SkipMilestone => m_Wrapper.m_MyActionMap_SkipMilestone;
         public InputActionMap Get() { return m_Wrapper.m_MyActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -286,6 +309,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @GoToEndScreen.started -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnGoToEndScreen;
                 @GoToEndScreen.performed -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnGoToEndScreen;
                 @GoToEndScreen.canceled -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnGoToEndScreen;
+                @SkipMilestone.started -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnSkipMilestone;
+                @SkipMilestone.performed -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnSkipMilestone;
+                @SkipMilestone.canceled -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnSkipMilestone;
             }
             m_Wrapper.m_MyActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -308,6 +334,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @GoToEndScreen.started += instance.OnGoToEndScreen;
                 @GoToEndScreen.performed += instance.OnGoToEndScreen;
                 @GoToEndScreen.canceled += instance.OnGoToEndScreen;
+                @SkipMilestone.started += instance.OnSkipMilestone;
+                @SkipMilestone.performed += instance.OnSkipMilestone;
+                @SkipMilestone.canceled += instance.OnSkipMilestone;
             }
         }
     }
@@ -320,5 +349,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnUnlockServo(InputAction.CallbackContext context);
         void OnQuit(InputAction.CallbackContext context);
         void OnGoToEndScreen(InputAction.CallbackContext context);
+        void OnSkipMilestone(InputAction.CallbackContext context);
     }
 }

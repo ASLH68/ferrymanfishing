@@ -207,7 +207,7 @@ public class GameSkeleton : MonoBehaviour
         _anim.SetTrigger("Captured");
         _canReel = true;
         _calloutsAnim.SetTrigger("Reel");
-
+        ReelingSFX.Instance.StartReelSFX();
         //if timer is null start one and cache it
         if (_reelTimer == null)
         {
@@ -335,6 +335,7 @@ public class GameSkeleton : MonoBehaviour
                 _milestonesReached = -1;
                 StopCoroutine(_reelTimer);
                 _canReel = false;
+                ReelingSFX.Instance.PauseReelSFX();
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(_catchRumble));

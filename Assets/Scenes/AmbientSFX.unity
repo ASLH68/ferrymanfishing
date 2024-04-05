@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 57489114}
   - component: {fileID: 57489113}
   m_Layer: 0
-  m_Name: water
+  m_Name: Ambient Flowing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a7a22a38498d4624292f50d1db771812, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.35
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 325413607}
   - component: {fileID: 325413606}
   m_Layer: 0
-  m_Name: waterfall
+  m_Name: Ambient Waterfall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +418,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b27c682cddfc51b46ba41e82780a661b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.02
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 983822224}
   - component: {fileID: 983822226}
   m_Layer: 0
-  m_Name: Reeling_in_rod
+  m_Name: Reeling SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -721,7 +721,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f483785a5736da548bd44d145d47d194, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1199,7 +1199,7 @@ GameObject:
   - component: {fileID: 1221657049}
   - component: {fileID: 1221657048}
   m_Layer: 0
-  m_Name: fire
+  m_Name: Ambient Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1217,7 +1217,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2791d7f84b00b05409038a2a2e431ad7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1543,7 +1543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3539871048448039889, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -330.03
+      value: -330.03003
       objectReference: {fileID: 0}
     - target: {fileID: 4345840032487980197, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Sprite

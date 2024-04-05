@@ -79,6 +79,8 @@ public class GameSkeleton : MonoBehaviour
     [SerializeField] private float _catchRumble;
     [SerializeField] private float _castRumble;
 
+    private bool _reelSFXStarted = false;
+
     /// <summary>
     /// Called before start
     /// </summary>
@@ -212,7 +214,6 @@ public class GameSkeleton : MonoBehaviour
     {
         _canReel = true;
         _calloutsAnim.SetTrigger("Reel");
-
         //if timer is null start one and cache it
         if (_reelTimer == null)
         {
@@ -234,7 +235,7 @@ public class GameSkeleton : MonoBehaviour
         if (_canReel)
         {
             ReelValue += _reelIncrementValue;
-
+            ReelSFX();
             _anim.SetTrigger("Reel");
             if (_reelAnimCache != null)
             {
@@ -257,7 +258,7 @@ public class GameSkeleton : MonoBehaviour
         if (_canReel)
         {
             ReelValue += _reelIncrementValue;
-
+            ReelSFX();
             _anim.SetTrigger("Reel");
             if (_reelAnimCache != null)
             {
@@ -272,6 +273,15 @@ public class GameSkeleton : MonoBehaviour
                 ReelValue = 0;
                 UpdateNextMilestone();
             }
+        }
+    }
+
+    private void ReelSFX()
+    {
+        if(!_reelSFXStarted)
+        {
+            _reelSFXStarted = true;
+            ReelingSFX.Instance.StartReelSFX();
         }
     }
 
@@ -296,6 +306,8 @@ public class GameSkeleton : MonoBehaviour
     {
         yield return new WaitForSeconds(_reelAnimCooldown);
         _anim.SetTrigger("EndReel");
+        ReelingSFX.Instance.PauseReelSFX();
+        _reelSFXStarted = false;
     }
 
     /// <summary>
@@ -339,6 +351,7 @@ public class GameSkeleton : MonoBehaviour
                 _milestonesReached = -1;
                 StopCoroutine(_reelTimer);
                 _canReel = false;
+                
                 if (_usingArduino)
                 {
                     StartCoroutine(ControlRumble(_catchRumble));

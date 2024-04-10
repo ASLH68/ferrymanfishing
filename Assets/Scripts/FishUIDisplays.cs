@@ -63,16 +63,22 @@ public class FishUIDisplays : MonoBehaviour
         {
             _fish3Spot.GetComponent<Image>().sprite = GameController.Instance.CurrentFish.BowlSprite;
             _fish3Spot.SetActive(true);
+
+            EndSceneBehavior.Instance.SetFishPng(3);
         }
         else if (GameController.Instance.NumFishCaught == 1)
         {
             _fish1Spot.GetComponent<Image>().sprite = GameController.Instance.CurrentFish.BowlSprite;
             _fish1Spot.SetActive(true);
+
+            EndSceneBehavior.Instance.SetFishPng(1);
         }
         else if (GameController.Instance.NumFishCaught == 2)
         {
             _fish2Spot.GetComponent<Image>().sprite = GameController.Instance.CurrentFish.BowlSprite;
             _fish2Spot.SetActive(true);
+
+            EndSceneBehavior.Instance.SetFishPng(2);
         }
     }
 

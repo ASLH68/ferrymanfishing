@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Web.Mvc;
 using Unity.VisualScripting;
 //using UnityEditor.SearchService;
 using UnityEngine;
@@ -12,6 +13,11 @@ public class EndSceneBehavior : MonoBehaviour
 
     [SerializeField] private float _fadeDuration;
     [SerializeField] private float _endingDuration;
+
+    [Header("Fish Bowl Sprites")]
+    [SerializeField] private Image _fish1;
+    [SerializeField] private Image _fish2;
+    [SerializeField] private Image _fish3;
 
     AsyncOperation _asyncOperation;
 
@@ -53,6 +59,7 @@ public class EndSceneBehavior : MonoBehaviour
             alpha += change;
 
             background.color = new Color(background.color.r, background.color.g, background.color.b, alpha);
+            SetFishBowlAlpha(alpha);
             //Debug.Log(alpha);
             yield return new WaitForSeconds(_fadeDuration * 0.01f);
         }
@@ -64,6 +71,42 @@ public class EndSceneBehavior : MonoBehaviour
         {
             _asyncOperation.allowSceneActivation = true;
             StartCoroutine(FadeBackground(1, 0, -0.01f));
+        }
+    }
+
+    /// <summary>
+    /// Changes alpha on fish bowl components for fading in and out
+    /// </summary>
+    /// <param name="alpha"></param>
+    private void SetFishBowlAlpha(float alpha)
+    {
+        foreach(Image bowlComponent in GetComponentsInChildren<Image>())
+        {
+            Color currCol = bowlComponent.color;
+            bowlComponent.color = new Color(currCol.r, currCol.g, currCol.b, alpha);
+        }
+    }
+
+
+    /// <summary>
+    /// Sets the fish bowl PNG
+    /// </summary>
+    /// <param name="fishNum"></param>
+    /// <param name="fishSprite"></param>
+    public void SetFishPng(int fishNum)
+    {
+        switch (fishNum)
+        {
+            case 1:
+                _fish1.sprite = GameController.Instance.CurrentFish.BowlSprite;
+                break;
+            case 2:
+                _fish2.sprite = GameController.Instance.CurrentFish.BowlSprite;
+                break;
+            case 3:
+                _fish3.sprite = GameController.Instance.CurrentFish.BowlSprite;
+                break;
+
         }
     }
 }

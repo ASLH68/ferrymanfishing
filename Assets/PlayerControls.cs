@@ -192,6 +192,134 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""InstructionKeybinds"",
+            ""id"": ""71f20b91-1811-4786-9efe-7e4a01e69f09"",
+            ""actions"": [
+                {
+                    ""name"": ""Almost"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a12ee80-52e1-4bb8-bbe9-06042bf7e962"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SlowDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""a29f30c7-2221-46e0-bba3-6b9bfe0782f0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpeedUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""1eef36f7-796d-4e56-bfcd-a234fdbe2515"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeepGoing"",
+                    ""type"": ""Button"",
+                    ""id"": ""f10f10d3-ada3-4234-906a-334d6670290f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Steady"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e7082bd-2575-42f8-bb5b-1b6dd3914c08"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""57a61013-d3ad-47f2-94df-98bf5adf9550"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""edbc688d-993d-41d0-a419-854592f57eb1"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Almost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5f7c329-495c-4eee-b8b0-af254462a822"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SlowDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b11799b1-65fa-48ab-9da0-daeda33dcc57"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpeedUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93955a55-3dad-4fe3-b72f-9a4a9b0c8927"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeepGoing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f044c50-ab38-4555-9696-3a2c0f801cb5"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steady"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a016ffbc-5e1a-45fa-bc7e-76fd5318de1b"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -205,6 +333,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_MyActionMap_Quit = m_MyActionMap.FindAction("Quit", throwIfNotFound: true);
         m_MyActionMap_GoToEndScreen = m_MyActionMap.FindAction("GoToEndScreen", throwIfNotFound: true);
         m_MyActionMap_SkipMilestone = m_MyActionMap.FindAction("SkipMilestone", throwIfNotFound: true);
+        // InstructionKeybinds
+        m_InstructionKeybinds = asset.FindActionMap("InstructionKeybinds", throwIfNotFound: true);
+        m_InstructionKeybinds_Almost = m_InstructionKeybinds.FindAction("Almost", throwIfNotFound: true);
+        m_InstructionKeybinds_SlowDown = m_InstructionKeybinds.FindAction("SlowDown", throwIfNotFound: true);
+        m_InstructionKeybinds_SpeedUp = m_InstructionKeybinds.FindAction("SpeedUp", throwIfNotFound: true);
+        m_InstructionKeybinds_KeepGoing = m_InstructionKeybinds.FindAction("KeepGoing", throwIfNotFound: true);
+        m_InstructionKeybinds_Steady = m_InstructionKeybinds.FindAction("Steady", throwIfNotFound: true);
+        m_InstructionKeybinds_Pause = m_InstructionKeybinds.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -341,6 +477,79 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public MyActionMapActions @MyActionMap => new MyActionMapActions(this);
+
+    // InstructionKeybinds
+    private readonly InputActionMap m_InstructionKeybinds;
+    private IInstructionKeybindsActions m_InstructionKeybindsActionsCallbackInterface;
+    private readonly InputAction m_InstructionKeybinds_Almost;
+    private readonly InputAction m_InstructionKeybinds_SlowDown;
+    private readonly InputAction m_InstructionKeybinds_SpeedUp;
+    private readonly InputAction m_InstructionKeybinds_KeepGoing;
+    private readonly InputAction m_InstructionKeybinds_Steady;
+    private readonly InputAction m_InstructionKeybinds_Pause;
+    public struct InstructionKeybindsActions
+    {
+        private @PlayerControls m_Wrapper;
+        public InstructionKeybindsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Almost => m_Wrapper.m_InstructionKeybinds_Almost;
+        public InputAction @SlowDown => m_Wrapper.m_InstructionKeybinds_SlowDown;
+        public InputAction @SpeedUp => m_Wrapper.m_InstructionKeybinds_SpeedUp;
+        public InputAction @KeepGoing => m_Wrapper.m_InstructionKeybinds_KeepGoing;
+        public InputAction @Steady => m_Wrapper.m_InstructionKeybinds_Steady;
+        public InputAction @Pause => m_Wrapper.m_InstructionKeybinds_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_InstructionKeybinds; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InstructionKeybindsActions set) { return set.Get(); }
+        public void SetCallbacks(IInstructionKeybindsActions instance)
+        {
+            if (m_Wrapper.m_InstructionKeybindsActionsCallbackInterface != null)
+            {
+                @Almost.started -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnAlmost;
+                @Almost.performed -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnAlmost;
+                @Almost.canceled -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnAlmost;
+                @SlowDown.started -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnSlowDown;
+                @SlowDown.performed -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnSlowDown;
+                @SlowDown.canceled -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnSlowDown;
+                @SpeedUp.started -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnSpeedUp;
+                @SpeedUp.performed -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnSpeedUp;
+                @SpeedUp.canceled -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnSpeedUp;
+                @KeepGoing.started -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnKeepGoing;
+                @KeepGoing.performed -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnKeepGoing;
+                @KeepGoing.canceled -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnKeepGoing;
+                @Steady.started -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnSteady;
+                @Steady.performed -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnSteady;
+                @Steady.canceled -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnSteady;
+                @Pause.started -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_InstructionKeybindsActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_InstructionKeybindsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Almost.started += instance.OnAlmost;
+                @Almost.performed += instance.OnAlmost;
+                @Almost.canceled += instance.OnAlmost;
+                @SlowDown.started += instance.OnSlowDown;
+                @SlowDown.performed += instance.OnSlowDown;
+                @SlowDown.canceled += instance.OnSlowDown;
+                @SpeedUp.started += instance.OnSpeedUp;
+                @SpeedUp.performed += instance.OnSpeedUp;
+                @SpeedUp.canceled += instance.OnSpeedUp;
+                @KeepGoing.started += instance.OnKeepGoing;
+                @KeepGoing.performed += instance.OnKeepGoing;
+                @KeepGoing.canceled += instance.OnKeepGoing;
+                @Steady.started += instance.OnSteady;
+                @Steady.performed += instance.OnSteady;
+                @Steady.canceled += instance.OnSteady;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public InstructionKeybindsActions @InstructionKeybinds => new InstructionKeybindsActions(this);
     public interface IMyActionMapActions
     {
         void OnCast(InputAction.CallbackContext context);
@@ -350,5 +559,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnQuit(InputAction.CallbackContext context);
         void OnGoToEndScreen(InputAction.CallbackContext context);
         void OnSkipMilestone(InputAction.CallbackContext context);
+    }
+    public interface IInstructionKeybindsActions
+    {
+        void OnAlmost(InputAction.CallbackContext context);
+        void OnSlowDown(InputAction.CallbackContext context);
+        void OnSpeedUp(InputAction.CallbackContext context);
+        void OnKeepGoing(InputAction.CallbackContext context);
+        void OnSteady(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

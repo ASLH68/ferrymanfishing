@@ -11,7 +11,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Windows;
+using UnityEngine.UI;
 
 public class GameSkeleton : MonoBehaviour
 {
@@ -25,6 +25,7 @@ public class GameSkeleton : MonoBehaviour
 
     [SerializeField] private GameObject _instructionCallouts;
     private Animator _calloutsAnim;
+    private Slider progressbar;
 
     [Header("Arduino")]
     [SerializeField] private bool _usingArduino;
@@ -100,6 +101,8 @@ public class GameSkeleton : MonoBehaviour
     /// </summary>
     void Start()
     {
+        progressbar = GameObject.FindObjectOfType<Slider>();
+        progressbar.value = 0;
         _myPlayerInput = GetComponent<PlayerInput>();
         _myPlayerInput.currentActionMap.Enable();
 
@@ -316,6 +319,8 @@ public class GameSkeleton : MonoBehaviour
     /// </summary>
     private void UpdateNextMilestone()
     {
+        progressbar.value = _milestonesReached;
+
         switch (_milestonesReached)
         {
             case 0:

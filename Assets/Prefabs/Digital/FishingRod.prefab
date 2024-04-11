@@ -78,35 +78,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2613d2f9c9d9a134aab4cf41f9f02f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numFishToCatch: 1
+  _numFishToCatch: 3
   _instructionCallouts: {fileID: 0}
   _usingArduino: 0
-  _castWaitTimeMax: 3
-  _castWaitTimeMin: 5
+  _castWaitTimeMax: 0
+  _castWaitTimeMin: 0
   _reelIncrementValue: 0.1
   _canReel: 0
   _reelMaxTime: 20
   _reelAnimCooldown: 0.3
   _displayFishTime: 5
   _fishToCerberusTime: 2
-  _milestone1_1: 0
-  _milestone1_2: 0
-  _milestone1_3: 0
-  _milestone2_1: 0
-  _milestone2_2: 0
-  _milestone2_3: 0
-  _milestone3_1: 0
-  _milestone3_2: 0
-  _milestone3_3: 0
-  servoCatchTime1_1: 0
-  servoCatchTime1_2: 0
-  servoCatchTime1_3: 0
-  servoCatchTime2_1: 0
-  servoCatchTime2_2: 0
-  servoCatchTime2_3: 0
-  servoCatchTime3_1: 0
-  servoCatchTime3_2: 0
-  servoCatchTime3_3: 0
+  _milestone1_1: 1.5
+  _milestone1_2: 2
+  _milestone1_3: 2.5
+  _milestone2_1: 2
+  _milestone2_2: 2.5
+  _milestone2_3: 3
+  _milestone3_1: 1.5
+  _milestone3_2: 2
+  _milestone3_3: 3
+  servoCatchTime1_1: 0.1
+  servoCatchTime1_2: 0.2
+  servoCatchTime1_3: 0.5
+  servoCatchTime2_1: 0.1
+  servoCatchTime2_2: 0.1
+  servoCatchTime2_3: 0.4
+  servoCatchTime3_1: 0.1
+  servoCatchTime3_2: 0.1
+  servoCatchTime3_3: 0.6
   _milestoneRumbleMin: 1
   _milestoneRumbleMax: 3
   _catchRumble: 1.5

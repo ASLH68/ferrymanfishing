@@ -104,22 +104,22 @@ MonoBehaviour:
   _callouts:
   - Name: Almost
     Image: {fileID: 21300000, guid: 3120fb4b453ef42409e1a5e4b1a5e9a8, type: 3}
-    Sound: {fileID: 0}
+    Sound: {fileID: 8300000, guid: fe411af4678fa3d4dba8c05568836be7, type: 3}
   - Name: SlowDown
     Image: {fileID: 21300000, guid: 55d49e3872afd8e4492f5bbadf939559, type: 3}
-    Sound: {fileID: 0}
+    Sound: {fileID: 8300000, guid: b99c52af3f139ff4389445a456896e67, type: 3}
   - Name: SpeedUp
     Image: {fileID: 21300000, guid: 53db17a5f2539b2438c77f3af695be9e, type: 3}
-    Sound: {fileID: 0}
+    Sound: {fileID: 8300000, guid: 8c111bd16d9a58c40bbb5b62ea4c82ad, type: 3}
   - Name: KeepGoing
     Image: {fileID: 21300000, guid: fad5f24ea7e97a540bfe6e7b504e5bbc, type: 3}
-    Sound: {fileID: 0}
+    Sound: {fileID: 8300000, guid: 1018d66a28fb1c940b5991ad3498de39, type: 3}
   - Name: Steady
     Image: {fileID: 21300000, guid: 0562b5495c7b5d241aace1abf1e05511, type: 3}
-    Sound: {fileID: 0}
+    Sound: {fileID: 8300000, guid: 3ff33bc613758db478bde36e0bec8153, type: 3}
   - Name: Pause
     Image: {fileID: 21300000, guid: 0bd3a77202b74b34fbfc7f475dc1fbac, type: 3}
-    Sound: {fileID: 0}
+    Sound: {fileID: 8300000, guid: bf39ccc1cc971d342889595a53d05e1c, type: 3}
 --- !u!95 &1108797779600590532
 Animator:
   serializedVersion: 4

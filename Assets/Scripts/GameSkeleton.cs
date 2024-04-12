@@ -25,7 +25,7 @@ public class GameSkeleton : MonoBehaviour
 
     [SerializeField] private GameObject _instructionCallouts;
     private Animator _calloutsAnim;
-    private Slider progressbar;
+    //private Slider progressbar;
 
     [Header("Arduino")]
     [SerializeField] private bool _usingArduino;
@@ -45,6 +45,7 @@ public class GameSkeleton : MonoBehaviour
     private Coroutine _reelTimer;
     [SerializeField] private float _reelAnimCooldown;
     private Coroutine _reelAnimCache;
+    [SerializeField] private Slider _slider;
 
 
     [Header("Display Fish Phase")]
@@ -101,8 +102,8 @@ public class GameSkeleton : MonoBehaviour
     /// </summary>
     void Start()
     {
-        progressbar = GameObject.FindObjectOfType<Slider>();
-        progressbar.value = 0;
+        //progressbar = GameObject.FindObjectOfType<Slider>();
+        //progressbar.value = 0;
         _myPlayerInput = GetComponent<PlayerInput>();
         _myPlayerInput.currentActionMap.Enable();
 
@@ -239,6 +240,7 @@ public class GameSkeleton : MonoBehaviour
         {
             ReelValue += _reelIncrementValue;
             ReelSFX();
+            UpdateSlider(0.1f);
             _anim.SetTrigger("Reel");
             if (_reelAnimCache != null)
             {
@@ -262,6 +264,7 @@ public class GameSkeleton : MonoBehaviour
         {
             ReelValue += _reelIncrementValue;
             ReelSFX();
+            UpdateSlider(0.1f);
             _anim.SetTrigger("Reel");
             if (_reelAnimCache != null)
             {
@@ -319,7 +322,7 @@ public class GameSkeleton : MonoBehaviour
     /// </summary>
     private void UpdateNextMilestone()
     {
-        progressbar.value = _milestonesReached;
+        //progressbar.value = _milestonesReached;
 
         switch (_milestonesReached)
         {
@@ -375,67 +378,85 @@ public class GameSkeleton : MonoBehaviour
     {
         if(TotalFishCaught == 0) //first fish
         {
-            switch(_milestonesReached)
+            _slider.maxValue = _milestone1_1 + _milestone1_2 + _milestone1_3 + 1.4f;
+
+            switch (_milestonesReached)
             {
                 case 0:
                     _currentReelMilestone = _milestone1_1;
                     servoCatchTime = 0.1f;
+                    _slider.value = 1.4f;
                     break;
                 case 1:
                     _currentReelMilestone = _milestone1_2;
                     servoCatchTime = servoCatchTime1_1;
+                    _slider.value = 2.9f;
                     break;
                 case 2:
                     _currentReelMilestone = _milestone1_3;
                     servoCatchTime = servoCatchTime1_2;
+                    _slider.value = 4.9f;
                     break;
                 default:
                     _milestonesReached = -1;
                     servoCatchTime = servoCatchTime1_3;
+                    _slider.value = 7.4f;
                     break;
             }
         }
         else if(TotalFishCaught == 1) //second fish
         {
+            _slider.maxValue = _milestone2_1 + _milestone2_2 + _milestone2_3 + 1.75f;
+
             switch (_milestonesReached)
             {
                 case 0:
                     _currentReelMilestone = _milestone2_1;
                     servoCatchTime = 0.1f;
+                    _slider.value = 1.75f;
                     break;
                 case 1:
                     _currentReelMilestone = _milestone2_2;
                     servoCatchTime = servoCatchTime2_1;
+                    _slider.value = 3.75f;
                     break;
                 case 2:
                     _currentReelMilestone = _milestone2_3;
                     servoCatchTime = servoCatchTime2_2;
+                    _slider.value = 6.26f;
                     break;
                 default:
                     _milestonesReached = -1;
                     servoCatchTime = servoCatchTime2_3;
+                    _slider.value = 9.25f;
                     break;
             }
         }
         else if(TotalFishCaught >= 2) //third and any following fish
         {
+            _slider.maxValue = _milestone3_1 + _milestone3_2 + _milestone3_3 + 1.5f;
+
             switch (_milestonesReached)
             {
                 case 0:
                     _currentReelMilestone = _milestone3_1;
                     servoCatchTime = 0.1f;
+                    _slider.value = 1.5f;
                     break;
                 case 1:
                     _currentReelMilestone = _milestone3_2;
                     servoCatchTime = servoCatchTime3_1;
+                    _slider.value = 3f;
                     break;
                 case 2:
                     _currentReelMilestone = _milestone3_3;
                     servoCatchTime = servoCatchTime3_2;
+                    _slider.value = 5f;
                     break;
                 default:
                     _milestonesReached = -1;
                     servoCatchTime = servoCatchTime3_3;
+                    _slider.value = 8f;
                     break;
             }
         }
@@ -493,6 +514,11 @@ public class GameSkeleton : MonoBehaviour
     public float GetDisplayFishTime()
     {
         return _displayFishTime;
+    }
+
+    private void UpdateSlider(float value)
+    {
+        _slider.value += value;
     }
 
     /// <summary>

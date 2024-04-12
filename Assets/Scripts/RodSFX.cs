@@ -4,41 +4,30 @@ using UnityEngine;
 
 public class RodSFX : MonoBehaviour
 {
-    [SerializeField] private GameObject Woosh;
-    [SerializeField] private GameObject Bobber;
-    [SerializeField] private GameObject Shine;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
+    [SerializeField] private GameObject _woosh;
+    [SerializeField] private GameObject _bobber;
+    [SerializeField] private GameObject _shine;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     /// <summary>
     /// when this gets called the shine sfx will play alongside the shine effect on the hook
     /// </summary>
-    public void play_shine()
+    public void PlayShine()
     {
-        Shine.GetComponent<AudioSource>().Play();
+        _shine.GetComponent<AudioSource>().Play();
     }
 
     /// <summary>
     /// when this gets called the bobber sfx will play alongside the animation of when the bobber hits the water
     /// </summary>
-    public void play_bobber()
+    public void PlayBobber()
     {
-        Bobber.GetComponent<AudioSource>().Play();
+        _bobber.GetComponent<AudioSource>().Play();
     }
     /// <summary>
     /// when this gets called the woosh sfx will play alongside when the animation is whipping the rod 
     /// </summary>
-    public void play_woosh()
+    public void PlayWoosh()
     {
-      Woosh.GetComponent<AudioSource>().Play();
+      _woosh.GetComponent<AudioSource>().Play();
     }
 }

@@ -17,8 +17,9 @@ public class GameSkeleton : MonoBehaviour
 {
     public static GameSkeleton Instance;
     private PlayerInput _myPlayerInput;
-    private InputAction _reel, _cast, _lock, _unlock, _quit, _goToEnd, _skip;
+    private InputAction _reel, _cast, _lock, _unlock, _quit, _goToEnd, _skip, _restart;
     public static int TotalFishCaught;
+    public static bool CanRestartGame;
     private Animator _anim;
 
     [SerializeField] private int _numFishToCatch;
@@ -114,6 +115,7 @@ public class GameSkeleton : MonoBehaviour
         _quit = _myPlayerInput.currentActionMap.FindAction("Quit");
         _goToEnd = _myPlayerInput.currentActionMap.FindAction("GoToEndScreen");
         _skip = _myPlayerInput.currentActionMap.FindAction("SkipMilestone");
+        _restart = _myPlayerInput.currentActionMap.FindAction("RestartGame");
 
         _anim = GetComponent<Animator>();
         _calloutsAnim = _instructionCallouts.GetComponent<Animator>();
@@ -133,6 +135,7 @@ public class GameSkeleton : MonoBehaviour
         _quit.started += QuitBuild;
         _goToEnd.started += SkipToEndScreen;
         _skip.started += SkipMilestone;
+        _restart.started += RestartGame;
 
         _canCast = true;
         print("cast");
@@ -599,7 +602,7 @@ public class GameSkeleton : MonoBehaviour
 
     private void SkipToEndScreen(InputAction.CallbackContext obj)
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         EndSceneBehavior.Instance.GameOver();
     }
     private void SkipMilestone(InputAction.CallbackContext obj)
@@ -608,6 +611,11 @@ public class GameSkeleton : MonoBehaviour
         {
             UpdateNextMilestone();
         }
+    }
+    private void RestartGame(InputAction.CallbackContext obj)
+    {
+        CanRestartGame = true;
+        print(CanRestartGame);
     }
 
     private void OnDisable()
@@ -626,6 +634,7 @@ public class GameSkeleton : MonoBehaviour
         _quit.started -= QuitBuild;
         _goToEnd.started -= SkipToEndScreen;
         _skip.started -= SkipMilestone;
+        _restart.started -= RestartGame;
 
     }
 }

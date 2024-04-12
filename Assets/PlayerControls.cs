@@ -89,6 +89,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RestartGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e401da0-1594-4d62-ab57-2de41f7609b3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -188,6 +197,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SkipMilestone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10b1ee65-4d36-45a5-b089-3501ce747527"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RestartGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -333,6 +353,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_MyActionMap_Quit = m_MyActionMap.FindAction("Quit", throwIfNotFound: true);
         m_MyActionMap_GoToEndScreen = m_MyActionMap.FindAction("GoToEndScreen", throwIfNotFound: true);
         m_MyActionMap_SkipMilestone = m_MyActionMap.FindAction("SkipMilestone", throwIfNotFound: true);
+        m_MyActionMap_RestartGame = m_MyActionMap.FindAction("RestartGame", throwIfNotFound: true);
         // InstructionKeybinds
         m_InstructionKeybinds = asset.FindActionMap("InstructionKeybinds", throwIfNotFound: true);
         m_InstructionKeybinds_Almost = m_InstructionKeybinds.FindAction("Almost", throwIfNotFound: true);
@@ -407,6 +428,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_MyActionMap_Quit;
     private readonly InputAction m_MyActionMap_GoToEndScreen;
     private readonly InputAction m_MyActionMap_SkipMilestone;
+    private readonly InputAction m_MyActionMap_RestartGame;
     public struct MyActionMapActions
     {
         private @PlayerControls m_Wrapper;
@@ -418,6 +440,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Quit => m_Wrapper.m_MyActionMap_Quit;
         public InputAction @GoToEndScreen => m_Wrapper.m_MyActionMap_GoToEndScreen;
         public InputAction @SkipMilestone => m_Wrapper.m_MyActionMap_SkipMilestone;
+        public InputAction @RestartGame => m_Wrapper.m_MyActionMap_RestartGame;
         public InputActionMap Get() { return m_Wrapper.m_MyActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -448,6 +471,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SkipMilestone.started -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnSkipMilestone;
                 @SkipMilestone.performed -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnSkipMilestone;
                 @SkipMilestone.canceled -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnSkipMilestone;
+                @RestartGame.started -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnRestartGame;
+                @RestartGame.performed -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnRestartGame;
+                @RestartGame.canceled -= m_Wrapper.m_MyActionMapActionsCallbackInterface.OnRestartGame;
             }
             m_Wrapper.m_MyActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -473,6 +499,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SkipMilestone.started += instance.OnSkipMilestone;
                 @SkipMilestone.performed += instance.OnSkipMilestone;
                 @SkipMilestone.canceled += instance.OnSkipMilestone;
+                @RestartGame.started += instance.OnRestartGame;
+                @RestartGame.performed += instance.OnRestartGame;
+                @RestartGame.canceled += instance.OnRestartGame;
             }
         }
     }
@@ -559,6 +588,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnQuit(InputAction.CallbackContext context);
         void OnGoToEndScreen(InputAction.CallbackContext context);
         void OnSkipMilestone(InputAction.CallbackContext context);
+        void OnRestartGame(InputAction.CallbackContext context);
     }
     public interface IInstructionKeybindsActions
     {

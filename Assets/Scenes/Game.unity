@@ -378,6 +378,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2045917070}
+    - target: {fileID: 4270406529031633098, guid: 0ff89206c169deb4cacfda60e97911e2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4270406529031633100, guid: 0ff89206c169deb4cacfda60e97911e2, type: 3}
       propertyPath: _fish1
       value: 

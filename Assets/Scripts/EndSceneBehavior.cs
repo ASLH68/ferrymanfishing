@@ -64,11 +64,17 @@ public class EndSceneBehavior : MonoBehaviour
             yield return new WaitForSeconds(_fadeDuration * 0.01f);
         }
 
-        yield return new WaitForSeconds(_endingDuration);
+        //yield return new WaitForSeconds(_endingDuration);
+
+        
 
         // fades out background if just faded in
         if (change > 0)
         {
+            //waits for button press
+            yield return new WaitUntil(() => GameSkeleton.CanRestartGame);
+            GameSkeleton.CanRestartGame = false;
+
             _asyncOperation.allowSceneActivation = true;
             StartCoroutine(FadeBackground(1, 0, -0.01f));
         }

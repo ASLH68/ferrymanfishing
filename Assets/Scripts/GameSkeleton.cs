@@ -496,8 +496,8 @@ public class GameSkeleton : MonoBehaviour
 
         if (CaughtMaxFish())
         {
+            CanRestartGame = false;
             EndSceneBehavior.Instance.GameOver();
-
         }
         else
         {
@@ -603,6 +603,7 @@ public class GameSkeleton : MonoBehaviour
     private void SkipToEndScreen(InputAction.CallbackContext obj)
     {
         //StopAllCoroutines();
+        CanRestartGame = false;
         EndSceneBehavior.Instance.GameOver();
     }
     private void SkipMilestone(InputAction.CallbackContext obj)
@@ -615,7 +616,6 @@ public class GameSkeleton : MonoBehaviour
     private void RestartGame(InputAction.CallbackContext obj)
     {
         CanRestartGame = true;
-        print(CanRestartGame);
     }
 
     private void OnDisable()

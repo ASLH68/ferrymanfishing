@@ -217,6 +217,7 @@ public class GameSkeleton : MonoBehaviour
     {
         _canReel = true;
         _calloutsAnim.SetTrigger("Reel");
+        GetComponent<RodSFX>().PlayStart();
         //if timer is null start one and cache it
         if (_reelTimer == null)
         {
@@ -332,6 +333,7 @@ public class GameSkeleton : MonoBehaviour
                 break;
             case 1:
                 UpdateCurrentValues();
+                GetComponent<RodSFX>().PlayProgress(1);
                 _anim.SetTrigger("MilestoneReel");
                 if (_usingArduino)
                 {
@@ -341,6 +343,7 @@ public class GameSkeleton : MonoBehaviour
                 break;
             case 2:
                 UpdateCurrentValues();
+                GetComponent<RodSFX>().PlayProgress(2);
                 _anim.SetTrigger("MilestoneReel");
                 if (_usingArduino)
                 {
@@ -351,8 +354,10 @@ public class GameSkeleton : MonoBehaviour
             case 3:     //the fish is caught
                 print("YOU CAUGHT THE FISH!! (reeling)");
                 UpdateCurrentValues();
+                GetComponent<RodSFX>().PlayProgress(3);
                 _anim.SetTrigger("Success");
                 _calloutsAnim.SetTrigger("Stop");
+                GetComponent<RodSFX>().PlayStop();
                 _milestonesReached = -1;
                 StopCoroutine(_reelTimer);
                 _canReel = false;

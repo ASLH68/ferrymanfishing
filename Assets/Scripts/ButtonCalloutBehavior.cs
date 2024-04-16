@@ -68,12 +68,12 @@ public class ButtonCalloutBehavior : MonoBehaviour
 
     private void OnDisable()
     {
-        _almost.started -= _ => _callIndex = 0;
-        _slowDown.started -= _ => _callIndex = 1;
-        _speedUp.started -= _ => _callIndex = 2;
-        _keepGoing.started -= _ => _callIndex = 3;
-        _steady.started -= _ => _callIndex = 4;
-        _pause.started -= _ => _callIndex = 5;
+        //_almost.started -= _ => _callIndex = 0;
+        //_slowDown.started -= _ => _callIndex = 1;
+        //_speedUp.started -= _ => _callIndex = 2;
+        //_keepGoing.started -= _ => _callIndex = 3;
+        //_steady.started -= _ => _callIndex = 4;
+        //_pause.started -= _ => _callIndex = 5;
 
         _almost.started -= InvokeCallout;
         _slowDown.started -= InvokeCallout;

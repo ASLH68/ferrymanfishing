@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         NumFishCaught = 0;
+        Cursor.visible = false;
     }
 
 

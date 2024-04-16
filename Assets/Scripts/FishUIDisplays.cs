@@ -61,7 +61,6 @@ public class FishUIDisplays : MonoBehaviour
     {
         if (GameController.Instance.IsLegendary())
         {
-            Debug.Log("Is this running 2");
             EndSceneBehavior.Instance.SetFishPng(3);
 
             _fish3Spot.GetComponent<Image>().sprite = GameController.Instance.CurrentFish.BowlSprite;

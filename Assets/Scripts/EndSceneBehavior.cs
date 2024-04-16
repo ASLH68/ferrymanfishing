@@ -110,7 +110,6 @@ public class EndSceneBehavior : MonoBehaviour
                 _fish2.sprite = GameController.Instance.CurrentFish.BowlSprite;
                 break;
             case 3:
-                Debug.Log("is this running");
                 _fish3.sprite = GameController.Instance.CurrentFish.BowlSprite;
                 break;
 

@@ -62,7 +62,8 @@ public class ButtonCalloutBehavior : MonoBehaviour
     {
         _spriteRenderer.sprite = _callouts[_callIndex].Image;
         _anim.SetTrigger("callout");
-        AudioSource.PlayClipAtPoint(_callouts[_callIndex].Sound, transform.position);
+        //AudioSource.PlayClipAtPoint(_callouts[_callIndex].Sound, transform.position);
+        SoundEffectsController.Instance.PlaySFX(_callouts[_callIndex].Sound);
     }
 
     private void OnDisable()

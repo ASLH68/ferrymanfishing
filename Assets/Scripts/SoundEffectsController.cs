@@ -34,4 +34,10 @@ public class SoundEffectsController : MonoBehaviour
         _source.clip = GameController.Instance.CurrentFish.CatchSound;
         _source.Play();
     }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        _source.clip = clip;
+        _source.Play();
+    }
 }

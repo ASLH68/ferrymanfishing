@@ -198,6 +198,7 @@ public class GameSkeleton : MonoBehaviour
     {
         //CastScreen.Instance.AHideScreen?.Invoke();
         _anim.SetTrigger("Cast");
+        StartCoroutine(UndoProgressBar());
         //_castWaitTime = UnityEngine.Random.Range(_castWaitTimeMin, _castWaitTimeMax + 1);
         //StartCoroutine(CastTimer());
         //_calloutsAnim.SetTrigger("Wait");
@@ -230,6 +231,25 @@ public class GameSkeleton : MonoBehaviour
         UpdateNextMilestone();
     }
     
+    /// <summary>
+    /// Coroutine to undo the progress on the progress bar, called on cast
+    /// </summary>
+    /// <returns></returns>
+     IEnumerator UndoProgressBar()
+    {
+        float sliderMin = 1.4f;
+        if (TotalFishCaught == 2)
+            sliderMin = 1.75f;
+        else
+            sliderMin = 1.5f;
+
+        while (_slider.value >= sliderMin)
+        {
+            _slider.value -= 0.05f;
+            yield return null;
+        }
+    }
+
 
     /// <summary>
     /// When Reel input is detected, this function increments the reel value to

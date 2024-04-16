@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RestartGame",
+                    "type": "Button",
+                    "id": "9e401da0-1594-4d62-ab57-2de41f7609b3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -166,6 +175,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SkipMilestone",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10b1ee65-4d36-45a5-b089-3501ce747527",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RestartGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -12,8 +12,12 @@ public class IntroSceneBehavior : MonoBehaviour
     public static IntroSceneBehavior Instance;
     [SerializeField] private GameObject _castScreen;
     [SerializeField] private GameObject _gentleScreen;
+    
     [SerializeField] private float _gentleScreenDur;
 
+    [Header("BG UI")]
+    [SerializeField] private GameObject _progressBar;
+    [SerializeField] private GameObject _fishBowl;
     /// <summary>
     /// if the casting screen is still acitve it will stay but if cast is pressed then the casting screen should 
     /// disappear
@@ -38,6 +42,9 @@ public class IntroSceneBehavior : MonoBehaviour
         _castScreen.gameObject.SetActive(true);
         _introImage = transform.GetChild(0).GetComponent<Image>();
         _gentleImage = transform.GetChild(1).GetComponent<Image>();
+        _gentleImage = transform.GetChild(1).GetComponent<Image>();
+        _progressBar.SetActive(false);
+        _fishBowl.SetActive(false);
     }
 
     /// <summary>
@@ -91,13 +98,15 @@ public class IntroSceneBehavior : MonoBehaviour
     /// <returns></returns>
     private IEnumerator FadeInGentleImg()
     {
-        for (float f = 0f; f <= 1f; f += 0.05f)
+        for (float f = 0f; f < 1.5f; f += 0.05f)
         {
             Color c = _gentleImage.color;
             c.a = f;
             _gentleImage.color = c;
             yield return new WaitForSeconds(0.05f);
         }
+        _progressBar.SetActive(true);
+        _fishBowl.SetActive(true);
         yield return new WaitForSeconds(_gentleScreenDur);
         StartCoroutine(FadeOut(_gentleImage));
     }

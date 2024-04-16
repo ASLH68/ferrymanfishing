@@ -142,7 +142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a84e7befafc753140864ae236e8a7f68, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dfb8989445ba2fd4d89feeaaebac6f19, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -270,3 +270,5 @@ MonoBehaviour:
   _castScreen: {fileID: 3573375612847579561}
   _gentleScreen: {fileID: 421991796}
   _gentleScreenDur: 3
+  _progressBar: {fileID: 0}
+  _fishBowl: {fileID: 0}

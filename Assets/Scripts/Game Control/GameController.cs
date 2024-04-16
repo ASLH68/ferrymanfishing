@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 
     public int NumFishCaught { get; private set; }
 
-    public Fish CurrentFish { get; private set; }
+    public Fish CurrentFish;
 
     private void Awake()
     {

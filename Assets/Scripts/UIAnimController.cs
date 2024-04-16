@@ -37,10 +37,13 @@ public class UIAnimController : MonoBehaviour
         _Lsplash.Stop();
         _Rsplash.Stop();
         BackgroundMusic.Instance.FadeIn();
+
+        FishUIDisplays.Instance.SetFishBowlImg();
+
         if (!GameSkeleton.Instance.CaughtMaxFish())
         {
             _uiAnimator.Play("FadeOut");
-            FishUIDisplays.Instance.SetFishBowlImg();
+            
         }
     }
 }

@@ -598,6 +598,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696761560}
   m_CullTransparentMesh: 1
+--- !u!114 &712942469 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 311109201, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+  m_PrefabInstance: {fileID: 1867788541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &817335116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1036,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: _slider
+      value: 
+      objectReference: {fileID: 712942469}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _reelIncrementValue
       value: 0.1

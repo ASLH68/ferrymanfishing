@@ -39,8 +39,8 @@ const char Servo7 = 'm';
 const char Servo8 = 'n';
 const char Servo9 = 'o';
 
-const int ServoValue0 = 50; // Open Rotation
-const int ServoValue1 = 46; // Closed Rotation (Base)
+const int ServoValue0 = 51; // Open Rotation
+const int ServoValue1 = 44; // Closed Rotation (Base)
 const int ServoValue2 = 15;
 const int ServoValue3 = 20;
 const int ServoValue4 = 25;

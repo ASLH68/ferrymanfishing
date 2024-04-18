@@ -1294,6 +1294,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: servoCatchTime1_2
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: servoCatchTime1_3
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: servoCatchTime2_3
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: servoCatchTime3_3
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _reelIncrementValue
       value: 0.1
       objectReference: {fileID: 0}
@@ -1705,6 +1721,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 311109201, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_Value
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1592033502, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: _Lsplash
       value: 

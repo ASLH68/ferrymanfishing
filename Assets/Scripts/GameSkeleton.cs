@@ -420,17 +420,17 @@ public class GameSkeleton : MonoBehaviour
                 case 1:
                     _currentReelMilestone = _milestone1_2;
                     servoCatchTime = servoCatchTime1_1;
-                    _slider.value = 2.9f;
+                    _slider.value = _milestone1_1 + 1.4f;
                     break;
                 case 2:
                     _currentReelMilestone = _milestone1_3;
                     servoCatchTime = servoCatchTime1_2;
-                    _slider.value = 4.9f;
+                    _slider.value = _milestone1_1 + _milestone1_2 + 1.4f;
                     break;
                 default:
                     _milestonesReached = -1;
                     servoCatchTime = servoCatchTime1_3;
-                    _slider.value = 7.4f;
+                    _slider.value = _milestone1_1 + _milestone1_2 + _milestone1_3 + 1.4f;
                     break;
             }
         }
@@ -448,17 +448,17 @@ public class GameSkeleton : MonoBehaviour
                 case 1:
                     _currentReelMilestone = _milestone2_2;
                     servoCatchTime = servoCatchTime2_1;
-                    _slider.value = 3.75f;
+                    _slider.value = _milestone2_1 + 1.75f;
                     break;
                 case 2:
                     _currentReelMilestone = _milestone2_3;
                     servoCatchTime = servoCatchTime2_2;
-                    _slider.value = 6.26f;
+                    _slider.value = _milestone2_1 + _milestone2_2 + 1.75f;
                     break;
                 default:
                     _milestonesReached = -1;
                     servoCatchTime = servoCatchTime2_3;
-                    _slider.value = 9.25f;
+                    _slider.value = _milestone2_1 + _milestone2_2 + _milestone2_3 + 1.75f;
                     break;
             }
         }
@@ -476,17 +476,17 @@ public class GameSkeleton : MonoBehaviour
                 case 1:
                     _currentReelMilestone = _milestone3_2;
                     servoCatchTime = servoCatchTime3_1;
-                    _slider.value = 3f;
+                    _slider.value = _milestone3_1 + 1.5f;
                     break;
                 case 2:
                     _currentReelMilestone = _milestone3_3;
                     servoCatchTime = servoCatchTime3_2;
-                    _slider.value = 5f;
+                    _slider.value = _milestone3_1 + _milestone3_2 + 1.5f;
                     break;
                 default:
                     _milestonesReached = -1;
                     servoCatchTime = servoCatchTime3_3;
-                    _slider.value = 8f;
+                    _slider.value = _milestone3_1 + _milestone3_2 + _milestone3_3 + 1.5f;
                     break;
             }
         }

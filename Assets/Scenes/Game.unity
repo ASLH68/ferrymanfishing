@@ -1254,6 +1254,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 712942469}
     - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
+      propertyPath: _usingArduino
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 349336371605629367, guid: d0ef2a701366b924ca05494ab8c47b04, type: 3}
       propertyPath: _reelIncrementValue
       value: 0.1
       objectReference: {fileID: 0}
@@ -1276,7 +1280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8748473239133487587, guid: 4c3582d6e90b4494e84c136b69b3f8ba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8748473239133487588, guid: 4c3582d6e90b4494e84c136b69b3f8ba, type: 3}
       propertyPath: m_RootOrder

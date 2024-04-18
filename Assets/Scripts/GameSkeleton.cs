@@ -123,7 +123,7 @@ public class GameSkeleton : MonoBehaviour
         if (_usingArduino)
         {
             //_arduioPrefab.SetActive(true);
-            ArduinoManager.Instance.gameObject.SetActive(true);
+            //ArduinoManager.Instance.gameObject.SetActive(true);
             ArduinoManager.Instance.Translator.OnButtonPressed += WhenCast;
             ArduinoManager.Instance.Translator.OnRotaryEncoderIncreased += ReelCount;
 
@@ -141,6 +141,8 @@ public class GameSkeleton : MonoBehaviour
         print("cast");
 
         TotalFishCaught = 0;
+
+        Invoke("LockServo", 5);
     }
 
     #region getters
@@ -602,6 +604,14 @@ public class GameSkeleton : MonoBehaviour
         }
     }
 
+    private void UnlockServo()
+    {
+        if (_usingArduino)
+        {
+            ArduinoManager.Instance.Translator.SetServo(0);
+        }
+    }
+
     /// <summary>
     /// unlocks and then locks the servo as fast as possible 
     /// </summary>
@@ -610,14 +620,19 @@ public class GameSkeleton : MonoBehaviour
         if (_usingArduino)
         {
             StartCoroutine(ServoCatch1());
+
+            //UnlockServo();
+            //Invoke(nameof(LockServo), 0.2f);
         }
     }
 
     IEnumerator ServoCatch1()
     {
+        Debug.Log("unlocked");
         ArduinoManager.Instance.Translator.SetServo(0); //open
         yield return new WaitForSeconds(servoCatchTime);
         ArduinoManager.Instance.Translator.SetServo(1); //close
+        Debug.Log("locked");
     }
 
     private void QuitBuild(InputAction.CallbackContext obj)

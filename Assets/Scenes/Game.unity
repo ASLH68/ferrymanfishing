@@ -1745,6 +1745,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 61.69998
       objectReference: {fileID: 0}
+    - target: {fileID: 515261625903119905, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 88.04698
+      objectReference: {fileID: 0}
     - target: {fileID: 4345840032491813665, guid: 32625cf151eb5324786347fba929d0f4, type: 3}
       propertyPath: m_Name
       value: FishDisplay
@@ -1894,6 +1898,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1108797779600590535, guid: c028f287d01694b42bf97f617eb75c0c, type: 3}
+      propertyPath: _callouts.Array.data[0].Sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 112bdc30e5693ce4e828dd6fc403594e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c028f287d01694b42bf97f617eb75c0c, type: 3}
 --- !u!1001 &2010972664
